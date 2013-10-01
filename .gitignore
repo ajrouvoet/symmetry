@@ -1,0 +1,11 @@
+*.aux
+*.bbl
+*.log
+*.blg
+*.gz
+*.out
+*.tdo
+*.toc
+*.pdf
+*.nav
+*.snm
