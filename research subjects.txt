@@ -1,5 +1,0 @@
-Constraint Optimization
-Dynamic symmetry breaking in generic SAT instances.
-Scheduling Problems
-Sudoku en overig spellen
-FPGA and chip connection routing

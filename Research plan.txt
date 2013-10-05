@@ -1,9 +1,0 @@
-Short but to the point (1-2 pages).
-Should discuss the following:
-- Topic and goals of the research
-- Research question(s)
-- Motivation (why do you want to study this?)
-- Context (briefly sketch the relevant state of the art)
-- Research plan (identify main activities, if possible assign topeople)
-- Expected results
-- Conclusions
