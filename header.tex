@@ -12,6 +12,19 @@
 	% authors and affiliations
 	\usepackage{authblk}
 	\renewcommand\Authands{ and } %Remove weird comma before and
+	
+	%Internal references to section, images, etc. use \cref{}
+	\usepackage[nameinlink,capitalise]{cleveref}
+	
+	%Link colors
+	\usepackage{xcolor}
+	\definecolor{dark-red}{rgb}{0.4,0.15,0.15}
+	\definecolor{dark-blue}{rgb}{0.15,0.15,0.4}
+	\definecolor{medium-blue}{rgb}{0,0,0.5}
+	\hypersetup{
+		colorlinks, linkcolor={dark-blue},
+		citecolor={dark-blue}, urlcolor={medium-blue}
+	}
 
 	%Todos
 	\usepackage{todonotes}

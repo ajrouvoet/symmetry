@@ -1,21 +1,43 @@
-\input{header}
+\input{../header}
+
+\title{Symmetry Breaking}
 
 \begin{document}
 	\maketitle
 	
 	%\tableofcontents
-	%\listofalgorithms
-	%\clearpage
+	\listoftodos
 
 	\begin{abstract}
 		\todoi{Abstract}
 	\end{abstract}
 	
-	\section{Stuff}
-		\todo[inline]{Write stuff}
+	\section{Introduction} \label{sec:Introduction}
+		Symmetry breaking has become an interesting method for increasing the solving speed of certain Conjunctive Normal Form (CNF) Satisfiability (SAT) problems.
+		This is typically done by adding Symmetry Breaking Predicates (SBPs) to the SAT instance~\cite{sakallah2009symmetry},
+		resulting in a simpler search space.
+		There are generally speaking two types of symmetry breaking: Static symmetry breaking and dynamic symmetry breaking.
+		While static symmetry breaking has become more popular\todo{Need ref}, we will investigate the pros and cons of dynamic symmetry breaking.
+		
+		We will also investigate what classes of problems symmetry breaking can be applied to and what the effective speed-up pertains.
+		For symmetry breaking to be applied effectively the given problem has to exert symmetrical properties,
+		i.e.\ some search tree is virtually identical to another.
+		Symmetry breaking has been shown to provide significant speed-ups~\cite{darga2004exploiting,aloul2003solving},
+		and do not slow down the algorithm when no obvious symmetries are present.
+		
+		Then we will investigate these claims by applying a given symmetry breaking algorithm to a problem, modifying it and empirically judge its effectiveness. \todoi{Introduction to our SB algorithm}
+		
+	\section{Background} \label{sec:Background}
+		Symmetry Breaking Predicates...
+		
+		\subsection{Static Symmetry Breaking}
+			\todoi{Static SB}
+			
+		\subsection{Dynamic Symmetry Breaking}
+			\todoi{Dynamic SB}
 		
 
 	\nocite{*} %Show everything in bib
 	\bibliographystyle{IEEEtran}
-	\bibliography{bibliography}
+	\bibliography{../bibliography}
 \end{document}
