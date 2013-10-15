@@ -1,21 +1,50 @@
-\input{header}
+\input{../header}
+
+\title{Symmetry Breaking}
 
 \begin{document}
 	\maketitle
 	
 	%\tableofcontents
-	%\listofalgorithms
-	%\clearpage
+	\listoftodos
 
 	\begin{abstract}
 		\todoi{Abstract}
 	\end{abstract}
 	
-	\section{Stuff}
-		\todo[inline]{Write stuff}
+	\section{Introduction} \label{sec:Introduction}
+		Symmetry breaking has become an interesting method for increasing the solving speed of certain Conjunctive Normal Form (CNF) Satisfiability (SAT) problems.
+		This is typically done by adding Symmetry Breaking Predicates (SBPs) to the SAT instance~\cite{sakallah2009symmetry},
+		resulting in a simpler search space.
+		There are generally speaking two types of symmetry breaking: Static symmetry breaking and dynamic symmetry breaking.
+		While static symmetry breaking has become more popular\todo{Need ref}, we will investigate the pros and cons of dynamic symmetry breaking.
 		
+		We will also investigate what classes of problems symmetry breaking can be applied to and what the effective speed-up pertains.
+		For symmetry breaking to be applied effectively the given problem has to exert symmetrical properties,
+		i.e.\ some search tree is virtually identical to another.
+		Symmetry breaking has been shown to provide significant speed-ups~\cite{darga2004exploiting,aloul2003solving},
+		and do not slow down the algorithm when no obvious symmetries are present.
+		
+		Then we will investigate these claims by applying a given symmetry breaking algorithm to a problem, modifying it and empirically judge its effectiveness. \todoi{Introduction to our SB algorithm}
+		
+	\section{Background} \label{sec:Background}
+		To prevent a SAT solver from researching a symmetrical search tree, that was already solved before,
+		Symmetry Breaking Predicates can be added to the SAT instance~\cite{sakallah2009symmetry}.		
+		SBPs can also be applied partially to the symmetry group, called \textit{partial symmetry breaking}~\cite{sakallah2009symmetry}.
+		Because \textit{full symmetry breaking} sometimes costs a lot of time, most symmetrical search spaces can be blocked by using a subset of the full SBP.
+		There has been more research on the efficiency of SBPs, such as \cite{aloul2006efficient}\todo{More refs}.
+		
+		\todoi{Conflict-Driven symmetry breaking}
+		
+		\subsection{Static Symmetry Breaking}
+			Static symmetry breaking algorithms modify the input of the SAT solver, but do not adjust the solver itself~\cite{sakallah2009symmetry}.
+			
+		\subsection{Dynamic Symmetry Breaking}
+			Dynamic symmetry breaking algorithms modify the SAT solver to search for local symmetries during runtime.
+			Contributions to dynamic symmetry breaking have not been numerous in SAT such as \cite{sabharwal2005symchaff},
+			where Constraint Satisfaction Problems (CSP) have looked more research in the matter. 	
 
 	\nocite{*} %Show everything in bib
 	\bibliographystyle{IEEEtran}
-	\bibliography{bibliography}
+	\bibliography{../bibliography}
 \end{document}
