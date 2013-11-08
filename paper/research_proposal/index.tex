@@ -1,0 +1,73 @@
+\input{../header}
+
+	\title{Research Proposal}
+
+	\subtitle{Symmetry Breaking in SAT}
+
+\begin{document}
+
+	\maketitle
+	\newpage
+
+	\section{Research}
+		Our research focuses on symmetry breaking in satisfiability (SAT) solvers. We will study existing material on dynamic and static symmetry breaking and attempt to implement and/or extend an existing dynamic method in a SAT solver (e.g. MiniSat).
+
+		\subsection{Research Questions}
+			\begin{enumerate}
+				\item What are the advantages and complications of an implementation of a generic dynamic	symmetry breaking algorithm in a SAT solver, compared to a static symmetry breaking implementation?
+				\item What are the current state-of-the-art solvers for SAT using symmetry breaking?
+				\item How can we extend/modify the symmetry propagation algorithm used by~\cite{devriendt2012symmetry} to boost performance?
+			\end{enumerate}
+
+		\subsection{Motivation}
+			As a research group we are focused on getting a better understanding of SAT solvers and methods of exploiting symmetry in SAT instances for improving the speed by which a SAT	instance can be solved.	Writing this paper is part of the course IN4077-13, which has as its main objectives:
+
+			\begin{enumerate}
+				\item
+					Apply combinatorial solvers to problem domains, and can compare and evaluate them.
+				\item
+					Explain general techniques used in combinatorial solvers
+				\item
+					Design and implement an extension or modification of a solver in order to answer the research question.
+			\end{enumerate}
+
+			Besides these goals, that we expect to be fulfilled by studying the material necessary to answer the formulated research question, there are a few additional goals formulated for the course:
+
+			\begin{enumerate}
+				\item Formulate a research question on a provided topic.
+				\item Communicate findings effectively.
+			\end{enumerate}
+
+			These goals are fulfilled respectively by this document and the planned paper and the	presentation on our findings.
+
+	\section{Context}
+		There are two types of symmetry breaking, static and dynamic. Static symmetry breaking involves adding extra constraints to the input to avoid symmetrical search spaces, before it is given to the solver. Dynamic symmetry breaking, on the other hand, involves interacting with the solver during search to try to avoid symmetrical search spaces that have already been visited.
+
+		Currently, most dynamic symmetry breaking method for SAT perform worse than static symmetry breaking, or are limited to a specific class of symmetries~\cite{devriendt2012symmetry}. Therefore~\cite{devriendt2012symmetry} proposed a symmetry propogation algorithm to overcome these difficulties. According to their results, their algorithm performs better than other state-of-the-art methods, for a number of different classes of symmetries.
+
+	\section{Research Plan}
+
+		\subsection{Activities}
+			In order to answer our research question we have to undertake these activities:
+	
+			\begin{enumerate}
+				\item Research static symmetry breaking SAT solvers
+				\item Research dynamic symmetry breaking SAT solvers
+				\item Implement dynamic symmetry breaking SAT solver
+				\item Compare our solver to other available static and dynamic SAT solvers
+				\item Write a paper containing our results
+			\end{enumerate}
+
+			These activities will be performed by different group members to ensure an equal distribution of work.
+
+		\subsection{Expected Results}
+			We expect to find advantages and limitations of dynamic symmetry breaking SAT solvers in compare to static solvers.
+			Also we expect to make dynamic symmetry breaking SAT solver faster by applying the improvements suggested in~\cite{devriendt2012symmetry}.
+
+	\section{Conclusions}
+		We can conclude that in our challenge to explore symmetry breaking in SAT, we have come up with three relevant research questions to guide us, explained the context of our research and have come up with a research plan to try to answer these questions. From our activities we expect to come up with a (modified) dynamic symmetry breaking algorithm, that will perform better than a SAT solver that does not use symmetry breaking.
+
+	\bibliographystyle{IEEEtran}
+	\bibliography{../bibliography}
+
+\end{document}

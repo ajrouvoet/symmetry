@@ -1,4 +1,4 @@
-\input{../header}
+\input{header}
 
 \title{Symmetry Breaking}
 
@@ -14,143 +14,13 @@
 
 	\section{Introduction}
 	\label{sec:Introduction}
-
-		Symmetry breaking has become an interesting method for increasing the solving speed of
-		certain Conjunctive Normal Form (CNF) Satisfiability (SAT) problems.
-		This is typically done by adding Symmetry Breaking Predicates (SBPs) to the SAT
-		instance~\cite{sakallah2009symmetry}, resulting in a more restricted search space.
-		For symmetry breaking to be applied effectively the given problem has to exert symmetrical
-		properties, i.e. some search tree is virtually identical to another.
-		Symmetry breaking has been shown to provide significant
-		speed-ups~\cite{darga2004exploiting,aloul2003solving}, and do not slow down the algorithm
-		when no obvious symmetries are present.
-
-		There are generally speaking two types of symmetry breaking: Static symmetry breaking and
-		dynamic symmetry breaking.
-		We will investigate the possibility of improving a dynamic symmetry breaker described by
-		\cite{devriendt2012symmetry}.
-		Their paper describes a symmetry breaker based on propagating symmetrical literals.
-		The solver therefor keeps track of symmetries that are applicable under the current assignment.
-		More applicable symmetries implies more propagated literals, which would suggest that
-		optimizing the solver for the number of applicable symmetries would yield improved results.
-		A step in this direction has been investigated by \cite{devriendt2012symmetry} and yielded
-		promising speedups.
-
-		In conflic-driven sat-solvers, the solver chooses in each iteration a value for an undefined
-		variable.
-		The performance of a solver depends heavily on choosing good variables and good values.
-		The predicate \emph{good} is often determined by a collection of heuristics in the solver.
-		Our research is focused on finding rules or heuristics that favor choosing literals
-		that optimize the number of applicable symmetries in a conflict-driven sat-solver.
+		\input{introduction}
 
 	\section{Background} \label{sec:Background}
-		To prevent a SAT solver from researching a symmetrical search tree, that was already solved
-		before, Symmetry Breaking Predicates can be added to the SAT
-		instance~\cite{sakallah2009symmetry}. SBPs can also be applied partially to the symmetry
-		group, called \textit{partial symmetry breaking}~\cite{sakallah2009symmetry}. Because
-		\textit{full symmetry breaking} sometimes costs a lot of time, most symmetrical search
-		spaces can be blocked by using a subset of the full SBP. There has been more research on
-		the efficiency of SBPs, such as \cite{aloul2006efficient}\todo{More refs}.
-
-		\subsection{Terminology}
-			As we build our research on the results of \cite{devriendt2012symmetry}, we will adopt
-			their notation and terminology.
-
-			Let \emph{a theory} $T$ be a SAT-instance in conjunctive normal form, i.e. a conjuction
-			of clauses.
-			Let $\Sigma(T)$ denote the set of variables in $T$.
-			Every clause is a disjunction of \emph{literals}, where a literal is either of the form
-			$x$ or $\neg x$, where $x \in \Sigma(T)$.
-			$\bar\Sigma(T)$ denotes the set of all possible literals of $T$.
-
-			An \emph{assignment} of $T$ is an $\alpha \subseteq \bar\Sigma(T)$, such that at most
-			one literal for each variable in $T$ appears in $\alpha$.
-			\emph{Partial} and \emph{complete} assignments are distinguished.
-			An assignment is \emph{complete} if it contains one literal for each $x \in \Sigma(T)$.
-
-			A literal $l$ can be evaluated against a assignment $\alpha$: $l$ is \emph{true} if $l \in
-			\alpha$, \emph{false} if $\neg l \in \alpha$ and \emph{undefined} otherwise.
-			Clauses are either \emph{satisfied} or \emph{in conflict} with an assignment $\alpha$.
-			If a clause $C$ contains only false literals, then it is considered \emph{in conflict}.
-			If $C$ contains at least one true literal, it is satisfied.
-			Additionally $C$ is a \emph{unit-clause} if it only contains one true literal.
-
-			A SAT-solver looks for a complete assignment such that all clauses in $T$ are satisfied.
-			Such an assignment is called a model for $T$.
-			A theory of $T$ is satisfiable if a model exists for $T$.
-			Given a theory $T$, we consider a clause $c$ a \emph{logical consequence} of $T$ if
-			$T \wedge c)$ is satisfied under every model of $T$; this is denoted as $T \vdash c$.
-			A theory $T'$ is a logical consequence of $T$, if all clauses in $T$ are logical
-			consequences of $T$.
-
-			\todoi{This is almost directly taken from \cite{devriendt2012symmetry}. Is that a
-			problem?}
-
-			\todoi{Conflict-Driven symmetry breaking}
-
-				Consider a permutation $\sigma$ of a theory $T$.
-				$\sigma$ is called a symmetry if and only if:
-
-				\begin{enumerate}
-					\item $\sigma(\neg x) = \neg(\sigma( x ))$
-					\item $\sigma(\alpha )$ is a model for $T$ if and only if $\alpha$ is a model for
-						$T$
-				\end{enumerate}
-
-				A crucial theorem concerning symmetries is the following: \\
-
-				\begin{proposition}
-					\label{prop:symmetric_clause_learning}
-					Let $s$ be a symmetry of a theory $T$ and $c$ a clause.
-					\begin{equation}
-						T \vdash c \quad \implies \quad T \vdash \sigma( c )
-					\end{equation}
-				\end{proposition}
-
-		\subsection{Static Symmetry Breaking}
-			Static symmetry breaking algorithms modify the input of the SAT solver, but do not
-			adjust the solver itself~\cite{sakallah2009symmetry}.
-
-		\subsection{Dynamic Symmetry Breaking}
-			Dynamic symmetry breaking algorithms modify the SAT solver to search for local
-			symmetries during runtime. Contributions to dynamic symmetry breaking have not been
-			numerous in SAT such as \cite{sabharwal2005symchaff}, where Constraint Satisfaction
-			Problems (CSP) have looked more research in the matter.
-
-			One theoretical approach in dynamic symmetry breaking would be to exploit symmetries in
-			a theory to learn more clauses.
-			Every time the solver learns a clause $c$, $\sigma(c)$ could also be learned, according
-			to proposition \ref{prop:symmetric_clause_learning}.
-			This however is often not feasible, as it would add too many clauses to the theory.
-
-			The alternative approach, which is taken by the authors of
-			\cite{devriendt2012symmetry}, is to propagate symmetrical literals.
-			The idea is that given a theory $T$, a partial assignment $\alpha$ and a symmetry
-			$\sigma$ of $T \cup \alpha$, proposition \ref{prop:symmetric_clause_learning} implies
-			that for any literal $l$:
-
-			\begin{equation}
-				T \cup \alpha \vdash l \quad
-				\implies
-				\quad T \cup \alpha \vdash \sigma(l)
-			\end{equation}
-
-			Thus, when the solver propagates a literal $l$, $\sigma(l)$ can also be propagated.
-			\todo{what about $\sigma^2(l)$\ldots}.
-
-			The challenge with this approach is to find symmetries of $T \cup \alpha$ in a
-			reasonable time.
-			To this end, the authors of \cite{devriendt2012symmetry} introduced the notion of
-			\emph{weak activity}.
-			Weakly active symmetries can be used to propagate symmetrical literals.
-			Weak activity is defined as follows:\\
-
-			\begin{definition}
-				\todoi{\ldots}
-			\end{definition}
+		\input{background}
 
 	% \nocite{*} %Show everything in bib
 	\newpage
 	\bibliographystyle{IEEEtran}
-	\bibliography{../bibliography}
+	\bibliography{bibliography}
 \end{document}
