@@ -1,4 +1,4 @@
-\documentclass[11pt, a4paper, abstracton]{scrartcl}
+\documentclass[11pt, a4paper]{IEEEtran}
 
 	\usepackage[english]{babel}
 	\usepackage{amsmath}
@@ -12,10 +12,10 @@
 	% authors and affiliations
 	\usepackage{authblk}
 	\renewcommand\Authands{ and } %Remove weird comma before and
-	
+
 	%Internal references to section, images, etc. use \cref{}
 	\usepackage[nameinlink,capitalise]{cleveref}
-	
+
 	%Link colors
 	\usepackage{xcolor}
 	\definecolor{dark-red}{rgb}{0.4,0.15,0.15}
@@ -25,6 +25,9 @@
 		colorlinks, linkcolor={dark-blue},
 		citecolor={dark-blue}, urlcolor={medium-blue}
 	}
+
+	\newtheorem{theorem}{Theorem}
+	\newtheorem{proposition}{Proposition}
 
 	%Todos
 	\usepackage{todonotes}
