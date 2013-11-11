@@ -1,0 +1,86 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+	\usetheme{Szeged}
+	\usecolortheme{beaver}
+
+	%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+	%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+	%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{lmodern}
+
+\setbeamerfont{bibliography entry author}{size=\tiny}%
+\setbeamerfont{bibliography entry title}{size=\tiny}
+\setbeamerfont{bibliography entry journal}{size=\tiny}
+\setbeamerfont{bibliography entry note}{size=\tiny}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Short title]{Dynamic Symmetry Breaking}
+
+\author{A.J.Rouvoet}
+\institute[TU Delft]
+{
+	Delft, University of Technology \\
+	\medskip
+	\textit{a.j.rouvoet@student.tudelft.nl}
+}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+	\frametitle{Overview}
+	\tableofcontents
+\end{frame}
+
+
+\section{First Section}
+
+\subsection{Subsection Example}
+
+\begin{frame}
+	\frametitle{Paragraphs of Text}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Blocks of Highlighted Text}
+	\begin{block}{Block 1}
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in
+		feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus,
+		quis accumsan dolor.
+	\end{block}
+
+	\begin{block}{Block 2}
+  		Pellentesque sed tellus purus. Class aptent taciti sociosqu ad litora torquent per conubia
+		nostra, per inceptos himenaeos. Vestibulum quis magna at risus dictum tempor eu vitae velit.
+	\end{block}
+
+	\begin{block}{Block 3}
+		Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenatis rutrum,
+		ipsum neque consectetur orci, sed blandit justo nisi ac lacus.\cite{audemard2007symmetry}
+	\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{References}
+	\bibliographystyle{IEEEtran}
+	\bibliography{../bibliography.bib}
+\end{frame}
+
+\begin{frame}
+\Huge{\centerline{Questions?}}
+\end{frame}
+
+\end{document}
