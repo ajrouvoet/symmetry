@@ -21,7 +21,7 @@ promising speedups.
 
 In conflic-driven sat-solvers, the solver chooses in each iteration a value for an undefined
 variable.
-The performance of a solver depends heavily on choosing good variables and good values.
-The predicate \emph{good} is often determined by a collection of heuristics in the solver.
-Our research is focused on finding rules or heuristics that favor choosing literals
+Deciding which variable to branch on is an important aspect of a SAT-solver and is a common target
+for domain specific optimization\cite{een2004extensible}.
+The research is focused on finding rules or heuristics that favor choosing literals
 that optimize the number of applicable symmetries in a conflict-driven sat-solver.

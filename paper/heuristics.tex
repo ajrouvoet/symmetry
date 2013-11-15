@@ -1,0 +1,56 @@
+\todoi{
+	Construct an argument to support the use of heuristics to find a variable that optimizes the
+	amount of active symmetries
+}
+
+The authors of \cite{katebi2010symmetry} already suggest the possibility of optimizing the solver by
+branching on literals that optimize the number of symmetries that are weakly active.
+The took a step in that direction by lowering the position of variables $v$ on the variable heap for
+every symmetry $\sigma$ such that $sigma(v) = \neg v$.
+Because choosing such variables would cause these symmetries to become permanently inactive.
+Using this heuristic they showed a considerable performance boost, which prompted our research.
+
+In this section we consider several implementations of this heuristic: promoting choice literals
+that keep or make symmetries weakly active.
+In the next section we compare the performance of these implementations and discuss their
+applicability.
+
+\subsection{Literal Lookahead}
+	Given the definition of weak activity in \todo{ref} we can deduce corollary
+	\ref{cor:makes_inactive}. \\
+
+	\begin{corollary}
+		\label{cor:makes_inactive}
+		Given a symmetry $\sigma$ and a literal $l$, $\sigma$ is made inactive by choosing $l$ iff
+		$\sigma$ is weakly active, and $\sigma(l) \notin \alpha$. Where
+		$(\alpha,\delta,\textit{expl})$ is the solver state \emph{after} propagation of $l$.
+	\end{corollary}
+
+	In order to determine the activity of symmetries exactly after choosing a literal, it is thus
+	necessary to perform the unit propagation step under the assumption that the literal is true.
+	Performing a lookahead is an expensive operation as it requires the solver to perform half an
+	iteration and backtrack.
+	It is thus not feasible in general to perform this procedure for every undecided variable and
+	select the optimal one.
+	Additionally, this approach would disable all other heuristics for variable selection.
+
+	Several alternative approaches can be considered:
+
+	\begin{enumerate}
+		\item An obvious option is to perform a lookahead on the choice variable $v$ that the solver
+			selects (based on the variable heap and activity\todo{ref}) to determine the
+			preferred assignment ($v$ or $\neg v$).
+
+		\item As an alternative one could perform this lookahead for the first $n$ variables on the
+			heap.
+
+		\item One could attempt to approximate the amount of symmetries made inactive under the
+			assignment that the propagation of $l$ will yield, by the number of symmetries made
+			inactive by $l$ under the current assignment, that is: consider a symmetry $\sigma$ as
+			made inactive by $l$ if it is weakly-active under the current assignment $\alpha$ and
+			$\sigma(l) \notin \alpha$.
+			Note that this is an approximation only, as these symmetries could be made active by
+			unit propagation after choosing $l$.
+			\todoi{give arguments to support this approximation}
+
+	\end{enumerate}
