@@ -9,9 +9,12 @@
 \usepackage{booktabs}
 \usepackage{lmodern}
 
+\setbeamertemplate{blocks}[rounded][shadow=false]
 \setbeamerfont{bibliography entry author}{size=\tiny}%
 \setbeamerfont{bibliography entry title}{size=\tiny}
 \setbeamerfont{bibliography entry journal}{size=\tiny}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]
 \setbeamerfont{bibliography entry note}{size=\tiny}
 
 \title[Dynamic Symmetry Breaking]{Optimizing Dynamic Symmetry Breaking}
@@ -106,16 +109,44 @@
 		\frametitle{Symmetry Propagation}
 	\end{frame}
 
-\section{Symmetry Related Variable Branching}
+\section{Symmetry Optimizing Variable Branching}
 
 	\subsection{The idea}
 	\begin{frame}
-		\frametitle{Symmetry Related Variable Branching}
+		\frametitle{Symmetry Optimizing Variable Branching}
+
+		\begin{block}{Optimization through literal selection}
+			Improve dynamic symmetry propagation performance by choosing literals that promote
+			symmetry weak-activity.
+		\end{block}
 	\end{frame}
 
 	\subsection{Candidate Heuristics}
 	\begin{frame}
 		\frametitle{Symmetry Related Variable Branching Heuristics}
+
+		\begin{block}{Literal optimization}
+			\begin{enumerate}
+				\item<+-> Get first $n$ undecided variables $V$ from the variable heap
+				\item<+-> For each $v \in V$: perform lookahead on choice literals $v$ and $\neg v$
+				\item<+-> Continue with branch that has the most weakly-active symmetries
+			\end{enumerate}
+		\end{block}
+
+		\visible<+->{
+		\begin{block}{Approximation technique}
+			Assume current choice literals $\delta$, next choice literal $l$, and assignment $\alpha$.
+			Instead of performing the lookahead for $l$, let $\delta' = \delta \cup \{l\}$ and let
+			the cost of choosing $l$ be:
+
+			\begin{equation}
+				c(l) = {\Sigma_{\sigma \in S} \left | \sigma(\delta') - \alpha \right | }
+			\end{equation}
+
+			Choose the literal $u$ that minimizes $c(u)$
+		\end{block}
+		}
+
 	\end{frame}
 
 \section{Break it down}
