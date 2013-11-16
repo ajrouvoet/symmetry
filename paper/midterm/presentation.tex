@@ -28,7 +28,40 @@
 	\medskip
 	\textit{a.j.rouvoet@student.tudelft.nl}
 }
+
 \date{\today}
+
+% create a new file handle
+\newwrite\pdfpcnotesfile
+
+% open file on \begin{document}
+\AtBeginDocument{%
+    \immediate\openout\pdfpcnotesfile\jobname.pdfpc\relax
+    \immediate\write\pdfpcnotesfile{[notes]}
+}
+
+% define a # http://tex.stackexchange.com/a/37757/10327
+\begingroup
+    \catcode`\#=12
+    \gdef\hashchar{#}%
+\endgroup
+
+% define command \pnote{} that works exactly like not but
+% additionally writes notes to file in pdfpc readable format
+\newcommand{\pnote}[1]{%
+    % keep normal notes working
+    \note{#1}%
+    % write notes to file
+    \begingroup
+        \let\#\hashchar
+        \immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
+        \immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
+    \endgroup
+}
+% close file on \begin{document}
+\AtEndDocument{%
+    \immediate\closeout\pdfpcnotesfile
+}
 
 \begin{document}
 
@@ -44,7 +77,11 @@
 \section{Introduction}
 
 	\begin{frame}
-		\frametitle{}
+		\frametitle{Introduction}
+		\begin{block}{Symmetry Propagation}
+			A feasible dynamic symmetry breaking technique for SAT-solvers as proposed by
+			\cite{devriendt2012symmetry} in 2012.
+		\end{block}
 	\end{frame}
 
 \section{Background}
@@ -91,7 +128,6 @@
 	\subsection{References}
 	\begin{frame}[allowframebreaks]
 		\frametitle{References}
-		\nocite{*} % TODO remove
 		\bibliographystyle{IEEEtran}
 		\bibliography{../bibliography.bib}
 	\end{frame}
