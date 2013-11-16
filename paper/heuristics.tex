@@ -3,8 +3,8 @@
 	amount of active symmetries
 }
 
-The authors of \cite{katebi2010symmetry} suggest the possibility of optimizing the solver by
-branching on literals that optimize the number of symmetries that are weakly active.
+The authors of \cite{devriendt2012symmetry,katebi2010symmetry} suggest the possibility of optimizing the solver by
+branching on literals that optimize the number of symmetries that are (weakly) active.
 They took a step in that direction by lowering the position of \emph{inverting} literals $v$ on the variable heap for
 every symmetry $\sigma$ such that $\sigma(v) = \neg v$.
 Because choosing such variables would cause these symmetries to become permanently weakly inactive.
@@ -16,7 +16,9 @@ In the next section we compare the performance of these implementations and disc
 applicability.
 
 \subsection{Literal Lookahead}
-	Given the definition of weak activity in \cite{devriendt2012symmetry} we can deduce \cref{cor:makes_inactive}.\\
+	To also consider the effects of choice literals on the activity of symmetries further,
+	we propose a heuristic \emph{literal lookahead} that checks if symmetries are made weakly inactive by a choice literal.
+	Given the definition of weak activity in \cite{devriendt2012symmetry} we can define \cref{cor:makes_inactive}.\\
 
 	\begin{corollary}
 		\label{cor:makes_inactive}
@@ -26,12 +28,12 @@ applicability.
 		Where $(\alpha,\delta,\textit{expl})$ is the solver state \textbf{after} unit propagation of $l$. \todo{Can we express this differently?}
 	\end{corollary}
 
-	In order to determine the activity of symmetries exactly after choosing a literal, it is thus
-	necessary to perform the unit propagation step under the assumption that the literal is chosen.
+	In order to determine the activity of symmetries exactly after choosing a literal,
+	it is necessary to perform the unit propagation step under the assumption that the literal is chosen.
 	Performing a lookahead is an expensive operation as it requires the solver to perform half an
 	iteration and backtrack.
 	It is thus not feasible in general to perform this procedure for every undecided variable and
-	select the optimal one.	
+	select the optimal one.
 	Note that this approach also takes into account inverting literals,
 	because these literals also cause a symmetry to become weakly inactive.
 	% We can still also do inactive propagation optimization after our heuristic.
@@ -44,15 +46,21 @@ applicability.
 			preferred assignment ($v$ or $\neg v$).
 
 		\item As an alternative one could perform this lookahead for the first $n$ variables on the
-			heap.
+			heap and select the one that makes the least symmetries inactive.
 
-		\item One could attempt to approximate the amount of symmetries made inactive under the
-			assignment that the propagation of $l$ will yield, by the number of symmetries made
-			inactive by $l$ under the current assignment, that is: consider a symmetry $\sigma$ as
-			made inactive by $l$ if it is weakly-active under the current assignment $\alpha$ and
+		\item It is also possible to instead approximate the amount of symmetries made inactive under the
+			assignment that the propagation of $l$ will yield.
+			Instead of propagating, we can look at the number of symmetries made inactive by $l$
+			under the current assignment, that is: consider a symmetry $\sigma$ as
+			made inactive by $l$ if it is weakly active under the current assignment $\alpha$ and
 			$\sigma(l) \notin \alpha$.
 			Note that this is an approximation only, as these symmetries could be made active by
 			unit propagation after choosing $l$.
 			\todoi{give arguments to support this approximation}
 
 	\end{enumerate}
+	
+\subsection{Ranking Symmetries}
+	By looking at the importance of certain symmetries it is possible to predict
+	which symmetries may be better to keep (weakly) active than other symmetries.
+	\todoi{Who proposed this?}
