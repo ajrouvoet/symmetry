@@ -17,6 +17,8 @@
 \setbeamertemplate{enumerate items}[default]
 \setbeamerfont{bibliography entry note}{size=\tiny}
 
+\newtheorem{proposition}{Proposition}
+
 \title[Dynamic Symmetry Breaking]{Optimizing Dynamic Symmetry Breaking}
 
 \author{
@@ -29,7 +31,7 @@
 {
 	Delft, University of Technology \\
 	\medskip
-	\textit{a.j.rouvoet@student.tudelft.nl}
+	\textit{\{j.vanBeek, a.j.Rouvoet, e.Schoute, i.j.g.intVeen\}@student.tudelft.nl}
 }
 
 \date{\today}
@@ -94,19 +96,71 @@
 		\frametitle{SAT notation}
 	\end{frame}
 
+	\subsection{Symmetry}
+	\begin{frame}
+		\frametitle{Symmetry}
+
+		\begin{definition}[Symmetry]
+			Consider a permutation $\sigma$ of a theory $T$. $\sigma$ is called a symmetry if and only if:
+			\begin{itemize}
+				\item $\sigma(\neg x) = \neg(\sigma(x))$
+				\item $\sigma(\alpha)$ is a model for $T$ iff $\alpha$ is a model for $T$
+			\end{itemize}
+		\end{definition}
+
+		\pause
+
+		\begin{proposition}
+			Let $\sigma$ be a symmetry of a theory $T$ and $c$ a clause.
+			\begin{equation}
+				T \vdash c \quad \implies \quad T \vdash \sigma( c )
+			\end{equation}
+		\end{proposition}
+	\end{frame}	
+
 	\subsection{Symmetry Breaking}
 	\begin{frame}
 		\frametitle{Symmetry Breaking}
+
+		\begin{itemize}
+			\item Static Symmetry Breaking		\pnote{ Static: by adding clauses }
+			\item Dynamic Symmetry Breaking		\pnote{ Dynamic: by changing solver }
+		\end{itemize}
 	\end{frame}
 
 	\subsection{Dynamic Symmetry Breaking}
 	\begin{frame}
 		\frametitle{Dynamic Symmetry Breaking}
+
+		\begin{block}{Approach 1}
+			Exploid symmetries to learn more clauses.
+			For each learned clause $c$, $\sigma(c)$ could also be learned.
+			
+			\pause
+
+			\emph{Not} feasible, adds to many clauses
+		\end{block}
+
+		\pause
+
+		\begin{block}{Approach 2}
+			Propagate symmetrical literals.
+
+			Given theory $T$, patial assignment $\alpha$ and symmetry $\sigma$ of $T \cup \alpha$. For each literal $l$:
+			\begin{equation}
+				T \cup \alpha \vdash l \quad
+				\implies
+				\quad T \cup \alpha \vdash \sigma(l)
+			\end{equation}
+
+			Thus when $l$ is progated, $\sigma(l)$ can also be propagated.
+		\end{block}
 	\end{frame}
 
 	\subsection{Symmetry Propagation}
 	\begin{frame}
 		\frametitle{Symmetry Propagation}
+
 	\end{frame}
 
 \section{Symmetry Optimizing Variable Branching}
