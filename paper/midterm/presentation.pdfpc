@@ -1,14 +1,5 @@
 [notes]
-### 1
-Task: exploit symmetries to speed up solving SAT instances.
-Background research: static and dynamic symmetry breaking
-Static:
-	Add clauses to input to prevent traversing symmetrical branches in the search tree.
-	Downsides:
-		several, most obvious: extra clauses might increase the input size too much.
-
-Dynamic:
-	Interact with the solver during search to avoid symmetrical search paths
-
-### 3
-Fun
+### 6
+ Static: by adding clauses 
+### 6
+ Dynamic: by changing solver 
