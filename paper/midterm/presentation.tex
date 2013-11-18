@@ -189,15 +189,28 @@
 		\end{block}
 	\end{frame}
 
-	% is already defined in previous slide, or not?
-	%\subsection{Symmetry Propagation}
-	%\begin{frame}
-	%	\frametitle{Symmetry Propagation}
-	%
-	%	\begin{definition}[Symmetry Propagation]
-	%		...
-	%	\end{definition}
-	%\end{frame}
+	\subsection{Symmetry Propagation}
+	\begin{frame}
+		\frametitle{Example}
+	
+		\begin{block}{}
+			Consider theory $T = \{\neg f \vee a, \neg f \vee b, \neg a \vee d, \neg b \vee e \vee c, \neg c \vee \neg g, \neg c \vee g\}$ and its symmetry $\sigma = (ab)(de)$.
+			
+			Choose $a$, so $\alpha = \delta = \{a\}$.
+			
+			During unit propagation, propagate $d$ so $\alpha = \{a,d\}$, $\delta = \{a\}$ and $expl(d) = \neg a \vee d$.
+			
+			No symmetry propagation takes place since $\sigma(\delta)=(b) \not \subseteq \alpha$ thus $\sigma$ is not weakly active.
+			
+			Now choose say $f$ and propagate $b$ using unit propagation.
+			
+			Hereafter $\alpha=\{a,d,f,b\}$, $\delta=\{a,f\}$ and $expl(b) = \neg f \vee b$.
+			
+			$\sigma$ is weakly active since $\sigma(\delta) = \{b,f\} \subseteq \alpha$. The first asymmetric literal for $\sigma$ is $d$.
+			
+			Now $\sigma(d) = e$ can be propagated.
+		\end{block}
+	\end{frame}
 
 \section{Symmetry Optimizing Variable Branching}
 
