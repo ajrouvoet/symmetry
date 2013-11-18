@@ -83,6 +83,10 @@
 
 	\begin{frame}
 		\frametitle{Introduction}
+		\pnote{
+			Centered around research from 2012 that proposes a new dynamic symmetry solving
+			technique
+		}
 		\begin{block}{Symmetry Propagation}
 			A feasible dynamic symmetry breaking technique for SAT-solvers as proposed by
 			\cite{devriendt2012symmetry} in 2012.
@@ -96,10 +100,12 @@
 		\frametitle{SAT notation}
 
 		\begin{itemize}
-			\item<+-> theory $T$ is a conjunction of clauses
-			\item<+-> clause $c$ is a disjunction of literals
-			\item<+-> literal $l$ is of the form $x$ or $\neg x$ and $x \in \Sigma(T)$
-			\item<+-> $\Sigma(T)$ is the set of variables in $T$
+			\item<1-> theory $T$ is a conjunction of clauses
+			\item<1-> clause $c$ is a disjunction of literals
+			\item<1-> literal $l$ is of the form $x$ or $\neg x$ and $x \in \Sigma(T)$
+			\item<2-> $\Sigma(T)$ is the set of variables in $T$
+			\item<3-> An assignment $\alpha$ is called a model of $T$ iff it is complete and satisfies
+				all clauses of $T$
 		\end{itemize}
 	\end{frame}
 
@@ -123,7 +129,7 @@
 				T \vdash c \quad \implies \quad T \vdash \sigma( c )
 			\end{equation}
 		\end{proposition}
-	\end{frame}	
+	\end{frame}
 
 	\begin{frame}
 		\frametitle{Symmetry Example}
@@ -161,7 +167,7 @@
 		\begin{block}{Approach 1}
 			Exploid symmetries to learn more clauses.
 			For each learned clause $c$, $\sigma(c)$ could also be learned.
-			
+
 			\pause
 
 			\emph{Not} feasible, adds to many clauses
@@ -170,11 +176,14 @@
 
 	\begin{frame}
 		\frametitle{Dynamic Symmetry Breaking}
-		
+
 		\begin{block}{Approach 2}
 			Propagate symmetrical literals.
 
-			Given theory $T$, patial assignment $\alpha$ and symmetry $\sigma$ of $T \cup \alpha$. For each literal $l$:
+			Given theory $T$, partial assignment $\alpha$ and symmetry
+			\alert<3->{$\sigma$ of $T \cup \alpha$}.
+
+			For each literal $l$:
 			\begin{equation}
 				T \cup \alpha \vdash l \quad
 				\implies
@@ -182,32 +191,48 @@
 			\end{equation}
 
 			Thus when $l$ is progated, $\sigma(l)$ can also be propagated.
-			
-			\pause
-			
-			Hence, \emph{Symmetry Propagation}.
+
+			\visible<2->{
+				Hence, \emph{Symmetry Propagation}.
+			}
+		\end{block}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Dynamic Symmetry Breaking: Weak Activity}
+
+		\begin{block}<+->{Weak Activity}
+			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
+			choice literals.
+			A symmetry $\sigma$ of T is weakly active if $\sigma(\delta) \subseteq \alpha$
+		\end{block}
+
+		\begin{block}<+->{Inactivity}
+			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
+			choice literals.
+			A symmetry $\sigma$ of T is weakly-inactive if $\exists l \in \sigma(\delta), l \not\in \alpha$
 		\end{block}
 	\end{frame}
 
 	\subsection{Symmetry Propagation}
 	\begin{frame}
 		\frametitle{Example}
-	
+
 		\begin{block}{}
 			Consider theory $T = \{\neg f \vee a, \neg f \vee b, \neg a \vee d, \neg b \vee e \vee c, \neg c \vee \neg g, \neg c \vee g\}$ and its symmetry $\sigma = (ab)(de)$.
-			
+
 			Choose $a$, so $\alpha = \delta = \{a\}$.
-			
+
 			During unit propagation, propagate $d$ so $\alpha = \{a,d\}$, $\delta = \{a\}$ and $expl(d) = \neg a \vee d$.
-			
+
 			No symmetry propagation takes place since $\sigma(\delta)=(b) \not \subseteq \alpha$ thus $\sigma$ is not weakly active.
-			
+
 			Now choose say $f$ and propagate $b$ using unit propagation.
-			
+
 			Hereafter $\alpha=\{a,d,f,b\}$, $\delta=\{a,f\}$ and $expl(b) = \neg f \vee b$.
-			
+
 			$\sigma$ is weakly active since $\sigma(\delta) = \{b,f\} \subseteq \alpha$. The first asymmetric literal for $\sigma$ is $d$.
-			
+
 			Now $\sigma(d) = e$ can be propagated.
 		\end{block}
 	\end{frame}
