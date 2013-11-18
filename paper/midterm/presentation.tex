@@ -94,6 +94,13 @@
 	\subsection{SAT}
 	\begin{frame}
 		\frametitle{SAT notation}
+
+		\begin{itemize}
+			\item<+-> theory $T$ is a conjunction of clauses
+			\item<+-> clause $c$ is a disjunction of literals
+			\item<+-> literal $l$ is of the form $x$ or $\neg x$ and $x \in \Sigma(T)$
+			\item<+-> $\Sigma(T)$ is the set of variables in $T$
+		\end{itemize}
 	\end{frame}
 
 	\subsection{Symmetry}
@@ -159,9 +166,11 @@
 
 			\emph{Not} feasible, adds to many clauses
 		\end{block}
+	\end{frame}
 
-		\pause
-
+	\begin{frame}
+		\frametitle{Dynamic Symmetry Breaking}
+		
 		\begin{block}{Approach 2}
 			Propagate symmetrical literals.
 
@@ -173,14 +182,22 @@
 			\end{equation}
 
 			Thus when $l$ is progated, $\sigma(l)$ can also be propagated.
+			
+			\pause
+			
+			Hence, \emph{Symmetry Propagation}.
 		\end{block}
 	\end{frame}
 
-	\subsection{Symmetry Propagation}
-	\begin{frame}
-		\frametitle{Symmetry Propagation}
-
-	\end{frame}
+	% is already defined in previous slide, or not?
+	%\subsection{Symmetry Propagation}
+	%\begin{frame}
+	%	\frametitle{Symmetry Propagation}
+	%
+	%	\begin{definition}[Symmetry Propagation]
+	%		...
+	%	\end{definition}
+	%\end{frame}
 
 \section{Symmetry Optimizing Variable Branching}
 
