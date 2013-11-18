@@ -1,0 +1,56 @@
+[file]
+presentation.pdf
+[notes]
+### 3
+Centered around research from 2012 that proposes a new dynamic symmetry solving technique, coined Symmetry Propagation.
+
+In this presentation we will
+	+ summarize
+	+ describe how we are attempting to optimize the solver performance exploiting information on symmetry
+
+### 4
+Additionally a complete satisfying assignment alpha of T is denoted a model of T.
+
+### 5
+Definition of symmetry:
+	+ commutative with negation
+	+ model property of an assignment should hold under symmetry
+
+IMPORTANT proposition that follows:
+	+ clause learned during solving, can derive symmetric clause as well
+
+### 7
+Symmetry breaking: prevent searching in symmetrical branches
+
+Static: add clauses that prevent traversal of these branches
+	+ Shatter: successful implementation
+
+Dynamic: interact with solver
+	+ Generic techniques where slow compared to static, borrowing from the field of constraint programming
+
+### 8
+Straightforward technique: learn all symmetrical clauses
+	+ too many clauses for practical purposes
+
+### 9
+Learn symmetrical literals instead when possible
+
+Difficult part: keep track of applicable symmetries
+
+### 10
+Introduce notion of weak activity
+
+Whenever weakly active: applicable to theory under current assignment
+
+### 11
+Finally: we come to our research:
+Definition of weak activity suggest: keep as many symmetries weakly active as possible.
+
+	+ Optimize the solver by choosing literals wisely
+
+### 12
+How?
+
+1.	Internally: variable heap; pick first n
+2.	Perform lookahead for those variables
+3.	Continue with most symmetries

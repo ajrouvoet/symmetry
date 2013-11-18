@@ -22,10 +22,10 @@
 \title[Dynamic Symmetry Breaking]{Optimizing Dynamic Symmetry Breaking}
 
 \author{
-	A.J.Rouvoet \and
-	Eddie Schoute \and
-	Jurre van Beek \and
-	Ivar in 't Veen
+	J. Beek \and
+	I. Veen \and
+	A.J. Rouvoet \and
+	E. Schoute
 }
 \institute[TU Delft]
 {
@@ -35,38 +35,6 @@
 }
 
 \date{\today}
-
-% create a new file handle
-\newwrite\pdfpcnotesfile
-
-% open file on \begin{document}
-\AtBeginDocument{%
-    \immediate\openout\pdfpcnotesfile\jobname.pdfpc\relax
-    \immediate\write\pdfpcnotesfile{[notes]}
-}
-
-% define a # http://tex.stackexchange.com/a/37757/10327
-\begingroup
-    \catcode`\#=12
-    \gdef\hashchar{#}%
-\endgroup
-
-% define command \pnote{} that works exactly like not but
-% additionally writes notes to file in pdfpc readable format
-\newcommand{\pnote}[1]{%
-    % keep normal notes working
-    \note{#1}%
-    % write notes to file
-    \begingroup
-        \let\#\hashchar
-        \immediate\write\pdfpcnotesfile{\#\#\# \theframenumber}%
-        \immediate\write\pdfpcnotesfile{\unexpanded{#1}}%
-    \endgroup
-}
-% close file on \begin{document}
-\AtEndDocument{%
-    \immediate\closeout\pdfpcnotesfile
-}
 
 \begin{document}
 
@@ -83,10 +51,6 @@
 
 	\begin{frame}
 		\frametitle{Introduction}
-		\pnote{
-			Centered around research from 2012 that proposes a new dynamic symmetry solving
-			technique
-		}
 		\begin{block}{Symmetry Propagation}
 			A feasible dynamic symmetry breaking technique for SAT-solvers as proposed by
 			\cite{devriendt2012symmetry} in 2012.
@@ -103,8 +67,8 @@
 			\item<1-> theory $T$ is a conjunction of clauses
 			\item<1-> clause $c$ is a disjunction of literals
 			\item<1-> literal $l$ is of the form $x$ or $\neg x$ and $x \in \Sigma(T)$
-			\item<2-> $\Sigma(T)$ is the set of variables in $T$
-			\item<3-> An assignment $\alpha$ is called a model of $T$ iff it is complete and satisfies
+			\item<1-> $\Sigma(T)$ is the set of variables in $T$
+			\item<2-> An assignment $\alpha$ is called a model of $T$ iff it is complete and satisfies
 				all clauses of $T$
 		\end{itemize}
 	\end{frame}
@@ -143,7 +107,6 @@
 			Choosing $a$ is equivalent to choosing $b$, and vice versa.
 			$\sigma(a) = b$ and $\sigma(b) = a$.
 
-			Any assignment $\alpha$ needs to be equivalent to $\sigma(\alpha)$, e.g.
 			\begin{align*}
 				\alpha_1 &= \{\neg f, \neg a, \neg b\}, &\sigma(\alpha_1 )= \{\neg f, \neg a, \neg b\}\\
 				\alpha_2 &= \{f, a, b\}, &\sigma(\alpha_2) = \{f, b, a\}
@@ -156,8 +119,8 @@
 		\frametitle{Symmetry Breaking}
 
 		\begin{itemize}
-			\item Static Symmetry Breaking		\pnote{ Static: by adding clauses }
-			\item Dynamic Symmetry Breaking		\pnote{ Dynamic: by changing solver }
+			\item Static Symmetry Breaking
+			\item Dynamic Symmetry Breaking
 		\end{itemize}
 	\end{frame}
 
@@ -238,24 +201,32 @@
 		\visible<+->{
 		\begin{block}{Approximation technique}
 			Assume current choice literals $\delta$, next choice literal $l$, and assignment $\alpha$.
-			Instead of performing the lookahead for $l$, let $\delta' = \delta \cup \{l\}$ and let
-			the cost of choosing $l$ be:
-
-			\begin{equation}
-				c(l) = {\Sigma_{\sigma \in S} \left | \sigma(\delta') \setminus \alpha \right | }
-			\end{equation}
-
-			Choose the literal $u$ that minimizes $c(l)$
+			Instead of performing the lookahead for $l$, let $\alpha' = \alpha \cup \{l\}$ and
+			evaluate the number of active symmetries against that assignment.
 		\end{block}
 		}
 
+	\end{frame}
+
+\section{Results}
+
+	\begin{frame}
+		We wrote a quick implementation that performs an approximation and preliminary testing shows
+		a performance improvement over the optimized solver of the authors of
+		\cite{devriendt2012symmetry}.
 	\end{frame}
 
 \section{Break it down}
 
 	\subsection{Conclusion}
 	\begin{frame}
-	\Huge{\centerline{Conclusion}}
+		\frametitle{Conclusion}
+		\begin{enumerate}
+			\item<1->	Hypothesise good approximation heuristics, find solid arguments for that
+						validity.
+			\item<2->	Implement the heuristics
+			\item<3->	Provide solid empiric results
+		\end{enumerate}
 	\end{frame}
 
 	\subsection{References}
