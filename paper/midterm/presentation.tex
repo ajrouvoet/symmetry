@@ -1,7 +1,7 @@
 \documentclass{beamer}
 
 \mode<presentation> {
-	\usetheme{CambridgeUS}
+	\usetheme{Darmstadt}
 	\usecolortheme{beaver}
 }
 
@@ -134,20 +134,21 @@
 	\begin{frame}
 		\frametitle{Symmetry Example}
 		\begin{example}
+			The following Theorem $T$ and symmetry $\sigma$ are given
 			\begin{align*}
-				T &= \{ \neg f \vee a, \neg f \vee b \}\\
-				\sigma &= (ab)
+				T &= \{ \neg f \vee a, \neg f \vee b \},\\
+				\sigma &= (ab).
+			\end{align*}
+
+			Choosing $a$ is equivalent to choosing $b$, and vice versa.
+			$\sigma(a) = b$ and $\sigma(b) = a$.
+
+			Any assignment $\alpha$ needs to be equivalent to $\sigma(\alpha)$, e.g.
+			\begin{align*}
+				\alpha_1 &= \{\neg f, \neg a, \neg b\}, &\sigma(\alpha_1 )= \{\neg f, \neg a, \neg b\}\\
+				\alpha_2 &= \{f, a, b\}, &\sigma(\alpha_2) = \{f, b, a\}
 			\end{align*}
 		\end{example}
-
-		Choosing $a$ is equivalent to choosing $b$, and vice versa.
-		$\sigma(a) = b$ and $\sigma(b) = a$.
-
-		Any assignment $\alpha$ needs to be equivalent to $\sigma(\alpha)$, e.g.
-		\begin{align*}
-			\alpha_1 &= \{\neg f, \neg a, \neg b\}, &\sigma(\alpha_1 )= \{\neg f, \neg a, \neg b\}\\
-			\alpha_2 &= \{f, a, b\}, &\sigma(\alpha_2) = \{f, b, a\}
-		\end{align*}
 	\end{frame}
 
 	\subsection{Symmetry Breaking}
