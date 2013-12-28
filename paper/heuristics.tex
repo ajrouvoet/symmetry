@@ -32,6 +32,19 @@ applicability.
 	it is necessary to perform the unit propagation step under the assumption that the literal is chosen.
 	Performing a lookahead is an expensive operation as it requires the solver to perform half an
 	iteration and backtrack.
+
+In fact, it is necessary to perform $|L|$ lookaheads, where $L = \bar{\Sigma}(T)$ is the set of literals.
+	And each lookahead consists of a unit propagation and a symmetry propagation step.
+	The unit propagation phase iterates through all clauses in a time complexity of $O(|T|)$.
+	This occurs in the worst case $O(|L|)$ times,
+	once for each literal if all literals are assigned in in this unit propagation phase.
+	Then comes the symmetry propagation phase, which iterates through all symmetries in $O(|\mathcal{S}|)$.
+	If the symmetry propagation phase found a (weakly) active symmetry and propagated that,
+	the propagation will repeat.
+	In total this process can repeat more than $O(|L|)$ times,
+	so the total worst-case complexity of the lookahead can be simplified to $O(|L|(|T| + |\mathcal{S}|))$.
+	
+
 	It is thus not feasible in general to perform this procedure for every undecided variable and
 	select the optimal one.
 	Note that this approach also takes into account inverting literals,
@@ -45,8 +58,10 @@ applicability.
 			selects (based on the variable heap and activity\todo{ref}) to determine the
 			preferred assignment ($v$ or $\neg v$).
 
-		\item As an alternative one could perform this lookahead for the first $n$ variables on the
-			heap and select the one that makes the least symmetries inactive.
+		\item Additionally, one could perform this lookahead for the $n$ most eligible variables
+			and select the one that makes the least symmetries inactive.
+			By combining this with other heuristics on selecting the most elgiible variables,
+			a much faster runtime may be achieved.
 
 		\item It is also possible to instead approximate the amount of symmetries made inactive under the
 			assignment that the propagation of $l$ will yield.
@@ -57,8 +72,31 @@ applicability.
 			Note that this is an approximation only, as these symmetries could be made active by
 			unit propagation after choosing $l$.
 			\todoi{give arguments to support this approximation}
-
 	\end{enumerate}
+
+\subsection{Symmetry Counting}
+	Following the line of thought that keeping a maximum amount of symmetries active,
+	we thought of Symmetry Counting, where the number of symmetries a literal is part of is taken into account.
+	We choose first the literal that is involved with as many symmetries as possible.
+	The reasoning is that choosing these literals first, will allow these large symmetries to become more weakly active.
+
+	The implementation of this heuristic involves getting the number of symmetries a literal is involved with,
+	which is a constant time $O(1)$ operation.
+	Doing this for each literal means a total runtime of $O(|L|)$, where $L$ is the set of literals.
+
+
+\subsection{Symmetry Usage}
+	Symmetry Usage is a dynamical symmetry breaking heuristic
+	which takes into account the number of times a symmetry has previously been used in the solver tree.
+	If a symmetry is used often when solving the tree, we suppose that it is more important than other symmetries.
+
+	When fixing a choice literal, those that are used in commonly used symmetries, are chosen first.
+	The implementation is a simple counter that is increased by 1 for each usage of the symmetry.
+	The main runtime drawback of this heuristic, is looping through all symmetries a literal is involved in.
+	We do this for each literal, which has a runtime of $O(|L|)$.
+	The other additional operations are of a constant time complexity $O(1)$, thus the additional overhead is $O(s|L|)$,
+	where $s$ is the maximum number of symmetries a literal is involved in.
+
 	
 \subsection{Ranking Symmetries}
 	By looking at the importance of certain symmetries it is possible to predict
