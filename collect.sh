@@ -14,7 +14,7 @@ do
 
 	find minisat/cnf\ test\ files/$SUITE -regex ".*\.cnf$" | while read f
 	do
-		optpath=`echo $opt | sed "s/ :;/_/g"`
+		optpath=`echo $opt | sed "s/ \|:\|;/_/g"`
 		name=`basename "$f"`
 		suite=`basename "$(dirname $f)"`
 		outpath="$OUTDIR/$REF/$optpath/$suite/$name.log"
