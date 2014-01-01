@@ -51,28 +51,25 @@ applicability.
 	because these literals also cause a symmetry to become weakly inactive.
 	% We can still also do inactive propagation optimization after our heuristic.
 	
-	Several alternative approaches can be considered:
+	Several alternative approaches can be considered.
+	An obvious option is to perform a lookahead on the choice variable $v$ that the solver
+	selects (based on the variable heap and activity\todo{ref}) to determine the
+	preferred assignment ($v$ or $\neg v$).
 
-	\begin{enumerate}
-		\item An obvious option is to perform a lookahead on the choice variable $v$ that the solver
-			selects (based on the variable heap and activity\todo{ref}) to determine the
-			preferred assignment ($v$ or $\neg v$).
+	Additionally, one could perform this lookahead for the $n$ most eligible variables
+	and select the one that makes the least symmetries inactive.
+	By combining this with other heuristics on selecting the most elgiible variables,
+	a much faster runtime may be achieved.
 
-		\item Additionally, one could perform this lookahead for the $n$ most eligible variables
-			and select the one that makes the least symmetries inactive.
-			By combining this with other heuristics on selecting the most elgiible variables,
-			a much faster runtime may be achieved.
-
-		\item It is also possible to instead approximate the amount of symmetries made inactive under the
-			assignment that the propagation of $l$ will yield.
-			Instead of propagating, we can look at the number of symmetries made inactive by $l$
-			under the current assignment, that is: consider a symmetry $\sigma$ as
-			made inactive by $l$ if it is weakly active under the current assignment $\alpha$ and
-			$\sigma(l) \notin \alpha$.
-			Note that this is an approximation only, as these symmetries could be made active by
-			unit propagation after choosing $l$.
-			\todoi{give arguments to support this approximation}
-	\end{enumerate}
+	It is also possible to instead approximate the amount of symmetries made inactive under the
+	assignment that the propagation of $l$ will yield.
+	Instead of propagating, we can look at the number of symmetries made inactive by $l$
+	under the current assignment, that is: consider a symmetry $\sigma$ as
+	made inactive by $l$ if it is weakly active under the current assignment $\alpha$ and
+	$\sigma(l) \notin \alpha$.
+	Note that this is an approximation only, as these symmetries could be made active by
+	unit propagation after choosing $l$.
+	\todoi{give arguments to support this approximation}
 
 \subsection{Symmetry Counting}
 	Following the line of thought that keeping a maximum amount of symmetries active,
