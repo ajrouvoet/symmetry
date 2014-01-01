@@ -33,7 +33,7 @@ applicability.
 	Performing a lookahead is an expensive operation as it requires the solver to perform half an
 	iteration and backtrack.
 
-In fact, it is necessary to perform $|L|$ lookaheads, where $L = \bar{\Sigma}(T)$ is the set of literals.
+	In fact, it is necessary to perform $|L|$ lookaheads, where $L = \bar{\Sigma}(T)$ is the set of literals.\todo{Need proofread on runtime complexity}
 	And each lookahead consists of a unit propagation and a symmetry propagation step.
 	The unit propagation phase iterates through all clauses in a time complexity of $O(|T|)$.
 	This occurs in the worst case $O(|L|)$ times,
