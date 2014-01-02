@@ -2,7 +2,7 @@
 OUTDIR=./data/
 SUITE=$1
 REF=`git rev-parse HEAD`
-OPTS="
+OPTS="-rnd-freq=0.02
 -rnd-freq=0.02 -activity-nl-freq=1
 -rnd-freq=0.02 -sym-count-freq=1"
 
@@ -23,8 +23,15 @@ do
 
 		mkdir -p "$outdir"
 
-		echo ">> Running $name from suite $suite ($EXC "$f")"
-		./minisat/build/release/bin/minisat_core "${f}" > "${outpath}"
+		echo ">> Running $name from suite $suite ("$f")"
+		echo ">> CMD: ./minisat/build/release/bin/minisat_core $opt ${f}"
+
+		# collect output
+		echo "Test: $name" > "${outpath}"
+		echo "Options: $opt" >> "${outpath}"
+		echo "$opt"
+		./minisat/build/release/bin/minisat_core $opt "$f" >> "${outpath}"
+
 		echo ">> Done (output in: $outpath)"
 		echo ""
 	done

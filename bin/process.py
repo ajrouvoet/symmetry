@@ -1,14 +1,14 @@
 #!/usr/bin/python
-
 import re
 import sys
 import os
 
 # get the data we are interested in
-r_test_name = re.compile( r"(.*)\.cnf\.log" )
+r_test_name = re.compile( r"Test: (.*)\.cnf" )
 r_num_syms = re.compile( r"\|\s+Number of symmetries:\s*(\d+)\s*\|" )
 r_cpu_time = re.compile( r"\s*CPU time\s*:\s*(\d+.\d*)\s*s" )
 r_decisions = re.compile( r"\s*decisions\s*:\s*(\d+)" )
+r_options = re.compile( r"Options:\s*(.*)\s*" )
 
 def get_num_syms( data ):
     match = r_num_syms.search( data )
@@ -30,16 +30,25 @@ def get_decisions( data ):
 
 def get_test_name( data ):
     match = r_test_name.search( data )
-    assert match, "Woops, could not match test name in path"
+    assert match, "Woops, could not match test name"
 
     return match.group(1)
 
-def main( fpath ):
+def get_options( data ):
+    match = r_options.search( data )
+    assert match, "Woops, could not match options"
+
+    return match.group(1)
+
+def parse_file( fpath ):
     with open( fpath ) as fh:
         content = fh.read()
 
+    # get the options
+    testname = get_test_name( content )
+
     # get the testname
-    testname = get_test_name( os.path.basename( fpath ))
+    options = get_options( content )
 
     # number of symmetries
     num_syms = get_num_syms( content )
@@ -50,8 +59,9 @@ def main( fpath ):
     # decisions
     decisions = get_decisions( content )
 
-    print( "%s, %s, %s, %s" % (
+    print( "%s, %s, %s, %s, %s" % (
         testname,
+        options,
         num_syms,
         cpu_time,
         decisions
@@ -59,4 +69,4 @@ def main( fpath ):
 
 if __name__ == "__main__":
     assert len( sys.argv ) > 0, "Too few arguments given"
-    main( sys.argv[1] )
+    parse_file( sys.argv[1] )
