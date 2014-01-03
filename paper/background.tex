@@ -40,7 +40,15 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient}\todo{More refs}.
 	\todoi{This is almost directly taken from \cite{devriendt2012symmetry}. Is that a
 	problem?}
 
-	\todoi{Conflict-Driven symmetry breaking}
+	The SAT solver implemented by \cite{devriendt2012symmetry} uses the principle of \emph{Conflict Driven Clause Learning}, hence it is a CDCL SAT solver \cite{zhang2001efficient}.
+	For each step in solving the SAT problem the solver takes an unassigned variable, assigns a value to it and adds the corresponding literal to its current assignment.
+	Under this literal assignment some clauses can become unit clauses. The literals which are a result of unit propagation under this new assignment are called \emph{propagated literals} the unit clauses they belong to are called \emph{explanation clauses}.
+	
+	When at some point a literal $l$ would be propagated while $\neg l$ is already present in the current assignment of literals, this causes a conflict.
+	If a conflict arises the CDCL SAT solver constructs a \emph{learned clause} using the explanation clauses causing the conflict.
+	By adding these learned clauses to its internal problem the solver prevents them from occuring again.
+	
+	This process is repeated until the SAT problem is solved.
 
 		Consider a permutation $\sigma$ of a theory $T$.
 		$\sigma$ is called a symmetry if and only if:
