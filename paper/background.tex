@@ -64,7 +64,22 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient}\todo{More refs}.
 \subsection{Static Symmetry Breaking}
 	Static symmetry breaking algorithms modify the input of the SAT solver, but do not
 	adjust the solver itself~\cite{sakallah2009symmetry}.
-	\todoi{Add some good static symmetry breaker and papers, e.g. Shatter)}
+
+	These solvers work by adding additional, symmetry breaking, predicates to a CNF 
+	formula. Such a predicate acts like some filter, reducing the search space to only 
+	non-symmetric regions. The symmetry breaker does this without changing the 
+	satisfiability of the CNF formula as described \cite{aloul2003shatter}.
+
+	Symmetry breaking can only be effective if the overhead of calculating symmetries and
+	adding the symmetry breaking predicates takes significantly less time then the time it
+	saves of the problem solving process. In order to limit the time needed for the static
+	symmetry breaking, and the effort needed by the solver when evaluating all these
+	additional predicates, it is often feasible to not break \emph{all} but \emph{enough} 
+	symmetries as proposed by \cite{aloul2003shatter}.
+	
+	One, often used, static symmetry breaker is \cite{aloul2003shatter}. This symmetry
+	breaker can also be used as a preprocessor for a dynamic symmetry breaker.
+	\todo{cite needed}
 
 \subsection{Dynamic Symmetry Breaking}
 	Dynamic symmetry breaking algorithms modify the SAT solver to search for local
