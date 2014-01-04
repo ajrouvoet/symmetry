@@ -9,6 +9,7 @@ r_num_syms = re.compile( r"\|\s+Number of symmetries:\s*(\d+)\s*\|" )
 r_cpu_time = re.compile( r"\s*CPU time\s*:\s*(\d+.\d*)\s*s" )
 r_decisions = re.compile( r"\s*decisions\s*:\s*(\d+)" )
 r_options = re.compile( r"Options:\s*(.*)\s*" )
+r_timeout = re.compile( r"TIMEOUT" )
 
 def get_num_syms( data ):
     match = r_num_syms.search( data )
@@ -16,10 +17,15 @@ def get_num_syms( data ):
 
     return int( match.group(1) )
 
+def get_timeout( data ):
+    match = r_timeout.search( data )
+
+    return bool( match )
+
 def get_cpu_time( data ):
     match = r_cpu_time.search( data )
-    assert match, "Woops, data did not contain CPU TIME"
 
+    assert match, "Woops, data did not contain CPU TIME"
     return float( match.group(1) )
 
 def get_decisions( data ):
@@ -50,14 +56,19 @@ def parse_file( fpath ):
     # get the testname
     options = get_options( content )
 
-    # number of symmetries
-    num_syms = get_num_syms( content )
+    if not get_timeout( content ):
+        # solve time
+        cpu_time = get_cpu_time( content )
 
-    # solve time
-    cpu_time = get_cpu_time( content )
+        # number of symmetries
+        num_syms = get_num_syms( content )
 
-    # decisions
-    decisions = get_decisions( content )
+        # decisions
+        decisions = get_decisions( content )
+    else:
+        cpu_time = "timeout"
+        num_syms = "-"
+        decisions = "-"
 
     print( "%s, %s, %s, %s, %s" % (
         testname,
