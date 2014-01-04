@@ -1,7 +1,11 @@
-\todoi{
-	Construct an argument to support the use of heuristics to find a variable that optimizes the
-	amount of active symmetries
-}
+
+The process of choosing the most optimal branching literal is a NP-hard problem, hence it is not possible to 
+just calculate the best solution. So instead it is necesairy to use a heuristic.
+These heuristics calculate a subset of the complete solution and base their descission on this subset.
+
+In order to solve a SAT problem as efficient as possible the search space must be reduced as much as possible.
+This reduction is achieved by taking symmetries into account while evaluating a SAT instance.
+To reduce the search space as much as possible, heuristics must optimize the amount of active symmetries as observed by~\cite{devriendt2012symmetry}.
 
 The authors of~\cite{devriendt2012symmetry} suggest the possibility of optimizing the solver by
 branching on literals that optimize the number of symmetries that are (weakly) active.
