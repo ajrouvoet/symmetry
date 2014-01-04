@@ -2,6 +2,7 @@
 OUTDIR=./data/
 SUITE=$1
 REF=`git rev-parse HEAD`
+TIMEOUT_IN=20
 OPTS="-rnd-freq=0.02
 -rnd-freq=0.02 -sym-var-bump
 -rnd-freq=0.02 -sym-usage-var-bump
@@ -32,7 +33,14 @@ do
 		echo "Test: $name" > "${outpath}"
 		echo "Options: $opt" >> "${outpath}"
 		echo "$opt"
-		./minisat/build/release/bin/minisat_core $opt "$f" >> "${outpath}"
+		data="`timeout ${TIMEOUT_IN} ./minisat/build/release/bin/minisat_core $opt "$f"`"
+
+		if [ $? != 124 ]
+		then
+			echo "$data" >> "${outpath}"
+		else
+			echo "TIMEOUT" >> "${outpath}"
+		fi
 
 		echo ">> Done (output in: $outpath)"
 		echo ""
