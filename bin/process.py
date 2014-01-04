@@ -70,14 +70,69 @@ def parse_file( fpath ):
         num_syms = "-"
         decisions = "-"
 
-    print( "%s, %s, %s, %s, %s" % (
-        testname,
-        options,
-        num_syms,
-        cpu_time,
-        decisions
-    ))
+    return {
+        'test': testname,
+        'opts': options,
+        'syms': num_syms,
+        'time': cpu_time,
+        'decisions': decisions
+    }
+
+def collect( results ):
+    opts = []
+    agg = {}
+
+    for res in results:
+        if res[ 'opts' ] not in opts:
+            opts.append( res[ 'opts' ])
+
+        line = agg.get( res.get( 'test' ))
+
+        # if no entry exists, make it
+        if line is None:
+            line = {
+                'symmetries': res[ 'syms' ],
+                'results': {}
+            }
+
+            agg[ res.get( 'test' )] = line
+
+        # add a result
+        line[ 'results' ][ res[ 'opts' ]] = {
+            'time': res[ 'time' ],
+            'decisions': res[ 'decisions' ],
+        }
+
+    content = ""
+
+    # headers
+    content += "Test, Input Symmetries"
+    for i in [0,1]:
+        for o in opts:
+            content += ", %s" % o
+
+    # data lines
+    for test in sorted( agg.keys() ):
+        data = agg[ test ]
+
+        st = ""
+        st += "%s, %s" % ( test, data[ 'symmetries' ] )
+
+        for o in opts:
+            # check if we have results
+            st += ", %s" % data[ 'results' ].get( o, {} ).get( 'time', 'no data' )
+
+        for o in opts:
+            # check if we have results
+            st += ", %s" % data[ 'results' ].get( o, {} ).get( 'decisions', 'no data' )
+
+        content += st + "\n"
+
+    return content
 
 if __name__ == "__main__":
-    assert len( sys.argv ) > 0, "Too few arguments given"
-    parse_file( sys.argv[1] )
+    results = []
+    for path in sys.stdin.readlines():
+        results.append( parse_file( path.strip() ))
+
+    print( collect( results ))
