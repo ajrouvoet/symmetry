@@ -10,6 +10,7 @@ r_cpu_time = re.compile( r"\s*CPU time\s*:\s*(\d+.\d*)\s*s" )
 r_decisions = re.compile( r"\s*decisions\s*:\s*(\d+)" )
 r_options = re.compile( r"Options:\s*(.*)\s*" )
 r_timeout = re.compile( r"TIMEOUT" )
+r_indeterminate = re.compile( r"INDETERMINATE" )
 
 def get_num_syms( data ):
     match = r_num_syms.search( data )
@@ -19,6 +20,11 @@ def get_num_syms( data ):
 
 def get_timeout( data ):
     match = r_timeout.search( data )
+
+    return bool( match )
+
+def get_indeterminate( data ):
+    match = r_indeterminate.search( data )
 
     return bool( match )
 
@@ -56,7 +62,7 @@ def parse_file( fpath ):
     # get the testname
     options = get_options( content )
 
-    if not get_timeout( content ):
+    if not get_timeout( content ) and not get_indeterminate( content ):
         # solve time
         cpu_time = get_cpu_time( content )
 
@@ -65,8 +71,13 @@ def parse_file( fpath ):
 
         # decisions
         decisions = get_decisions( content )
+    elif get_indeterminate( content ):
+        # solve time
+        cpu_time = 'fail'
+        num_syms = 'fail'
+        decisions = 'fail'
     else:
-        cpu_time = "timeout"
+        cpu_time = "-"
         num_syms = "-"
         decisions = "-"
 
@@ -133,8 +144,11 @@ def collect( results ):
     return content
 
 if __name__ == "__main__":
-    results = []
-    for path in sys.stdin.readlines():
-        results.append( parse_file( path.strip() ))
+    try:
+        results = []
+        for path in sys.stdin.readlines():
+            results.append( parse_file( path.strip() ))
 
-    print( collect( results ))
+        print( collect( results ))
+    except:
+        print( path.strip() )
