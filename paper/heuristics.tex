@@ -53,8 +53,13 @@ applicability.
 	By doing so, the heuristic would honor the order of the variable heap.
 	This implies that it honors other heuristics that promote variables through variable activity,
 	such as the heuristic suggested by \cite{devriendt2012symmetry} and the heuristics that were
-	implemented in the core of MiniSat by \cite{een2004extensible}.\todo{background on variable
-	activity}
+	implemented in the core of MiniSat by \cite{een2004extensible}.
+	
+	The order of variables within the variable heap is the result of (multiple) bumping actions on these variables
+	as described by~\cite{devriendt2012symmetry}.
+	These bumping actions can be a negative bump if the variable is causing a conflict or because it is inverting 
+	for symmetries or a positive bump because it is used in many symetries or because it is used in often used 
+	symetries.
 
 	It is thus not feasible in general to perform this procedure for every undecided variable and
 	select the optimal one.
@@ -68,7 +73,7 @@ applicability.
 	By combining this with other heuristics on selecting the most eligible variables,
 	a much faster runtime may be achieved.
 
-	\subsubsection{Working around the lookahead}
+	%\subsubsection{Working around the lookahead} % does not look like a header
 		It is also possible to approximate the amount of symmetries made inactive under the
 		assignment that the propagation of $l$ will yield.
 		Instead of propagating, we can look at the number of symmetries made inactive by $l$
