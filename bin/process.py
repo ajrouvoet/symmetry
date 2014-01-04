@@ -111,6 +111,8 @@ def collect( results ):
         for o in opts:
             content += ", %s" % o
 
+    content += "\n"
+
     # data lines
     for test in sorted( agg.keys() ):
         data = agg[ test ]
