@@ -76,10 +76,10 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient}\todo{More refs}.
 	Static symmetry breaking algorithms modify the input of the SAT solver, but do not
 	adjust the solver itself~\cite{sakallah2009symmetry}.
 
-	These solvers work by adding additional, symmetry breaking, predicates to a CNF 
-	formula. Such a predicate acts like some filter, reducing the search space to only 
-	non-symmetric regions. The symmetry breaker does this without changing the 
-	satisfiability of the CNF formula as described \cite{aloul2003shatter}.
+	These solvers work by adding additional symmetry breaking predicates to a CNF 
+	formula. Such a predicate acts like a filter, reducing the search space to mostly
+	non-symmetric regions.
+	The symmetry breaker does this without changing the satisfiability of the CNF formula~\cite{aloul2003shatter}.
 
 	Symmetry breaking can only be effective if the overhead of calculating symmetries and
 	adding the symmetry breaking predicates takes significantly less time then the time it
@@ -88,49 +88,67 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient}\todo{More refs}.
 	additional predicates, it is often feasible to not break \emph{all} but \emph{enough} 
 	symmetries as proposed by \cite{aloul2003shatter}.
 	
-	One, often used, static symmetry breaker is \cite{aloul2003shatter}. This symmetry
-	breaker can also be used as a preprocessor for a dynamic symmetry breaker.
-	\todo{cite needed}
+	One, often used, static symmetry breaker is Shatter~\cite{aloul2003shatter}.
+	This symmetry breaker can also be used as a preprocessor for a dynamic symmetry breaker.
+	It is used to find the present symmetries in a given problem using Saucy 2.0~\cite{darga2004exploiting},
+	which can then be used by the algorithm.
+	Additionally, Shatter can be used to add static symmetry breaking predicates to the theory.
 
 \subsection{Dynamic Symmetry Breaking}
-	Dynamic symmetry breaking algorithms modify the SAT solver to search for local
-	symmetries during runtime. Contributions to dynamic symmetry breaking have not been
-	numerous in SAT such as \cite{sabharwal2005symchaff}. In the field of Constraint Satisfaction
-	Problems (CSP), dynamic symmetry breaking has had more contributions.
-	In theory, the techniques developed in that field could be translated to the SAT domain.
+	Dynamic symmetry breaking algorithms search for local symmetries during runtime.
+	Contributions to dynamic symmetry breaking have not been numerous in SAT,
+	e.g Symchaff~\cite{sabharwal2005symchaff} and Symmetry Propagation~\cite{devriendt2012symmetry}.
+	In the field of Constraint Satisfaction	Problems (CSP) dynamic symmetry breaking has had more contributions.
+	In theory the techniques developed in that field could be translated to the SAT domain.
 
 	One theoretical approach in dynamic symmetry breaking would be to exploit symmetries in
 	a theory to learn more clauses.
 	Every time the solver learns a clause $c$, $\sigma(c)$ could also be learned, according
-	to proposition \ref{prop:symmetric_clause_learning}.
+	to \cref{prop:symmetric_clause_learning}.
 	This however is often not feasible, as it would add too many clauses to the theory.
 
-	The alternative approach, which is taken by the authors of
-	\cite{devriendt2012symmetry}, is to propagate symmetrical literals.
+	The alternative approach, which is proposed by Devriendt et al.~\cite{devriendt2012symmetry},
+	is to propagate symmetrical literals.
 	The idea is that given a theory $T$, a partial assignment $\alpha$ and a symmetry
-	$\sigma$ of $T \cup \alpha$, proposition \ref{prop:symmetric_clause_learning} implies
-	that for any literal $l$:
-
-	\begin{equation}
-		T \cup \alpha \vdash l \quad
-		\implies
-		\quad T \cup \alpha \vdash \sigma(l)
-	\end{equation}
-
-	Thus, when the solver propagates a literal $l$, $\sigma(l)$ can also be propagated.
-	\todo{what about $\sigma^2(l)$\ldots}.
+	$\sigma$ of $T \cup \alpha$, \cref{prop:symmetric_clause_learning} implies
+	that for any literal $l$:\\
+	
+	\begin{proposition}
+		\label{prop:symmetryPropagation}
+		Let $\sigma$ be a symmetry of $T \cup \alpha$
+		\begin{equation*}
+			T \cup \alpha \models l \quad
+			\implies
+			\quad T \cup \alpha \models \sigma(l)
+		\end{equation*}
+	\end{proposition}
+	Thus, when the solver propagates a literal $l$, $\sigma(l), \sigma^2(l),\dots$ can also be propagated.
 
 	The challenge with this approach is to find symmetries of $T \cup \alpha$ in a
 	reasonable time.
 	To this end, the authors of \cite{devriendt2012symmetry} introduced the notion of
 	\emph{weak activity}.
 	Weakly active symmetries can be used to propagate symmetrical literals.
-	Weak activity is defined as follows:\\
-
+	Weak activity is defined as follows~\cite{devriendt2012symmetry}:
 	\begin{definition}
-		\todoi{\ldots}
+		\label{def:weaklyActive}
+		``Given a theory $T$, let $(\alpha, \delta, expl)$ be the state of a solver.
+		A symmetry $\sigma$ is \textbf{weakly active} for  assignment $\alpha$ if
+		$\sigma(\delta)\subseteq \alpha$.''
 	\end{definition}
-
-
-\todoi{Finish background (from De Vriendt paper) and explain his algorithm
-so that we can relate how we change it.}
+	In a few steps (see~\cite{devriendt2012symmetry}) we can derive
+	\begin{equation}
+		T\cup \alpha \models T \cup \sigma(\alpha) \models T \cup \sigma^2(\alpha) \models \dots.
+	\end{equation}
+	And it is shown that propagating the (weakly) active symmetries of choice literals is valid.
+	
+	The Symmetry Propagation (SP) algorithm as proposed by Devriendt et al.~\cite{devriendt2012symmetry} is a changed CDCL solver.
+	The choice literal is chosen randomly, after which as normal unit propagation occurs.
+	Then, if possible, one unused symmetry is propagated,
+	through the use of the \emph{first asymmetric literal},
+	which keeps track of which is the first choice literal in the assignment that is part of the symmetry.
+	After \emph{symmetry propagation} unit propagation occurs again, alternating between the two,
+	until it is no longer possible to propagate symmetries.
+	Then another iteration begins with the choice of a literal, etc. until a satisfying assignment is found.
+	It is possible to include an explanation for first asymmetric literals $l$ that were propogated in symmetry propagation,
+	by adding $expl(\sigma(l)) = \sigma(expl(l))$ to the explanation store for symmetric literal $\sigma(l)$.
