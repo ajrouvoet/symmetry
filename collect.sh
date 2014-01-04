@@ -3,8 +3,10 @@ OUTDIR=./data/
 SUITE=$1
 REF=`git rev-parse HEAD`
 OPTS="-rnd-freq=0.02
--rnd-freq=0.02 -activity-nl-freq=1
--rnd-freq=0.02 -sym-count-freq=1"
+-rnd-freq=0.02 -sym-var-bump
+-rnd-freq=0.02 -sym-usage-var-bump
+-rnd-freq=0.02 -activity-nl-freq=1"
+# -rnd-freq=0.02 -sym-count-freq=1" # for sym-count heuristic
 
 echo "$OPTS" | while read opt
 do

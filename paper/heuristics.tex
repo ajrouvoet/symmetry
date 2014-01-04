@@ -43,16 +43,19 @@ applicability.
 	the propagation will repeat.
 	In total this process can repeat more than $O(|L|)$ times,
 	so the total worst-case complexity of the lookahead can be simplified to $O(|L|(|T| + |\mathcal{S}|))$.
-	
+
+	It is possible to reduce the cost of the lookahead, by only considering $m$ variables on
+	the top of the variable heap.
+	By doing so, the heuristic would honor the order of the variable heap.
+	This implies that it honors other heuristics that promote variables through variable activity,
+	such as the heuristic suggested by \cite{devriendt2012symmetry} and the heuristics that were
+	implemented in the core of MiniJava by \cite{een2004extensible}.\todo{background on variable
+	activity}
 
 	It is thus not feasible in general to perform this procedure for every undecided variable and
 	select the optimal one.
-	Note that this approach also takes into account inverting literals,
-	because these literals also cause a symmetry to become weakly inactive.
-	% We can still also do inactive propagation optimization after our heuristic.
-	
 	Several alternative approaches can be considered.
-	An obvious option is to perform a lookahead on the choice variable $v$ that the solver
+	An obvious choice is to perform a lookahead on the choice variable $v$ that the solver
 	selects (based on the variable heap and activity\todo{ref}) to determine the
 	preferred assignment ($v$ or $\neg v$).
 
@@ -61,36 +64,43 @@ applicability.
 	By combining this with other heuristics on selecting the most eligible variables,
 	a much faster runtime may be achieved.
 
-	It is also possible to instead approximate the amount of symmetries made inactive under the
-	assignment that the propagation of $l$ will yield.
-	Instead of propagating, we can look at the number of symmetries made inactive by $l$
-	under the current assignment, that is: consider a symmetry $\sigma$ as
-	made inactive by $l$ if it is weakly active under the current assignment $\alpha$ and
-	$\sigma(l) \notin \alpha$.
-	Note that this is an approximation only, as these symmetries could be made active by
-	unit propagation after choosing $l$.
-	\todoi{give arguments to support this approximation}
+	\subsubsection{Working around the lookahead}
+		It is also possible to approximate the amount of symmetries made inactive under the
+		assignment that the propagation of $l$ will yield.
+		Instead of propagating, we can look at the number of symmetries made inactive by $l$
+		under the current assignment, that is: consider a symmetry $\sigma$ as
+		made inactive by $l$ if it is weakly active under the current assignment $\alpha$ and
+		$\sigma(l) \notin \alpha$.
+		Note that this is a rough approximation only, as these symmetries could be made active by
+		unit propagation after choosing $l$.
 
 \subsection{Symmetry Counting}
-	Following the line of thought that keeping a maximum amount of symmetries active,
-	we thought of Symmetry Counting, where the number of symmetries a literal is part of is taken into account.
-	We choose first the literal that is involved with as many symmetries as possible.
-	The reasoning is that choosing these literals first, will allow these large symmetries to become more weakly active.
 
-	The implementation of this heuristic involves getting the number of symmetries a literal is involved with,
-	which is a constant time $O(1)$ operation.
-	Doing this for each literal means a total runtime of $O(|L|)$, where $L$ is the set of literals.
+	Choosing a literal that occurs in a symmetry, increases the activity of that symmetry.
+	Following the line of thought of attempting to keep as much symmetries active as possible,
+	one could attempt to promote literals that appear in many symmetries.
 
+	A possible implementation of this heuristic would increase the activity for every variable in
+	every symmetry, when the symmetries are inputted into the solver.
+	This implementation would only cost a polynomial amount of runtime, at the initialization of the
+	solver and can be combined with any other heuristic that honors the order of the variable heap.
 
 \subsection{Symmetry Usage}
 	Symmetry Usage is a dynamical symmetry breaking heuristic
 	which takes into account the number of times a symmetry has previously been used in the solver tree.
 	If a symmetry is used often when solving the tree, we suppose that it is more important than other symmetries.
 
-	When fixing a choice literal, those that are used in commonly used symmetries, are chosen first.
-	The implementation is a simple counter that is increased by 1 for each usage of the symmetry.
-	The main runtime drawback of this heuristic, is looping through all symmetries a literal is involved in.
-	We do this for each literal, which has a runtime of $O(|L|)$.
-	The other additional operations are of a constant time complexity $O(1)$, thus the additional overhead is $O(s|L|)$,
-	where $s$ is the maximum number of symmetries a literal is involved in.
+	We can implement the same approach as in the symmetry counting heuristic: when a symmetry is
+	used to propagate literals, the variables that are part of that symmetry are bumped up the
+	variable heap.
+
+	% -- old implementation
+	%When choosing a literal, those that are used in commonly used symmetries, are chosen first, such
+	%that these \emph{important symmetries} will become more strongly active.
+
+	%The implementation is a simple counter that is increased by 1 for each usage of the symmetry.
+	%The main runtime drawback of this heuristic, is looping through all symmetries a literal is involved in.
+	%We do this for each literal, which has a runtime of $O(|L|)$.
+	%The other additional operations are of a constant time complexity $O(1)$, thus the additional overhead is $O(s|L|)$,
+	%where $s$ is the maximum number of symmetries a literal is involved in.
 
