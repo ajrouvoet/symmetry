@@ -153,13 +153,13 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient,aloul2003shatter,crawfo
 	It is possible to include an explanation for first asymmetric literals $l$ that were propogated in symmetry propagation,
 	by adding $expl(\sigma(l)) = \sigma(expl(l))$ to the explanation store for symmetric literal $\sigma(l)$.
 	
-\subsection{Symmetry Activity}
-	An interesting notion is a symmetry activity heuristic employed by CHAFF and a modified version in MiniSat as branching heuristic,
+\subsection{Variable Activity}
+	An interesting notion is a variable activity heuristic employed by Chaff and a modified version in MiniSat as branching heuristic,
 	Variable State Independent Decaying Sum (VSIDS)~\cite{moskewicz2001chaff}.
 	The easiest strategy to choose a literal is a random choice.
 	However, there are possibly better heuristics available for branching,
 	such as BOHM's and MOM's heuristic~\cite{marques1999impact}.
-	The authors of CHAFF, however, chose to implement VSIDS,
+	The authors of Chaff, however, chose to implement VSIDS,
 	which influences branching by choosing unassigned variables that have often been chosen before first.
 	In effect, this makes the solver attempt to solve recent conflict clauses.
 	They reason that because conflict clauses drive the search process in difficult problems,
