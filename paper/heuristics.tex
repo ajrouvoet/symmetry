@@ -1,9 +1,13 @@
-\todoi{
-	Construct an argument to support the use of heuristics to find a variable that optimizes the
-	amount of active symmetries
-}
 
-The authors of \cite{devriendt2012symmetry,katebi2010symmetry} \todo{Does \cite{katebi2010symmetry} really suggest this?} suggest the possibility of optimizing the solver by
+The process of choosing the most optimal branching literal is a NP-hard problem, hence it is not possible to 
+just calculate the best solution. So instead it is necesairy to use a heuristic.
+These heuristics calculate a subset of the complete solution and base their descission on this subset.
+
+In order to solve a SAT problem as efficient as possible the search space must be reduced as much as possible.
+This reduction is achieved by taking symmetries into account while evaluating a SAT instance.
+To reduce the search space as much as possible, heuristics must optimize the amount of active symmetries as observed by~\cite{devriendt2012symmetry}.
+
+The authors of~\cite{devriendt2012symmetry} suggest the possibility of optimizing the solver by
 branching on literals that optimize the number of symmetries that are (weakly) active.
 They took a step in that direction by lowering the position of \emph{inverting} literals $v$ on the variable heap for
 every symmetry $\sigma$ such that $\sigma(v) = \neg v$.
@@ -33,7 +37,7 @@ applicability.
 	Performing a lookahead is an expensive operation as it requires the solver to perform half an
 	iteration and backtrack.
 
-	In fact, it is necessary to perform $|L|$ lookaheads, where $L = \bar{\Sigma}(T)$ is the set of literals.\todo{Need proofread on runtime complexity}
+	In fact, it is necessary to perform $|L|$ lookaheads, where $L = \bar{\Sigma}(T)$ is the set of literals.
 	And each lookahead consists of a unit propagation and a symmetry propagation step.
 	The unit propagation phase iterates through all clauses in a time complexity of $O(|T|)$.
 	This occurs in the worst case $O(|L|)$ times,
@@ -49,8 +53,13 @@ applicability.
 	By doing so, the heuristic would honor the order of the variable heap.
 	This implies that it honors other heuristics that promote variables through variable activity,
 	such as the heuristic suggested by \cite{devriendt2012symmetry} and the heuristics that were
-	implemented in the core of MiniJava by \cite{een2004extensible}.\todo{background on variable
-	activity}
+	implemented in the core of MiniSat by \cite{een2004extensible}.
+	
+	The order of variables within the variable heap is the result of (multiple) bumping actions on these variables
+	as described by~\cite{devriendt2012symmetry}.
+	These bumping actions can be a negative bump if the variable is causing a conflict or because it is inverting 
+	for symmetries or a positive bump because it is used in many symetries or because it is used in often used 
+	symetries.
 
 	It is thus not feasible in general to perform this procedure for every undecided variable and
 	select the optimal one.
@@ -64,7 +73,7 @@ applicability.
 	By combining this with other heuristics on selecting the most eligible variables,
 	a much faster runtime may be achieved.
 
-	\subsubsection{Working around the lookahead}
+	%\subsubsection{Working around the lookahead} % does not look like a header
 		It is also possible to approximate the amount of symmetries made inactive under the
 		assignment that the propagation of $l$ will yield.
 		Instead of propagating, we can look at the number of symmetries made inactive by $l$
