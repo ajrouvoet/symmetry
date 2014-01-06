@@ -48,4 +48,12 @@ because more variables can be propagated.
 	benchmark was an obvious choice.
 
 	The benchmark contains both satisfiable and unsatisfiable instances of several SAT problems.
-	\todo{more justification of benchmark?}
+	This set of problems consists of field-programmable integrated circuit wire routing (\textbf{fpga} and 
+	\textbf{chnl})~\cite{nam2004comparative}, Urquhart's problems (\textbf{Urq})~\cite{urquhart1987hard},
+	pigeonhole problems (\textbf{hole}), encryption problems (\textbf{xorchain}) and the \textbf{battleships} 
+	puzzle problems~\cite{sevenster2004battleships}.
+	The variable ordering of the pigeonhole problems is shuffled because the original order seemed to be
+	to easy to solve.
+	Problem sets \textbf{Urq} and \textbf{x} contain only problems with inverting symmetries, while the
+	others like \textbf{chnl}, \textbf{fpga} and \textbf{battleship} do not contain this type of symmetry
+	at all.
