@@ -1,7 +1,7 @@
 
 The process of choosing the most optimal branching literal is a NP-hard problem, hence it is not possible to 
-just calculate the best solution. So instead it is necesairy to use a heuristic.
-These heuristics calculate a subset of the complete solution and base their descission on this subset.
+just calculate the best solution. So instead it is necessary to use a heuristic.
+These heuristics calculate a subset of the complete solution and base their decision on this subset.
 
 In order to solve a SAT problem as efficient as possible the search space must be reduced as much as possible.
 This reduction is achieved by taking symmetries into account while evaluating a SAT instance.
@@ -58,8 +58,8 @@ applicability.
 	The order of variables within the variable heap is the result of (multiple) bumping actions on these variables
 	as described by~\cite{devriendt2012symmetry}.
 	These bumping actions can be a negative bump if the variable is causing a conflict or because it is inverting 
-	for symmetries or a positive bump because it is used in many symetries or because it is used in often used 
-	symetries.
+	for symmetries or a positive bump because it is used in many symmetries or because it is used in often used 
+	symmetries.
 
 	It is thus not feasible in general to perform this procedure for every undecided variable and
 	select the optimal one.
