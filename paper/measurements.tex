@@ -13,37 +13,36 @@ In order to verify our two hypothesis, two types of tests were performed:
 
 	\item {\bf Symmetry activity test:}
 		We chose several tests (the justification for this set can be found
-		\ref{ssec:sym_act_test_cases}) and ran them agains the original SP implementation and the
+		\ref{ssec:sym_act_test_cases}) and ran them against the original SP implementation and the
 		implementation of the branching heuristic based on symmetry activity (with lookahead).
-		We recorded the number of symmetries activive during the search process.
+		We recorded the number of symmetries active during the search process.
 
 \end{itemize}
 
 The \emph{symmetry activity tests} allows us to verify that our heuristics actually succeed in
 keeping more heuristics 'active' during searching.
-The performance results then verify that having more active symmetries during searching results in a
-more effective search process, because more variables can be propagated.
+The performance results can then be used to test the hypothesis
+keeping more symmetries active during searching leads to a more effective search process,
+because more variables can be propagated.
 
 \subsection{Symmetry Activity Test Cases}
 \label{ssec:sym_act_test_cases}
-	The tests for the symmetry activity where chosen based on performance tests.
-	We focused on three tests:
-
+	The tests for the symmetry activity were chosen based on performance tests.
+	We focused on three tests\todo{Be specific, what tests?}:
 	\begin{enumerate}
 		\item A test where the original-SP needed less decisions than our implementation
 		\item A test where our implementation needed less decisions than original SP
 		\item A test where both implementations performed similar
 	\end{enumerate}
 
-	We chose these tests because we hypothesised that the cases where our implementation was fast,
-	were the cases where it had succeeded to keep a lot of symmetries active, whereas the cases
-	where it failed to do so, would be slower due to the overhead of the lookahead.
+	We chose these tests because we hypothesised that the cases where out implementation was fast,
+	were the cases where it had succeeded to keep a lot of symmetries active,
+	whereas the cases where it failed to do so, would be slower due to the overhead of the lookahead.
 
 \subsection{The Test Suite}
 \label{ssec:benchmark}
-	The benchmark set against we ran our tests against is the same set as used in
-	\cite{devriendt2012symmetry}.
-	This benchmark was composed by the authors to measure the performance of their dynamic symmetry
+	The benchmark set we ran our tests against is the same set as used by Devriendt~\cite{devriendt2012symmetry}.
+	This benchmark was composed to measure the performance of their dynamic symmetry
 	breaking algorithm and to verify that their optimization heuristics worked.
 	Because we are benchmarking heuristics that were build on top of their implementation, their
 	benchmark was an obvious choice.
