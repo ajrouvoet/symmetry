@@ -3,13 +3,13 @@ certain Conjunctive Normal Form (CNF) Satisfiability (SAT) problems.
 This is typically done by adding Symmetry Breaking Predicates (SBPs) to the SAT
 instance~\cite{sakallah2009symmetry}, resulting in a more restricted search space.
 For symmetry breaking to be applied effectively the given problem has to exert symmetrical
-properties, i.e. some search tree is virtually identical to another.
+properties, i.e. some part of the search tree is virtually identical to another part.
 Symmetry breaking has been shown to provide significant
 speed-ups~\cite{darga2004exploiting,aloul2003solving}, and do not slow down the algorithm
 when no obvious symmetries are present.
 
 Conflict Driven Clause Learning (CDCL) solvers~\cite{marques1999grasp} choose in each iteration a value for an undefined variable.
-When a conflict arises, because both a literal $l$ and $\neg l$ are chosen, the solver backtracks
+When a conflict arises, the solver backtracks
 and saves the cause of the conflict in a clause to prevent further occurrences.
 Deciding which variable to branch on is an important aspect of a SAT-solver and is a common target
 for domain specific optimization~\cite{een2004extensible}.
@@ -18,8 +18,8 @@ that optimize the number of applicable symmetries in a conflict-driven sat-solve
 
 There are generally speaking two types of symmetry breaking: Static symmetry breaking and
 dynamic symmetry breaking.
-We will investigate the possibility of improving a dynamic symmetry breaker described by
-\cite{devriendt2012symmetry}.
+We will investigate the possibility of improving a particular dynamic symmetry breaker, as described
+by \cite{devriendt2012symmetry}.
 Their paper describes a symmetry breaker based on propagating symmetrical literals.
 The solver therefore keeps track of symmetries that are applicable under the current assignment.
 More applicable symmetries implies more propagated literals, which would suggest that
