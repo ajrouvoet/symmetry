@@ -2,11 +2,11 @@
 OUTDIR=./data/
 SUITE=$1
 REF=`git rev-parse HEAD`
-TIMEOUT_IN=900
+TIMEOUT_IN=300
 OPTS="-activity-nl-freq=1
 -sym-var-bump
--sym-usage-var-bump
--activity-look-freq=1"
+-sym-usage-var-bump"
+#-activity-look-freq=1"
 # -rnd-freq=0.02 -sym-count-freq=1" # for sym-count heuristic
 
 echo "$OPTS" | while read opt
