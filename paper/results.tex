@@ -1,4 +1,18 @@
-\todoi{Important implementation details}
+The implementation of the alternative heuristics is based on the improvements 
+made by~\cite{devriendt2012symmetry} based on the MiniSAT SAT-solver.
+
+The default heuristic implemented by~\cite{devriendt2012symmetry} orders the 
+branching literals in a specific order. The implementations of the changed heuristics 
+are partly based on this order, the computational heavy heuristics are only looking 
+at the \emph{best} $n$ literals from this list.
+
+In order to ease the testing procedure and overall usage of the solver, all heuristics
+are implemented within the same program. One may choose one or multiple heuristics 
+by using command line parameters. Because of this feature it is possible to combine 
+multiple heuristics into a new heuristic. While benchmarking we incorporated a random
+heuristic in all runs to keep the solver from looping forever around some local optimum.
+Further combinations of heuristics are not tested because this falls outside the scope
+of this research.
 
 \todoi{Present results in tables/graphs}
 
