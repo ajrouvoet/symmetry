@@ -11,7 +11,11 @@
 	This algorithm is build on top of MiniSat,
 	which uses Conflict Driven Clause Learning to solve satisfiability problems. The SP algorithm adds a symmetry propagation phase to MiniSat,
 	to prevent the solver from going into symmetrical search spaces and thereby limiting the search space.
-	In this paper we explore the possibilities of enhancing the performance of SP even further. To this end, we propose four heuristics that try to exploit the symmetry propagation phase of the SP algorithm.
+	In this paper we explore the possibilities of enhancing the performance of SP even further.
+	Concretely, we test the hypothesis that an increased number of weakly active symmetries during
+	search, will yield a more effective search tree.
+	To this end, we formulate and benchmark four heuristics that try to exploit the
+	symmetry propagation phase of the SP algorithm.
 	\end{abstract}
 
 	\section{Introduction}
