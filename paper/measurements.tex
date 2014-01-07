@@ -6,10 +6,9 @@ In order to verify our two hypothesis, two types of tests were performed:
 		The implementations of the proposed heuristics were run against the whole
 		benchamrk set separately.
 		Additionally, the original SP implementation\footnote{
-			Original-SP denotes the up-to-date implementation of \cite{devriendt2012symmetry} with
-			the optimizations enabled; in their paper, this version is denoted $SP^{opt}$.
-		}was re-run, such that we could compare their
-		results to ours.
+			Original-SP denotes the up-to-date implementation of \cite{devriendt2012symmetry}
+			without the optimizations enabled; in their paper, this version is denoted $SP^{reg}$.
+		}was re-run, such that we could compare their results to ours.
 
 	\item {\bf Symmetry activity test:}
 		We chose several tests (the justification for this set can be found
@@ -63,3 +62,6 @@ because more variables can be propagated.
 	Problem sets \textbf{Urq} and \textbf{x} contain only problems with inverting symmetries, while the
 	others like \textbf{chnl}, \textbf{fpga} and \textbf{battleship} do not contain this type of symmetry
 	at all\cite{devriendt2012symmetry}.
+
+	All tests were run with a 15 minute timeout.
+	If all implementations timed out, the results are omitted from the table.
