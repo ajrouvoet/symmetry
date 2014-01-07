@@ -6,7 +6,12 @@
 	\maketitle
 
 	\begin{abstract}
-	In 2012 \cite{devriendt2012symmetry} proposed a dynamic symmetry breaking algorithm that makes use of Symmetry Propagation (SP) and introduces the notion of weakly active symmetries. This algorithm is build on top of MiniSAT, which uses Conflict Driven Clause Learning (CDCL) to solve satisfiability (SAT) problems. The SP algorithm adds a symmetry propagation phase to MiniSAT, to prevent the solver from going into symmetrical search spaces and thereby limiting the search space. In this paper we explore the possibilities of enhancing the performance of SP even further. To this end, we propose four heuristics that try to exploit the symmetry propagation phase of the SP algorithm.
+	In 2012 Devriendt et al.~\cite{devriendt2012symmetry} proposed a dynamic symmetry breaking algorithm
+	that makes use of Symmetry Propagation (SP) and introduces the notion of weakly active symmetries.
+	This algorithm is build on top of MiniSat,
+	which uses Conflict Driven Clause Learning to solve satisfiability problems. The SP algorithm adds a symmetry propagation phase to MiniSat,
+	to prevent the solver from going into symmetrical search spaces and thereby limiting the search space.
+	In this paper we explore the possibilities of enhancing the performance of SP even further. To this end, we propose four heuristics that try to exploit the symmetry propagation phase of the SP algorithm.
 	\end{abstract}
 
 	\section{Introduction}
@@ -29,19 +34,21 @@
 		\label{sec:Results}
 		\input{results}
 
-		\input{activity}
-		\input{performance}
-
-	\section{Future Work}
-		\label{sec:FutureWork}
-		\input{futurework}
-
 	\section{Conclusion}
 		\label{sec:Conclusion}
 		\input{conclusion}
-
+	
+	\section{Future Work}
+		\label{sec:FutureWork}
+		\input{futurework}
+	
+	\input{activity}
+	\input{performance}
+	
 	% \nocite{*} %Show everything in bib
-	\newpage
+	\clearpage
+%	\newpage
 	\bibliographystyle{IEEEtran}
 	\bibliography{bibliography}
+
 \end{document}
