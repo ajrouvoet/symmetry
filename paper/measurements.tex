@@ -4,10 +4,10 @@ In order to verify our two hypothesis, two types of tests were performed:
 \begin{itemize}
 	\item {\bf Performance:}
 		The implementations of the proposed heuristics were run against the whole
-		benchamrk set separately.
+		benchmark set separately.
 		Additionally, the original SP implementation\footnote{
 			Original-SP denotes the up-to-date implementation of \cite{devriendt2012symmetry}
-			without the optimizations enabled; in their paper, this version is denoted $SP^{reg}$.
+			without the inverting symmetry optimization enabled; in their paper, this version is denoted $SP^{reg}$.
 		}was re-run, such that we could compare their results to ours.
 
 	\item {\bf Symmetry activity test:}
@@ -52,7 +52,7 @@ because more variables can be propagated.
 	All tests were run with a 15 minute timeout.
 	If all implementations timed out, the results are omitted from the table.
 
-	In our results we are focussing on the total amount of decisions taken.
+	In our results we are focusing on the total amount of decisions taken.
 	This is a good measure of the effectiveness of the search.
 	Another option would be CPU time, but apart from the effectiveness of the search, this measure
 	also includes the quality of the implementation and the specifics of the machine on which it was
