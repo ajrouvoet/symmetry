@@ -15,6 +15,10 @@ Further combinations of heuristics are not tested because this falls outside the
 of this research.
 
 \todoi{Present results in tables/graphs}
-\csvautotabular{results/example.csv}
+\pgfplotstableread[
+col sep=comma,
+trim cells=true,
+%ignore chars=
+]{results/example.csv}
 
 \todoi{Perform analysis of results}
