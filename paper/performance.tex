@@ -1,7 +1,8 @@
 \begin{table*}
 	\begin{center}
-	\caption {Heuristics Performance} \label{tab:performance} 
-	
+	\caption {Heuristics Performance} \label{tab:performance}
+
+	\centerline{
 	\pgfplotstabletypeset[
 		col sep=comma,
 		string type,
@@ -10,7 +11,7 @@
 			before row={\hline
 				&	&	\multicolumn{6}{c}{Number of decisions}	\\
 			},
-			after row=\hline \hline	
+			after row=\hline \hline
 		},
 		columns/test/.style			={column name=Problem name, column type={c}},
 		columns/symmetries/.style		={column name=Input symmetries, column type={c|}},
@@ -21,9 +22,10 @@
 		columns/symmetry count/.style	={column name=$SP^{CNT}$, column type={c}},
 		columns/symmetry usage/.style	={column name=$SP^{USG}$, column type={c}}
 		]{performance.csv}
-		
+	}
+
 \bigskip
 This table contains the number of decisions it takes each heuristic to calculate the correct result. The numbers in bold, indicate that the particular heuristic performs better than the plain $SP^{REG}$ algorithm.
-		
+
 	\end{center}
 \end{table*}
