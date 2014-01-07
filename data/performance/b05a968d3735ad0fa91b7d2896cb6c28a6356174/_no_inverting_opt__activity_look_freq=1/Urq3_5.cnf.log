@@ -1,0 +1,37 @@
+Test: Urq3_5.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           29                                         |
+|  Number of invertingSyms:        29                                         |
+|  Number of variables:            46                                         |
+|  Number of clauses:             470                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      46      470     2912 |      172      131     19 |  0.048 % |
+===============================================================================
+restarts              : 2
+conflicts             : 130            (inf /sec)
+symconflicts          : 56             (inf /sec)
+decisions             : 215            (0.00 % random) (inf /sec)
+propagations          : 3247           (inf /sec)
+sympropagations       : 56             (inf /sec)
+conflict literals     : 2195           (1.88 % deleted)
+literals     : 2195           (1.88 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 215         
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0 s
+
+UNSATISFIABLE

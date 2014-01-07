@@ -1,0 +1,43 @@
+Test: Urq6_5.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:          109                                         |
+|  Number of invertingSyms:       109                                         |
+|  Number of variables:           180                                         |
+|  Number of clauses:            1756                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     180     1756    10776 |      643      132     34 |  0.003 % |
+|       250 |     180     1756    10776 |      708      309     31 |  0.003 % |
+|       475 |     180     1756    10776 |      779      545     31 |  0.003 % |
+|       812 |     180     1756    10776 |      856      542     33 |  0.003 % |
+|      1318 |     180     1756    10776 |      942      766     38 |  0.003 % |
+|      2077 |     180     1756    10776 |     1036      771     36 |  0.003 % |
+|      3216 |     180     1756    10776 |     1140      759     58 |  0.003 % |
+===============================================================================
+restarts              : 22
+conflicts             : 4372           (27323 /sec)
+symconflicts          : 1951           (12193 /sec)
+decisions             : 9283           (0.00 % random) (58015 /sec)
+propagations          : 180869         (1130361 /sec)
+sympropagations       : 1951           (12193 /sec)
+conflict literals     : 197159         (0.27 % deleted)
+literals     : 197159         (0.27 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 9283        
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.16001 s
+
+UNSATISFIABLE

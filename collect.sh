@@ -2,11 +2,11 @@
 OUTDIR=./data/
 REF=`git rev-parse HEAD`
 TIMEOUT_IN=900
-OPTS="
--no-inverting-opt
--no-inverting-opt -activity-nl-freq=1
--no-inverting-opt -sym-var-bump
--no-inverting-opt -sym-usage-var-bump"
+OPTS="-no-inverting-opt -activity-look-freq=1"
+#-no-inverting-opt
+#-no-inverting-opt -activity-nl-freq=1
+#-no-inverting-opt -sym-var-bump
+#-no-inverting-opt -sym-usage-var-bump"
 
 echo "$OPTS" | while read opt
 do

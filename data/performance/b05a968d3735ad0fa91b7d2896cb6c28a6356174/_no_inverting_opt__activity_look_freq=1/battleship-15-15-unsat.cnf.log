@@ -1,0 +1,3 @@
+Test: battleship-15-15-unsat.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+TIMEOUT
