@@ -96,3 +96,36 @@ Beforehand we discuss some results that are observed for each of the measured he
 
 \subsection{On the Falsification of Hypothesis 2}
 \label{ssec:falsification_hyp_2}
+
+	Before we jump to the conclusion that hypothesis 2 can be falsified, based on the lack of
+	correlation that the scatter plot shows, we must consider a few intervening causes.
+
+	Firstly, we have only considered the average of active symmetries until now.
+	Could it be the case that the activity is actually less in, for example the first part of the
+	search, which could explain the negative results?
+	Figure \ref{fig:active_symmetries_during_search} shows that this is not the cases.
+	During the largest part of the search process, SA-APPROX shows increased activity, and it
+	manages to keep the activity high.
+	This would again suggest that high symmetry activity, does not correlate with efficient solving.
+
+	\begin{figure*}[!ht]
+		\center
+		\centerline{\includegraphics[width=1.2\textwidth]{results/battleship-12-23-approx-vs-reg.eps}}
+		\caption{
+			Number of active symmetries during search for one of the cases where SA-APPROX got
+			outperformed by $SP^{OPT}$.
+			We averaged over sample points; the error bars show the standard error on these
+			averages.
+			The specific case under test is battleship-12-23
+		}
+		\label{fig:active_symmetries_during_search}
+	\end{figure*}
+
+	Secondly, we have to consider that the implemented heuristics might collide with the built-in
+	VSIDS heuristic, which is an important heuristic that dramatically increases search efficiency.
+	SA and SA-APPROX however, only consider the top 5 variables on the variable heap, whereas VSIDS
+	takes the first.
+	This is a relatively small number considering the amount of variables in the instances,
+	which means that variables rated high by VSIDS, are rated high by SA and SA-APPROX.
+
+	Lastly, the result obtained by \cite{devriendt2012symmetry} should be considered. \todo{..}

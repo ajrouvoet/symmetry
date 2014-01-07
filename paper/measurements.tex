@@ -32,20 +32,6 @@ because more variables can be propagated.
 	We then calculated the average number of active symmetries for each test case for the different
 	heuristics and the original SP implementations (regular and optimized).
 
-	Furthermore, we have plotted the number of active symmetries during search for several tests in
-	order to gain more insight in what is actually happening during search.
-	The tests for these symmetry activity were chosen based on performance tests.
-	We focused on three tests\todo{Be specific, what tests?}:
-	\begin{enumerate}
-		\item A test where the original-SP needed less decisions than our implementation
-		\item A test where our implementation needed less decisions than original SP
-		\item A test where both implementations performed similar
-	\end{enumerate}
-
-	We chose these tests because we hypothesized that the cases where our implementation was fast,
-	were the cases where it had succeeded to keep a lot of symmetries active,
-	whereas the cases where it failed to do so, would be slower due to the overhead of the lookahead.
-
 \subsection{Benchmark}
 \label{ssec:benchmark}
 	The benchmark set we ran our tests against is the same set as used by Devriendt~\cite{devriendt2012symmetry}.
