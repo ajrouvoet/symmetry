@@ -1,0 +1,39 @@
+Test: battleship-05-08-unsat.cnf
+Options: -no-inverting-opt -activity-nl-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            8                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:            40                                         |
+|  Number of clauses:             105                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      40      105      360 |       38       39     13 |  0.064 % |
+|       250 |      40      105      360 |       42       38     13 |  0.064 % |
+|       475 |      40      105      360 |       46       49     11 |  0.070 % |
+===============================================================================
+restarts              : 5
+conflicts             : 596            (74500 /sec)
+symconflicts          : 49             (6125 /sec)
+decisions             : 760            (0.00 % random) (95000 /sec)
+propagations          : 6548           (818500 /sec)
+sympropagations       : 189            (23625 /sec)
+conflict literals     : 7718           (6.91 % deleted)
+literals     : 7718           (6.91 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 760         
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.008 s
+
+UNSATISFIABLE

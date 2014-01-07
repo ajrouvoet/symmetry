@@ -1,0 +1,38 @@
+Test: battleship-12-23-sat.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           18                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           276                                         |
+|  Number of clauses:            1662                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     276     1662     6348 |      609      146    158 |  0.001 % |
+|       250 |     276     1662     6348 |      670      342    130 |  0.001 % |
+===============================================================================
+restarts              : 4
+conflicts             : 450            (22499 /sec)
+symconflicts          : 30             (1500 /sec)
+decisions             : 1559           (0.00 % random) (77946 /sec)
+propagations          : 9446           (472276 /sec)
+sympropagations       : 170            (8500 /sec)
+conflict literals     : 49326          (0.42 % deleted)
+literals     : 49326          (0.42 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 1558        
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.020001 s
+
+SATISFIABLE

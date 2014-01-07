@@ -1,0 +1,47 @@
+Test: battleship-12-12-unsat.cnf
+Options: -no-inverting-opt -sym-usage-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           10                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           144                                         |
+|  Number of clauses:             936                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     144      936     3312 |      343      161     54 |  0.005 % |
+|       250 |     144      936     3312 |      377      329     43 |  0.005 % |
+|       475 |     144      936     3312 |      415      344     31 |  0.005 % |
+|       812 |     144      936     3312 |      456      235     25 |  0.005 % |
+|      1318 |     144      936     3312 |      502      348     30 |  0.005 % |
+|      2077 |     144      936     3312 |      552      334     28 |  0.005 % |
+|      3216 |     144      936     3312 |      607      336     27 |  0.005 % |
+|      4924 |     144      936     3312 |      668      565     29 |  0.005 % |
+|      7486 |     144      936     3312 |      735      490     25 |  0.005 % |
+|     11330 |     144      936     3312 |      809      620     30 |  0.005 % |
+|     17096 |     144      936     3312 |      890      795     31 |  0.005 % |
+===============================================================================
+restarts              : 94
+conflicts             : 25733          (63067 /sec)
+symconflicts          : 322            (789 /sec)
+decisions             : 35496          (0.00 % random) (86995 /sec)
+propagations          : 646349         (1584092 /sec)
+sympropagations       : 2938           (7201 /sec)
+conflict literals     : 877560         (7.44 % deleted)
+literals     : 877560         (7.44 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 35496       
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.408025 s
+
+UNSATISFIABLE

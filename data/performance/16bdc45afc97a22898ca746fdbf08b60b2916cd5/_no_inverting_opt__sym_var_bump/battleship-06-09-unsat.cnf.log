@@ -1,0 +1,41 @@
+Test: battleship-06-09-unsat.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            7                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:            54                                         |
+|  Number of clauses:             171                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      54      171      594 |       62       63     17 |  0.035 % |
+|       250 |      54      171      594 |       68       74     15 |  0.035 % |
+|       475 |      54      171      594 |       75       98     16 |  0.035 % |
+|       812 |      54      171      594 |       83       60     14 |  0.035 % |
+|      1318 |      54      171      594 |       91       90     15 |  0.035 % |
+===============================================================================
+restarts              : 11
+conflicts             : 1627           (101681 /sec)
+symconflicts          : 42             (2625 /sec)
+decisions             : 2021           (0.00 % random) (126305 /sec)
+propagations          : 23022          (1438785 /sec)
+sympropagations       : 269            (16811 /sec)
+conflict literals     : 28037          (8.20 % deleted)
+literals     : 28037          (8.20 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 2021        
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.016001 s
+
+UNSATISFIABLE

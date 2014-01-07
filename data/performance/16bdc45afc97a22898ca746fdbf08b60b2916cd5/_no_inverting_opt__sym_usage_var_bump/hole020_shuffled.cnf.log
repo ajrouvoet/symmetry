@@ -1,0 +1,3 @@
+Test: hole020_shuffled.cnf
+Options: -no-inverting-opt -sym-usage-var-bump
+TIMEOUT
