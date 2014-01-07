@@ -2,14 +2,23 @@ We have looked at a recently proposed technique for symmetry propagation by Devr
 After analysing their method, improvements and heuristics we conjectured that
 keeping more symmetries active during solving would result in better performance.
 Assuming this hypothesis the heuristics we've proposed should show to have a better performance than
-MiniSat without any heuristics, $SP^{OPT}$.
+the implementation of \cite{devriendt2012symmetry} without their heuristic on inverting symmetries
+$SP^{REG}$.
 
-The heuristics we proposed are Literal Lookahead, $SA$, an approximation of this heuristic, $SA-APPROX$,
-Symmetry Counting, $SC$, and Symmetry Usage, $SU$.
-We then implemented the proposed heuristics and performed tests on a benchmark set also used in~\cite{devriendt2012symmetry}.
-\todoi{Results}
-From the results we can largely falsify the hypothesis,
-so that we know that average symmetry activity does not give a higher performance.
-This is surprising, because we expected that with a lot of symmetries the symmetry propagation phase would be more succesfull.
-However, the results show that the extra runtime of the heuristics
-that improve the number of active symmetries does not outweigh the benefits of more active symmetries.
+The heuristics we proposed are Symmetry Activity Lookahead, $SA$, an approximation of this
+heuristic, $SA-APPROX$, Symmetry Counting, $SC$, and Symmetry Usage, $SU$.
+We then implemented the proposed heuristics and performed tests on a benchmark set also used
+in~\cite{devriendt2012symmetry}.
+
+The measurements indicate that SA, SA-APPROX and SC all succeeded to increase the number of weakly
+active symmetries during search.
+SU did not manage this and this was contributed to the fact that it can't properly promote important
+symmetries through variable activity.
+
+From the results we can largely falsify the second hypothesis, i.e. optimizing the number of
+active symmetries during search does not correlate with higher performance.
+This is surprising, because we expected that with a lot of active symmetries the symmetry
+propagation phase would yield more results, resulting in a more efficient search process.
+
+However, we must note that we have not succeeded in fully explaining the complexity of the
+different results (see future work).
