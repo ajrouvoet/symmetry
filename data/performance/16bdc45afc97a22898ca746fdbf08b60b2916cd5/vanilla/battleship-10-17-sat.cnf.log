@@ -1,5 +1,5 @@
 Test: battleship-10-17-sat.cnf
-Options: 
+Options: vanilla
 WARNING: for repeatability, setting FPU to use double precision
 ============================[ Problem Statistics ]=============================
 |                                                                             |

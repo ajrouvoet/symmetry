@@ -1,5 +1,5 @@
 Test: fpga11_13_uns_rcr.cnf
-Options: 
+Options: vanilla
 WARNING: for repeatability, setting FPU to use double precision
 ============================[ Problem Statistics ]=============================
 |                                                                             |

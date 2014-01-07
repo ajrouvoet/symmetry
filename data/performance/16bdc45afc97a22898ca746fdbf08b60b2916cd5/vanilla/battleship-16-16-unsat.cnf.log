@@ -1,5 +1,5 @@
 Test: battleship-16-16-unsat.cnf
-Options: 
+Options: vanilla
 WARNING: for repeatability, setting FPU to use double precision
 ============================[ Problem Statistics ]=============================
 |                                                                             |
