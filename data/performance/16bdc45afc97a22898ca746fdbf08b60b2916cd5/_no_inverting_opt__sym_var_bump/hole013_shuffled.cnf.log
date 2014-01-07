@@ -1,0 +1,50 @@
+Test: hole013_shuffled.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           25                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           182                                         |
+|  Number of clauses:            1197                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     182     1197     2548 |      438      229     44 |  0.003 % |
+|       250 |     182     1197     2548 |      482      506     44 |  0.003 % |
+|       475 |     182     1197     2548 |      531      321     45 |  0.003 % |
+|       812 |     182     1197     2548 |      584      310     54 |  0.003 % |
+|      1318 |     182     1197     2548 |      642      419     53 |  0.003 % |
+|      2077 |     182     1197     2548 |      706      482     50 |  0.003 % |
+|      3216 |     182     1197     2548 |      777      425     56 |  0.003 % |
+|      4924 |     182     1197     2548 |      855      560     60 |  0.003 % |
+|      7486 |     182     1197     2548 |      940      552     56 |  0.003 % |
+|     11330 |     182     1197     2548 |     1034      726     64 |  0.003 % |
+|     17096 |     182     1197     2548 |     1138     1106     66 |  0.003 % |
+|     25745 |     182     1197     2548 |     1252     1209     61 |  0.003 % |
+|     38719 |     182     1197     2548 |     1377      833     51 |  0.003 % |
+|     58180 |     182     1197     2548 |     1515      774     62 |  0.003 % |
+===============================================================================
+restarts              : 254
+conflicts             : 86480          (37403 /sec)
+symconflicts          : 11002          (4758 /sec)
+decisions             : 140812         (0.00 % random) (60901 /sec)
+propagations          : 1752076        (757771 /sec)
+sympropagations       : 65839          (28475 /sec)
+conflict literals     : 5653249        (5.64 % deleted)
+literals     : 5653249        (5.64 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 140812      
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 2.31214 s
+
+UNSATISFIABLE

@@ -1,0 +1,3 @@
+Test: battleship-15-29-sat.cnf
+Options: -no-inverting-opt -sym-usage-var-bump
+TIMEOUT

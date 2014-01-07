@@ -1,0 +1,50 @@
+Test: battleship-12-12-unsat.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           10                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           144                                         |
+|  Number of clauses:             936                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     144      936     3312 |      343      162     50 |  0.005 % |
+|       250 |     144      936     3312 |      377      319     40 |  0.005 % |
+|       475 |     144      936     3312 |      415      329     35 |  0.005 % |
+|       812 |     144      936     3312 |      456      234     27 |  0.005 % |
+|      1318 |     144      936     3312 |      502      247     28 |  0.005 % |
+|      2077 |     144      936     3312 |      552      530     31 |  0.005 % |
+|      3216 |     144      936     3312 |      607      480     31 |  0.005 % |
+|      4924 |     144      936     3312 |      668      619     31 |  0.005 % |
+|      7486 |     144      936     3312 |      735      386     27 |  0.005 % |
+|     11330 |     144      936     3312 |      809      640     31 |  0.005 % |
+|     17096 |     144      936     3312 |      890      765     30 |  0.005 % |
+|     25745 |     144      936     3312 |      979      652     31 |  0.005 % |
+|     38719 |     144      936     3312 |     1077      910     39 |  0.005 % |
+|     58180 |     144      936     3312 |     1184     1087     25 |  0.005 % |
+===============================================================================
+restarts              : 190
+conflicts             : 61447          (60476 /sec)
+symconflicts          : 851            (838 /sec)
+decisions             : 83684          (0.00 % random) (82361 /sec)
+propagations          : 1570452        (1545625 /sec)
+sympropagations       : 4822           (4746 /sec)
+conflict literals     : 2234502        (9.03 % deleted)
+literals     : 2234502        (9.03 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 83684       
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 1.01606 s
+
+UNSATISFIABLE

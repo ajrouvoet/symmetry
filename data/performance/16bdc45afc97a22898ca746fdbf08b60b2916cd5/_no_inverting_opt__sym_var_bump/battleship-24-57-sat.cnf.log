@@ -1,0 +1,48 @@
+Test: battleship-24-57-sat.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           41                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:          1368                                         |
+|  Number of clauses:           16308                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |    1368    16308    64296 |     5979      144    217 |  0.000 % |
+|       250 |    1368    16308    64296 |     6577      313    230 |  0.000 % |
+|       475 |    1368    16308    64296 |     7235      593    254 |  0.000 % |
+|       812 |    1368    16308    64296 |     7958     1061    269 |  0.000 % |
+|      1318 |    1368    16308    64296 |     8754     1778    286 |  0.000 % |
+|      2077 |    1368    16308    64296 |     9630     2864    288 |  0.000 % |
+|      3216 |    1368    16308    64296 |    10593     4402    349 |  0.000 % |
+|      4924 |    1368    16308    64296 |    11652     6726    326 |  0.000 % |
+|      7486 |    1368    16308    64296 |    12817    10291    345 |  0.000 % |
+|     11330 |    1368    16308    64296 |    14099     9229    368 |  0.000 % |
+|     17096 |    1368    16308    64296 |    15509     9449    392 |  0.000 % |
+|     25745 |    1368    16308    64296 |    17060    13747    373 |  0.000 % |
+===============================================================================
+restarts              : 126
+conflicts             : 37269          (4364 /sec)
+symconflicts          : 2923           (342 /sec)
+decisions             : 269600         (0.00 % random) (31567 /sec)
+propagations          : 1211509        (141854 /sec)
+sympropagations       : 14517          (1700 /sec)
+conflict literals     : 13821557       (0.42 % deleted)
+literals     : 13821557       (0.42 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 269599      
+sym count             : 0           
+
+Memory used           : 101.00 MB
+CPU time              : 8.54053 s
+
+SATISFIABLE

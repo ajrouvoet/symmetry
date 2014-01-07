@@ -1,0 +1,39 @@
+Test: battleship-05-08-unsat.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            8                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:            40                                         |
+|  Number of clauses:             105                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      40      105      360 |       38       42     13 |  0.064 % |
+|       250 |      40      105      360 |       42       29     13 |  0.064 % |
+|       475 |      40      105      360 |       46       49     13 |  0.064 % |
+===============================================================================
+restarts              : 6
+conflicts             : 755            (94375 /sec)
+symconflicts          : 42             (5250 /sec)
+decisions             : 917            (0.00 % random) (114625 /sec)
+propagations          : 8400           (1050000 /sec)
+sympropagations       : 160            (20000 /sec)
+conflict literals     : 10098          (7.43 % deleted)
+literals     : 10098          (7.43 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 917         
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.008 s
+
+UNSATISFIABLE

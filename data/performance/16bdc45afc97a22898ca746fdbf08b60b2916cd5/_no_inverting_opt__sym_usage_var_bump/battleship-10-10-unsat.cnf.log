@@ -1,0 +1,44 @@
+Test: battleship-10-10-unsat.cnf
+Options: -no-inverting-opt -sym-usage-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            8                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           100                                         |
+|  Number of clauses:             550                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     100      550     1900 |      201      139     34 |  0.010 % |
+|       250 |     100      550     1900 |      221      179     27 |  0.010 % |
+|       475 |     100      550     1900 |      244      152     22 |  0.010 % |
+|       812 |     100      550     1900 |      268      208     20 |  0.010 % |
+|      1318 |     100      550     1900 |      295      268     20 |  0.010 % |
+|      2077 |     100      550     1900 |      324      219     21 |  0.010 % |
+|      3216 |     100      550     1900 |      357      257     20 |  0.010 % |
+|      4924 |     100      550     1900 |      392      239     19 |  0.010 % |
+===============================================================================
+restarts              : 31
+conflicts             : 6744           (76632 /sec)
+symconflicts          : 42             (477 /sec)
+decisions             : 8416           (0.00 % random) (95631 /sec)
+propagations          : 148013         (1681870 /sec)
+sympropagations       : 207            (2352 /sec)
+conflict literals     : 162170         (8.40 % deleted)
+literals     : 162170         (8.40 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 8416        
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.088005 s
+
+UNSATISFIABLE

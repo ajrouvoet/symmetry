@@ -1,0 +1,43 @@
+Test: chnl11_13.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           45                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           286                                         |
+|  Number of clauses:            1742                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     286     1742     3718 |      638      230     38 |  0.001 % |
+|       250 |     286     1742     3718 |      702      655     37 |  0.001 % |
+|       475 |     286     1742     3718 |      772      541     35 |  0.001 % |
+|       812 |     286     1742     3718 |      850      824     37 |  0.001 % |
+|      1318 |     286     1742     3718 |      935      475     34 |  0.001 % |
+|      2077 |     286     1742     3718 |     1028      802     38 |  0.001 % |
+|      3216 |     286     1742     3718 |     1131      631     29 |  0.001 % |
+===============================================================================
+restarts              : 18
+conflicts             : 3503           (43785 /sec)
+symconflicts          : 644            (8049 /sec)
+decisions             : 6133           (0.00 % random) (76658 /sec)
+propagations          : 84633          (1057846 /sec)
+sympropagations       : 4738           (59221 /sec)
+conflict literals     : 154227         (5.03 % deleted)
+literals     : 154227         (5.03 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 6133        
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.080005 s
+
+UNSATISFIABLE

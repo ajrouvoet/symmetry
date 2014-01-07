@@ -27,7 +27,15 @@ because more variables can be propagated.
 
 \subsection{Symmetry Activity Test Cases}
 \label{ssec:sym_act_test_cases}
-	The tests for the symmetry activity were chosen based on performance tests.
+	In order to verify that the heuristics increased the number of active symmetries during search,
+	we ran the benchmark, and logged the amount of active symmetries in every iteration of the
+	search algorithm.
+	We then calculated the average number of active symmetries for each test case for the different
+	heuristics and the original SP implementations (regular and optimized).
+
+	Furthermore, we have plotted the number of active symmetries during search for several tests in
+	order to gain more insight in what is actually happening during search.
+	The tests for these symmetry activity were chosen based on performance tests.
 	We focused on three tests\todo{Be specific, what tests?}:
 	\begin{enumerate}
 		\item A test where the original-SP needed less decisions than our implementation
@@ -35,11 +43,11 @@ because more variables can be propagated.
 		\item A test where both implementations performed similar
 	\end{enumerate}
 
-	We chose these tests because we hypothesised that the cases where out implementation was fast,
+	We chose these tests because we hypothesised that the cases where our implementation was fast,
 	were the cases where it had succeeded to keep a lot of symmetries active,
 	whereas the cases where it failed to do so, would be slower due to the overhead of the lookahead.
 
-\subsection{The Test Suite}
+\subsection{Benchmark}
 \label{ssec:benchmark}
 	The benchmark set we ran our tests against is the same set as used by Devriendt~\cite{devriendt2012symmetry}.
 	This benchmark was composed to measure the performance of their dynamic symmetry
@@ -48,12 +56,10 @@ because more variables can be propagated.
 	benchmark was an obvious choice.
 
 	The benchmark contains both satisfiable and unsatisfiable instances of several SAT problems.
-	This set of problems consists of field-programmable integrated circuit wire routing (\textbf{fpga} and 
+	This set of problems consists of field-programmable integrated circuit wire routing (\textbf{fpga} and
 	\textbf{chnl})~\cite{nam2004comparative}, Urquhart's problems (\textbf{Urq})~\cite{urquhart1987hard},
-	pigeonhole problems (\textbf{hole}), encryption problems (\textbf{xorchain}) and the \textbf{battleships} 
+	pigeonhole problems (\textbf{hole}), encryption problems (\textbf{xorchain}) and the \textbf{battleships}
 	puzzle problems~\cite{sevenster2004battleships}.
-	The variable ordering of the pigeonhole problems is shuffled because the original order seemed to be
-	to easy to solve.
 	Problem sets \textbf{Urq} and \textbf{x} contain only problems with inverting symmetries, while the
 	others like \textbf{chnl}, \textbf{fpga} and \textbf{battleship} do not contain this type of symmetry
-	at all.
+	at all\cite{devriendt2012symmetry}.
