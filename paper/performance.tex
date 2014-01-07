@@ -4,9 +4,10 @@
 	\pgfplotstabletypeset[
 		col sep=comma,
 		string type,
+		ignore chars = {_},
 		every head row/.style={%
 			before row={\hline
-				&	&	\multicolumn{6}{c}{Symmetries (per decision)}	\\
+				&	&	\multicolumn{6}{c}{Number of decisions}	\\
 			},
 			after row=\hline \hline	
 		},
