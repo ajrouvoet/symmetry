@@ -1,6 +1,7 @@
 \begin{table*}
 	\caption {Active Symmetries} \label{tab:activity} 
 	
+	\centerline{
 	\pgfplotstabletypeset[
 		col sep=comma,
 		string type,
@@ -19,6 +20,7 @@
 		columns/symmetry count/.style	={column name=$SP^{CNT}$, column type={c}},
 		columns/symmetry usage/.style	={column name=$SP^{USG}$, column type={c}}
 		]{activity.csv}
+	}
 		
 \bigskip
 This table contains the number of decisions it takes each heuristic to calculate the correct result. The numbers in bold, indicate that the particular heuristic performs better than the plain $SP^{REG}$ algorithm.
