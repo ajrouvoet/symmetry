@@ -81,7 +81,7 @@ and discuss their applicability.
 	Afterwards one would need to undo that.
 	This method thus has a performance linear in the number of symmetries $|S|$.
 
-\subsection{Symmetry Counting}
+\subsection{SC: Symmetry Counting}
 
 	Choosing a literal that occurs in a symmetry, increases the activity of that symmetry.
 	Following the line of thought of attempting to keep as much symmetries active as possible,
@@ -92,7 +92,7 @@ and discuss their applicability.
 	This implementation would only cost a polynomial amount of runtime, at the initialization of the
 	solver and can be combined with any other heuristic that honors the order of the variable heap.
 
-\subsection{Symmetry Usage}
+\subsection{SU: Symmetry Usage}
 	Symmetry Usage is a dynamical symmetry breaking heuristic
 	which takes into account the number of times a symmetry has previously been used in the solver tree.
 	If a symmetry is used often when solving the tree, we suppose that it is more important than other symmetries.

@@ -1,19 +1,23 @@
-The implementation of the alternative heuristics is based on the improvements 
+The implementation of the alternative heuristics is based on the improvements
 made by~\cite{devriendt2012symmetry} based on the MiniSAT SAT-solver.
-
-The default heuristic implemented by~\cite{devriendt2012symmetry} orders the 
-branching literals in a specific order. The implementations of the changed heuristics 
-are partly based on this order, the computational heavy heuristics are only looking 
-at the \emph{best} $n$ literals from this list.
-
 In order to ease the testing procedure and overall usage of the solver, all heuristics
-are implemented within the same program. One may choose one or multiple heuristics 
-by using command line parameters. Because of this feature it is possible to combine 
-multiple heuristics into a new heuristic. While benchmarking we incorporated a random
-heuristic in all runs to keep the solver from looping forever around some local optimum.
+are implemented within the same program. One may choose one or multiple heuristics
+by using command line parameters. Because of this feature it is possible to combine
+multiple heuristics into a new heuristic.
+While benchmarking we disabled the builtin heuristic that randomly chooses a literal from the heap,
+such that our results are fully deterministic.
 Further combinations of heuristics are not tested because this falls outside the scope
 of this research.
 
-\todoi{Present results in tables/graphs}
+We will analyze the results for each of the heuristics seperately and discuss for each of them both
+hypothesis as formulated in section \ref{sec:Introduction}.
+Beforehand we discuss some results that are observed for each of the measured heuristics.
 
-\todoi{Perform analysis of results}
+\subsection{Generic Results}
+	It is observed in the activity data that none of implementations, including $SP^{OPT}$,
+	succeeds in increasing the number of active symmetries in the CHNL benchmark suite.
+
+\subsection{SA Heuristic}
+	From a theoretical perspective, SA was expected to have the most impact on the number of active
+	symmetries during search, as it optimizes is very directly using a one iteration lookahead.
+	From the activity results this also becomes very
