@@ -4,12 +4,12 @@ In order to ease the testing procedure and overall usage of the solver, all heur
 are implemented within the same program. One may choose one or multiple heuristics
 by using command line parameters. Because of this feature it is possible to combine
 multiple heuristics into a new heuristic.
-While benchmarking we disabled the builtin heuristic that randomly chooses a literal from the heap,
+While benchmarking we disabled the built-in heuristic that randomly chooses a literal from the heap,
 such that our results are fully deterministic.
 Further combinations of heuristics are not tested because this falls outside the scope
 of this research.
 
-We will analyze the results for each of the heuristics seperately and discuss for each of them both
+We will analyze the results for each of the heuristics separately and discuss for each of them both
 hypothesis as formulated in section \ref{sec:Introduction}.
 Beforehand we discuss some results that are observed for each of the measured heuristics.
 
@@ -70,7 +70,7 @@ Beforehand we discuss some results that are observed for each of the measured he
 	\end{figure*}
 
 \subsection{SC Heuristic}
-	The symmetry count heuristic isnot performing as good as the SA and SA-APPROX heuristics.
+	The symmetry count heuristic is not performing as good as the SA and SA-APPROX heuristics.
 	SC has increased activity on most cases, but fails to do this on all Urquhart instances.
 	Which suggests that is performs not better on instances with many inverting symmetries.
 	If we exclude the instances with inverting symmetries and the CHNL result, on which none of the
