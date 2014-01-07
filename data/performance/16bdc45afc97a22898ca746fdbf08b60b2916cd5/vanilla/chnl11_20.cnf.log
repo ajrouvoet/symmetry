@@ -1,5 +1,5 @@
 Test: chnl11_20.cnf
-Options: 
+Options: vanilla
 WARNING: for repeatability, setting FPU to use double precision
 ============================[ Problem Statistics ]=============================
 |                                                                             |

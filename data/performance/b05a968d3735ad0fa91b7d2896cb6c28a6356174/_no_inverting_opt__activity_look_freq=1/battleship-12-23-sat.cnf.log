@@ -1,0 +1,37 @@
+Test: battleship-12-23-sat.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           18                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           276                                         |
+|  Number of clauses:            1662                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     276     1662     6348 |      609      100     95 |  0.001 % |
+===============================================================================
+restarts              : 2
+conflicts             : 196            (12249 /sec)
+symconflicts          : 2              (125 /sec)
+decisions             : 619            (0.00 % random) (38685 /sec)
+propagations          : 14017          (876008 /sec)
+sympropagations       : 14             (875 /sec)
+conflict literals     : 18389          (0.35 % deleted)
+literals     : 18389          (0.35 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 618         
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.016001 s
+
+SATISFIABLE

@@ -1,0 +1,38 @@
+Test: battleship-05-08-unsat.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            8                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:            40                                         |
+|  Number of clauses:             105                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      40      105      360 |       38       38     14 |  0.064 % |
+|       250 |      40      105      360 |       42       49     13 |  0.064 % |
+===============================================================================
+restarts              : 3
+conflicts             : 335            (83750 /sec)
+symconflicts          : 24             (6000 /sec)
+decisions             : 432            (0.00 % random) (108000 /sec)
+propagations          : 11558          (2889500 /sec)
+sympropagations       : 83             (20750 /sec)
+conflict literals     : 4612           (4.18 % deleted)
+literals     : 4612           (4.18 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 432         
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.004 s
+
+UNSATISFIABLE
