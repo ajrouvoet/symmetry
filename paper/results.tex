@@ -29,7 +29,7 @@ Beforehand we discuss some results that are observed for each of the measured he
 	but during symmetry propagation, the weakly active symmetry would be made permanently inactive
 	because it contains literals that invert under the symmetry.
 
-	One might expect that SA would perform better under these circumstances.
+	One might expect that SA would perform as good as $SP^{OPT}$ under these circumstances.
 	However, our implementation only performs \emph{unit propagation} during the lookahead, such
 	that inverting symmetries are counted as active during the lookahead.
 
@@ -49,7 +49,8 @@ Beforehand we discuss some results that are observed for each of the measured he
 	between the number of active symmetries and the number of decisions.
 	This is made more clear by the scatter plot in figure \ref{fig:correlation}.
 	If an increased amount of weakly active symmetries would have resulted in better performance in
-	general and vice versa, than the scatter plot should have shown some increasing line.
+	general and vice versa, than the scatter plot should have shown some increasing line (it can be
+	seen that this is the case for $SP^{OPT}$).
 
 	It is crucial to recall that SA chooses from the top five variables on the variable heap and
 	does not alter anything else in the solver.
@@ -59,18 +60,39 @@ Beforehand we discuss some results that are observed for each of the measured he
 	\ref{ssec:falsification_hyp_2}.
 
 	\begin{figure*}[!ht]
-		\label{fig:correlation}
 		\center
 		\centerline{\includegraphics[width=1.2\textwidth]{results/scatterplot_activity.eps}}
 		\caption{
 			Correlation between number of active symmetries and number of decisions for all
 			heuristics. Performance and activity measured relative to $SP^{REG}$.
 		}
+		\label{fig:correlation}
 	\end{figure*}
 
+\subsection{SC Heuristic}
+	The symmetry count heuristic isnot performing as good as the SA and SA-APPROX heuristics.
+	SC has increased activity on most cases, but fails to do this on all Urquhart instances.
+	Which suggests that is performs not better on instances with many inverting symmetries.
+	If we exclude the instances with inverting symmetries and the CHNL result, on which none of the
+	heuristics performed well, it has managed to increase the number of active symmetries in more
+	than $2/3$ of the cases.
+	Furthermore, in many of the cases where it did not have an increased amount of activity
+	(including all Urquhart cases) it did not negatively influence it either.
+
+	This leads us to conclude that SC satisfies hypothesis 1.
+
 \subsection{SU Heuristic}
-	The symmetry usage statistic is performing very badly according to the activity metric.
-	In
+	SU has decreased performance on most instances, such that it is clear that it falsifies
+	hypothesis 1 for itself.
+
+	SU's bad performance with regard to symmetry activity can be explained when we reiterate on
+	how it works: it increases the activity of every literal in a symmetry that is used to propagate
+	a literal.
+	This is done under the assumption that this will promote important symmetries.
+	However, we must note that a literal can occur in many symmetries, which would also get
+	promoted.
+	It is thus likely that this heuristic does not succeed to accomplish it's goal to distinguish
+	important symmetries and promote their activity.
 
 \subsection{On the Falsification of Hypothesis 2}
 \label{ssec:falsification_hyp_2}
