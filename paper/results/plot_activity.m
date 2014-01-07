@@ -17,3 +17,5 @@ xlabel('Number of decisions, grouped per 400 samples')
 legend('SA-APPROX', 'SP^{opt}')
 title('Comparison of active symmetries')
 xlim([0 length(avgheur)])
+
+hold off
