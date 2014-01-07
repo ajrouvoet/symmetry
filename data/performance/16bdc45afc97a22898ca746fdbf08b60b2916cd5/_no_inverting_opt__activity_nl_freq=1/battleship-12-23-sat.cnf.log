@@ -1,0 +1,40 @@
+Test: battleship-12-23-sat.cnf
+Options: -no-inverting-opt -activity-nl-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           18                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           276                                         |
+|  Number of clauses:            1662                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     276     1662     6348 |      609      100     95 |  0.001 % |
+|       250 |     276     1662     6348 |      670      267     90 |  0.001 % |
+|       475 |     276     1662     6348 |      737      552     95 |  0.001 % |
+|       812 |     276     1662     6348 |      811      643     96 |  0.001 % |
+===============================================================================
+restarts              : 8
+conflicts             : 1219           (25394 /sec)
+symconflicts          : 51             (1062 /sec)
+decisions             : 3790           (0.00 % random) (78953 /sec)
+propagations          : 26784          (557965 /sec)
+sympropagations       : 338            (7041 /sec)
+conflict literals     : 119539         (2.13 % deleted)
+literals     : 119539         (2.13 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 3789        
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.048003 s
+
+SATISFIABLE

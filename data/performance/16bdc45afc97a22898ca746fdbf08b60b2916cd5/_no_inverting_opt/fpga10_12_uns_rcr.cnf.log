@@ -1,0 +1,43 @@
+Test: fpga10_12_uns_rcr.cnf
+Options: -no-inverting-opt
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           41                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           240                                         |
+|  Number of clauses:            1344                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     240     1344     2880 |      492      115     53 |  0.002 % |
+|       250 |     240     1344     2880 |      542      319     49 |  0.002 % |
+|       475 |     240     1344     2880 |      596      334     43 |  0.002 % |
+|       812 |     240     1344     2880 |      655      501     39 |  0.002 % |
+|      1318 |     240     1344     2880 |      721      354     31 |  0.002 % |
+|      2077 |     240     1344     2880 |      793      786     34 |  0.002 % |
+|      3216 |     240     1344     2880 |      873      452     25 |  0.002 % |
+===============================================================================
+restarts              : 18
+conflicts             : 3547           (46669 /sec)
+symconflicts          : 402            (5289 /sec)
+decisions             : 5530           (0.00 % random) (72759 /sec)
+propagations          : 77183          (1015512 /sec)
+sympropagations       : 2613           (34380 /sec)
+conflict literals     : 136701         (8.49 % deleted)
+literals     : 136701         (8.49 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 5530        
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.076004 s
+
+UNSATISFIABLE

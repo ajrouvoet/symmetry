@@ -1,0 +1,42 @@
+Test: chnl10_11.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           39                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           220                                         |
+|  Number of clauses:            1122                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     220     1122     2420 |      411      151     39 |  0.002 % |
+|       250 |     220     1122     2420 |      452      411     40 |  0.002 % |
+|       475 |     220     1122     2420 |      497      324     34 |  0.002 % |
+|       812 |     220     1122     2420 |      547      415     30 |  0.002 % |
+|      1318 |     220     1122     2420 |      602      356     26 |  0.002 % |
+|      2077 |     220     1122     2420 |      662      645     22 |  0.002 % |
+===============================================================================
+restarts              : 14
+conflicts             : 2136           (59330 /sec)
+symconflicts          : 320            (8888 /sec)
+decisions             : 3965           (0.00 % random) (110133 /sec)
+propagations          : 46588          (1294039 /sec)
+sympropagations       : 2254           (62608 /sec)
+conflict literals     : 76504          (5.35 % deleted)
+literals     : 76504          (5.35 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 3965        
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.036002 s
+
+UNSATISFIABLE

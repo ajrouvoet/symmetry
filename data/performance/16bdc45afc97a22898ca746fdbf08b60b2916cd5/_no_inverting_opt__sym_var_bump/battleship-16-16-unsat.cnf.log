@@ -1,0 +1,49 @@
+Test: battleship-16-16-unsat.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           17                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           256                                         |
+|  Number of clauses:            2176                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     256     2176     7936 |      797      151     56 |  0.002 % |
+|       250 |     256     2176     7936 |      877      313     52 |  0.002 % |
+|       475 |     256     2176     7936 |      965      542     51 |  0.002 % |
+|       812 |     256     2176     7936 |     1061      887     51 |  0.002 % |
+|      1318 |     256     2176     7936 |     1168      808     56 |  0.002 % |
+|      2077 |     256     2176     7936 |     1284     1032     54 |  0.002 % |
+|      3216 |     256     2176     7936 |     1413      914     57 |  0.002 % |
+|      4924 |     256     2176     7936 |     1554     1223     57 |  0.002 % |
+|      7486 |     256     2176     7936 |     1710     1388     53 |  0.002 % |
+|     11330 |     256     2176     7936 |     1881     1702     54 |  0.002 % |
+|     17096 |     256     2176     7936 |     2069     1240     46 |  0.002 % |
+|     25745 |     256     2176     7936 |     2276     1946     42 |  0.002 % |
+|     38719 |     256     2176     7936 |     2504     2047     33 |  0.002 % |
+===============================================================================
+restarts              : 141
+conflicts             : 46971          (30341 /sec)
+symconflicts          : 407            (263 /sec)
+decisions             : 72253          (0.00 % random) (46672 /sec)
+propagations          : 1277190        (825007 /sec)
+sympropagations       : 6122           (3955 /sec)
+conflict literals     : 2384366        (8.52 % deleted)
+literals     : 2384366        (8.52 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 72253       
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 1.5481 s
+
+UNSATISFIABLE

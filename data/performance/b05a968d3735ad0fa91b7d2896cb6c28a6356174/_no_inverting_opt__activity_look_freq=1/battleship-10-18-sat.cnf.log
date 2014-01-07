@@ -1,0 +1,41 @@
+Test: battleship-10-18-sat.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           13                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           180                                         |
+|  Number of clauses:             910                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     180      910     3420 |      333      100     66 |  0.003 % |
+|       250 |     180      910     3420 |      367      285     65 |  0.003 % |
+|       475 |     180      910     3420 |      403      333     59 |  0.003 % |
+|       812 |     180      910     3420 |      444      252     48 |  0.003 % |
+|      1318 |     180      910     3420 |      488      378     53 |  0.003 % |
+===============================================================================
+restarts              : 13
+conflicts             : 1983           (41310 /sec)
+symconflicts          : 86             (1792 /sec)
+decisions             : 4576           (0.00 % random) (95327 /sec)
+propagations          : 135277         (2818095 /sec)
+sympropagations       : 525            (10937 /sec)
+conflict literals     : 134628         (3.83 % deleted)
+literals     : 134628         (3.83 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 4575        
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.048003 s
+
+SATISFIABLE

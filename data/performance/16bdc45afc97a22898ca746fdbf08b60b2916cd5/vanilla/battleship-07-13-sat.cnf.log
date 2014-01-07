@@ -1,0 +1,38 @@
+Test: battleship-07-13-sat.cnf
+Options: vanilla
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           12                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:            91                                         |
+|  Number of clauses:             322                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      91      322     1183 |      118      125     45 |  0.012 % |
+|       250 |      91      322     1183 |      129      134     36 |  0.012 % |
+===============================================================================
+restarts              : 3
+conflicts             : 318            (79500 /sec)
+symconflicts          : 13             (3250 /sec)
+decisions             : 517            (0.00 % random) (129250 /sec)
+propagations          : 4212           (1053000 /sec)
+sympropagations       : 42             (10500 /sec)
+conflict literals     : 13314          (1.36 % deleted)
+literals     : 13314          (1.36 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 516         
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.004 s
+
+SATISFIABLE

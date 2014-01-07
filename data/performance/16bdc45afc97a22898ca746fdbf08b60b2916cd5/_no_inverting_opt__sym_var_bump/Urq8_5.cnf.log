@@ -1,0 +1,3 @@
+Test: Urq8_5.cnf
+Options: -no-inverting-opt -sym-var-bump
+TIMEOUT

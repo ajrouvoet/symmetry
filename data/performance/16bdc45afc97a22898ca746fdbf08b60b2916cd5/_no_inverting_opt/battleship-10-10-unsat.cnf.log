@@ -1,0 +1,45 @@
+Test: battleship-10-10-unsat.cnf
+Options: -no-inverting-opt
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            8                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           100                                         |
+|  Number of clauses:             550                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     100      550     1900 |      201      164     34 |  0.010 % |
+|       250 |     100      550     1900 |      221      208     28 |  0.010 % |
+|       475 |     100      550     1900 |      244      185     23 |  0.010 % |
+|       812 |     100      550     1900 |      268      245     22 |  0.010 % |
+|      1318 |     100      550     1900 |      295      154     19 |  0.010 % |
+|      2077 |     100      550     1900 |      324      261     20 |  0.010 % |
+|      3216 |     100      550     1900 |      357      334     21 |  0.010 % |
+|      4924 |     100      550     1900 |      392      316     21 |  0.010 % |
+|      7486 |     100      550     1900 |      432      321     21 |  0.010 % |
+===============================================================================
+restarts              : 46
+conflicts             : 11191          (77710 /sec)
+symconflicts          : 40             (278 /sec)
+decisions             : 13673          (0.00 % random) (94945 /sec)
+propagations          : 257212         (1786083 /sec)
+sympropagations       : 245            (1701 /sec)
+conflict literals     : 267099         (10.28 % deleted)
+literals     : 267099         (10.28 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 13673       
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.144009 s
+
+UNSATISFIABLE

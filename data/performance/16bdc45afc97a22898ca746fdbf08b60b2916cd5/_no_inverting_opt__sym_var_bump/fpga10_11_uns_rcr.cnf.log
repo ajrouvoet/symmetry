@@ -1,0 +1,41 @@
+Test: fpga10_11_uns_rcr.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           38                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           220                                         |
+|  Number of clauses:            1122                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     220     1122     2420 |      411      168     31 |  0.002 % |
+|       250 |     220     1122     2420 |      452      375     38 |  0.002 % |
+|       475 |     220     1122     2420 |      497      483     37 |  0.002 % |
+|       812 |     220     1122     2420 |      547      266     32 |  0.002 % |
+|      1318 |     220     1122     2420 |      602      477     29 |  0.002 % |
+===============================================================================
+restarts              : 10
+conflicts             : 1601           (57177 /sec)
+symconflicts          : 257            (9178 /sec)
+decisions             : 2835           (0.00 % random) (101246 /sec)
+propagations          : 31454          (1123317 /sec)
+sympropagations       : 1584           (56569 /sec)
+conflict literals     : 55106          (7.62 % deleted)
+literals     : 55106          (7.62 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 2835        
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.028001 s
+
+UNSATISFIABLE

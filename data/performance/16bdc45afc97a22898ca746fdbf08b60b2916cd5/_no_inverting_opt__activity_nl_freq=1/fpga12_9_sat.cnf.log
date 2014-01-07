@@ -1,0 +1,37 @@
+Test: fpga12_9_sat.cnf
+Options: -no-inverting-opt -activity-nl-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           25                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           162                                         |
+|  Number of clauses:             684                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     162      684     1836 |      250      217     39 |  0.004 % |
+===============================================================================
+restarts              : 2
+conflicts             : 154            (38500 /sec)
+symconflicts          : 55             (13750 /sec)
+decisions             : 364            (0.00 % random) (91000 /sec)
+propagations          : 2667           (666750 /sec)
+sympropagations       : 175            (43750 /sec)
+conflict literals     : 4634           (4.08 % deleted)
+literals     : 4634           (4.08 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 363         
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.004 s
+
+SATISFIABLE

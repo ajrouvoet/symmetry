@@ -1,0 +1,38 @@
+Test: battleship-05-08-unsat.cnf
+Options: vanilla
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            8                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:            40                                         |
+|  Number of clauses:             105                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      40      105      360 |       38       57     15 |  0.064 % |
+|       250 |      40      105      360 |       42       50     14 |  0.314 % |
+===============================================================================
+restarts              : 3
+conflicts             : 398            (99500 /sec)
+symconflicts          : 21             (5250 /sec)
+decisions             : 463            (0.00 % random) (115750 /sec)
+propagations          : 4424           (1106000 /sec)
+sympropagations       : 92             (23000 /sec)
+conflict literals     : 5433           (8.74 % deleted)
+literals     : 5433           (8.74 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 463         
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.004 s
+
+UNSATISFIABLE

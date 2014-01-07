@@ -1,0 +1,36 @@
+Test: chnl10_13.cnf
+Options: vanilla
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           43                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           260                                         |
+|  Number of clauses:            1586                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+===============================================================================
+restarts              : 1
+conflicts             : 10             (inf /sec)
+symconflicts          : 8              (inf /sec)
+decisions             : 46             (0.00 % random) (inf /sec)
+propagations          : 277            (inf /sec)
+sympropagations       : 53             (inf /sec)
+conflict literals     : 165            (0.00 % deleted)
+literals     : 165            (0.00 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 46          
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0 s
+
+UNSATISFIABLE

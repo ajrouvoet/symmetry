@@ -1,0 +1,51 @@
+Test: Urq4_5.cnf
+Options: -no-inverting-opt -sym-usage-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           43                                         |
+|  Number of invertingSyms:        43                                         |
+|  Number of variables:            74                                         |
+|  Number of clauses:             694                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      74      694     4272 |      254      107     21 |  0.019 % |
+|       250 |      74      694     4272 |      279      289     20 |  0.019 % |
+|       475 |      74      694     4272 |      307      194     19 |  0.019 % |
+|       812 |      74      694     4272 |      338      218     18 |  0.019 % |
+|      1318 |      74      694     4272 |      372      185     17 |  0.019 % |
+|      2077 |      74      694     4272 |      409      374     17 |  0.019 % |
+|      3216 |      74      694     4272 |      450      218     14 |  0.019 % |
+|      4924 |      74      694     4272 |      495      352     16 |  0.019 % |
+|      7486 |      74      694     4272 |      545      510     19 |  0.019 % |
+|     11330 |      74      694     4272 |      600      317     15 |  0.019 % |
+|     17096 |      74      694     4272 |      660      509     23 |  0.019 % |
+|     25745 |      74      694     4272 |      726      636     15 |  0.019 % |
+|     38719 |      74      694     4272 |      798      516     17 |  0.019 % |
+|     58180 |      74      694     4272 |      878      485     14 |  0.019 % |
+|     87372 |      74      694     4272 |      966      808     19 |  0.019 % |
+===============================================================================
+restarts              : 255
+conflicts             : 94451          (120466 /sec)
+symconflicts          : 6739           (8595 /sec)
+decisions             : 154157         (0.00 % random) (196617 /sec)
+propagations          : 696917         (888869 /sec)
+sympropagations       : 6739           (8595 /sec)
+conflict literals     : 1720776        (2.67 % deleted)
+literals     : 1720776        (2.67 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 154157      
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.784049 s
+
+UNSATISFIABLE

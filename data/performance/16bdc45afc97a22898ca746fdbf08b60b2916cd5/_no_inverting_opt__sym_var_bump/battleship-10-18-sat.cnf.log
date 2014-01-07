@@ -1,0 +1,42 @@
+Test: battleship-10-18-sat.cnf
+Options: -no-inverting-opt -sym-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           13                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           180                                         |
+|  Number of clauses:             910                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     180      910     3420 |      333      108     64 |  0.003 % |
+|       250 |     180      910     3420 |      367      288     69 |  0.003 % |
+|       475 |     180      910     3420 |      403      364     61 |  0.003 % |
+|       812 |     180      910     3420 |      444      270     52 |  0.003 % |
+|      1318 |     180      910     3420 |      488      390     54 |  0.003 % |
+|      2077 |     180      910     3420 |      537      337     47 |  0.003 % |
+===============================================================================
+restarts              : 15
+conflicts             : 2434           (67607 /sec)
+symconflicts          : 117            (3250 /sec)
+decisions             : 5250           (0.00 % random) (145825 /sec)
+propagations          : 45747          (1270679 /sec)
+sympropagations       : 624            (17332 /sec)
+conflict literals     : 166079         (2.61 % deleted)
+literals     : 166079         (2.61 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 5249        
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.036002 s
+
+SATISFIABLE

@@ -1,35 +1,35 @@
 
-The process of choosing the most optimal branching literal is a NP-hard problem, hence it is not possible to 
+The process of choosing the most optimal branching literal is a NP-hard problem, hence it is not
+possible to
 just calculate the best solution. So instead it is necessary to use a heuristic.
-These heuristics calculate a subset of the complete solution and base their decision on this subset.
+%TODO WUT?
+%These heuristics calculate a subset of the complete solution and base their decision on this subset.
 
-In order to solve a SAT problem as efficient as possible the search space must be reduced as much as possible.
-This reduction is achieved by taking symmetries into account while evaluating a SAT instance.
-To reduce the search space as much as possible, heuristics must optimize the amount of active symmetries as observed by~\cite{devriendt2012symmetry}.
-
-The authors of~\cite{devriendt2012symmetry} suggest the possibility of optimizing the solver by
-branching on literals that optimize the number of symmetries that are (weakly) active.
-They took a step in that direction by lowering the position of \emph{inverting} literals $v$ on the variable heap for
-every symmetry $\sigma$ such that $\sigma(v) = \neg v$.
-Because choosing such variables would cause these symmetries to become permanently weakly inactive.
-Using this heuristic they showed a considerable performance boost, which prompted our research.
+In order to solve a SAT problem as efficient as possible the search space must be reduced as much as
+possible.
+In a dynamic symmetry breaker, reducing the search space
+is achieved by taking symmetries into account while evaluating a SAT instance.
+To reduce the search space as much as possible, heuristics could attempt to optimize the amount of
+active symmetries as observed by~\cite{devriendt2012symmetry} in order to benefit from them
+maximally in the propagation phase.
 
 In this section we consider several implementations of this heuristic: promoting choice literals
-that keep or make symmetries weakly active.
-In the next section we compare the performance of these implementations and discuss their
-applicability.
+that keep or make symmetries weakly active during the search process.
+In the next section we propose a few heuristics and compare their theoretical runtime performance
+and discuss their applicability.
 
-\subsection{Literal Lookahead}
-	To also consider the effects of choice literals on the activity of symmetries further,
-	we propose a heuristic \emph{literal lookahead} that checks if symmetries are made weakly inactive by a choice literal.
-	Given the definition of weak activity in \cite{devriendt2012symmetry} we can define \cref{cor:makes_inactive}.\\
+\subsection{SA: Literal Lookahead}
+	We propose a heuristic that uses \emph{literal lookahead} that directly optimizes the number of
+	active symmetries after choosing a new literal.
+	Given the definition of weak activity in \cite{devriendt2012symmetry} we can define
+	\cref{cor:makes_inactive}.\\
 
 	\begin{corollary}
 		\label{cor:makes_inactive}
 		Given a symmetry $\sigma$ and a choice literal $l$,
 		$\sigma$ is made weakly inactive by choosing $l$ iff
 		$\sigma$ is weakly active, and $\sigma(l) \notin \alpha$.
-		Where $(\alpha,\delta,\textit{expl})$ is the solver state \textbf{after} unit propagation of $l$. \todo{Can we express this differently?}
+		Where $(\alpha,\delta,\textit{expl})$ is the solver state \textbf{after} unit propagation of $l$.
 	\end{corollary}
 
 	In order to determine the activity of symmetries exactly after choosing a literal,
@@ -37,8 +37,10 @@ applicability.
 	Performing a lookahead is an expensive operation as it requires the solver to perform half an
 	iteration and backtrack.
 
-	In fact, it is necessary to perform $|L|$ lookaheads, where $L = \bar{\Sigma}(T)$ is the set of literals.
-	And each lookahead consists of a unit propagation and a symmetry propagation step.
+	In fact, it is necessary to perform $|L|$ lookaheads, where $L = \bar{\Sigma}(T)$ is the set of
+	literals that do not yet have an assignment.
+	And each lookahead consists of a unit propagation and a symmetry propagation step, followed by
+	backtracking over that choice.
 	The unit propagation phase iterates through all clauses in a time complexity of $O(|T|)$.
 	This occurs in the worst case $O(|L|)$ times,
 	once for each literal if all literals are assigned in in this unit propagation phase.
@@ -50,42 +52,38 @@ applicability.
 	while because of symmetry one literal is propagated on each iteration so that the process repeats.
 	Thus the total worst-case complexity of the lookahead can be simplified to $O(|L|(|T| + |\mathcal{S}|))$.
 
-	It is possible to reduce the cost of the lookahead, by only considering $m$ variables on
-	the top of the variable heap.
-	By doing so, the heuristic would honor the order of the variable heap.
-	This implies that it honors other heuristics that promote variables through variable activity,
-	such as the heuristic suggested by \cite{devriendt2012symmetry} and the heuristics that were
-	implemented in the core of MiniSat by \cite{een2004extensible}.
-	
-	The order of variables within the variable heap is the result of (multiple) bumping actions on these variables
-	as described by~\cite{devriendt2012symmetry}.
-	These bumping actions can be a negative bump if the variable is causing a conflict or because it is inverting 
-	for symmetries or a positive bump because it is used in many symmetries or because it is used in often used 
-	symmetries.
-
 	It is thus not feasible in general to perform this procedure for every undecided variable and
 	select the optimal one.
 	Several alternative approaches can be considered.
-	An obvious choice is to perform a lookahead on the choice variable $v$ that the solver
-	selects (based on the variable heap and activity\todo{ref}) to determine the
-	preferred assignment ($v$ or $\neg v$).
+	One choice is to perform a lookahead on the choice variable $v$ that the solver
+	selects based on variable activity to determine the preferred assignment ($v$ or $\neg v$).
 
 	Additionally, one could perform this lookahead for the $n$ most eligible variables
 	and select the one that makes the least symmetries inactive.
-	By combining this with other heuristics on selecting the most eligible variables,
-	a much faster runtime may be achieved.
+	By combining this with other heuristics on selecting the most eligible variables (using variable
+	activity), a much faster runtime may be achieved.
+	We chose this approach and denote this heuristic simply by the abbreviation SA (Symmetry
+	Activity).
 
 	%\subsubsection{Working around the lookahead} % does not look like a header
-		It is also possible to approximate the amount of symmetries made inactive under the
-		assignment that the propagation of $l$ will yield.
-		Instead of propagating, we can look at the number of symmetries made inactive by $l$
-		under the current assignment, that is: consider a symmetry $\sigma$ as
-		made inactive by $l$ if it is weakly active under the current assignment $\alpha$ and
-		$\sigma(l) \notin \alpha$.
-		Note that this is a rough approximation only, as these symmetries could be made active by
-		unit propagation after choosing $l$.
+\subsection{SA-APPROX: Approximation of Literal Lookahead}
+	It is also possible to approximate the amount of symmetries made inactive under the
+	assignment that the propagation of $l$ will yield.
+	Instead of propagating, we can look at the number of symmetries made inactive by $l$
+	under the current assignment, that is: consider a symmetry $\sigma$ as
+	made inactive by $l$ if it is weakly active under the current assignment $\alpha$ and
+	$\sigma(l) \notin \alpha$.
+	Note that this is a rough approximation only, as these symmetries could be made active by
+	unit propagation after choosing $l$.
 
-\subsection{Symmetry Counting}
+	Also note that it does have a much smaller performance footprint, as it does not need to execute
+	a propagation and rollback.
+	One only needs to notify the symmetries of the choice literal and loop over check if they are
+	still active after that.
+	Afterwards one would need to undo that.
+	This method thus has a performance linear in the number of symmetries $|S|$.
+
+\subsection{SC: Symmetry Counting}
 
 	Choosing a literal that occurs in a symmetry, increases the activity of that symmetry.
 	Following the line of thought of attempting to keep as much symmetries active as possible,
@@ -96,7 +94,7 @@ applicability.
 	This implementation would only cost a polynomial amount of runtime, at the initialization of the
 	solver and can be combined with any other heuristic that honors the order of the variable heap.
 
-\subsection{Symmetry Usage}
+\subsection{SU: Symmetry Usage}
 	Symmetry Usage is a dynamical symmetry breaking heuristic
 	which takes into account the number of times a symmetry has previously been used in the solver tree.
 	If a symmetry is used often when solving the tree, we suppose that it is more important than other symmetries.

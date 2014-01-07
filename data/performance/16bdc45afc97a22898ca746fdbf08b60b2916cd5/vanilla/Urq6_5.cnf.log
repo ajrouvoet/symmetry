@@ -1,0 +1,37 @@
+Test: Urq6_5.cnf
+Options: vanilla
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:          109                                         |
+|  Number of invertingSyms:       109                                         |
+|  Number of variables:           180                                         |
+|  Number of clauses:            1756                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     180     1756    10776 |      643      191     57 |  0.003 % |
+===============================================================================
+restarts              : 1
+conflicts             : 116            (29000 /sec)
+symconflicts          : 107            (26750 /sec)
+decisions             : 139            (0.00 % random) (34750 /sec)
+propagations          : 499            (124750 /sec)
+sympropagations       : 107            (26750 /sec)
+conflict literals     : 5709           (0.07 % deleted)
+literals     : 5709           (0.07 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 139         
+sym count             : 0           
+
+Memory used           : 6.00 MB
+CPU time              : 0.004 s
+
+UNSATISFIABLE

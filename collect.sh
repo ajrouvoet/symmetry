@@ -1,13 +1,12 @@
 #!/bin/bash
 OUTDIR=./data/
-SUITE=$1
 REF=`git rev-parse HEAD`
-TIMEOUT_IN=300
-OPTS="-activity-nl-freq=1
--sym-var-bump
--sym-usage-var-bump"
-#-activity-look-freq=1"
-# -rnd-freq=0.02 -sym-count-freq=1" # for sym-count heuristic
+TIMEOUT_IN=900
+OPTS="-no-inverting-opt -activity-look-freq=1"
+#-no-inverting-opt
+#-no-inverting-opt -activity-nl-freq=1
+#-no-inverting-opt -sym-var-bump
+#-no-inverting-opt -sym-usage-var-bump"
 
 echo "$OPTS" | while read opt
 do
@@ -16,7 +15,7 @@ do
         echo "-----------------------------------------------------------------------------------------"
         echo ""
 
-        find minisat/cnf\ test\ files/$SUITE -regex ".*\.cnf$" | grep -v "Sym" | while read f
+        find minisat/cnf\ test\ files/{fpga,battleship,chnl,Pigeonhole_shuffled,urquhart} -regex ".*\.cnf$" | grep -v "Sym" | while read f
         do
                 # handle empty option sets
                 if `echo $opt | grep -q "^\s*$"`

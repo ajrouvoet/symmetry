@@ -1,0 +1,37 @@
+Test: fpga10_8_sat.cnf
+Options: -no-inverting-opt -sym-usage-var-bump
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           22                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           120                                         |
+|  Number of clauses:             448                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     120      448     1200 |      164      208     31 |  0.007 % |
+===============================================================================
+restarts              : 2
+conflicts             : 111            (27750 /sec)
+symconflicts          : 19             (4750 /sec)
+decisions             : 256            (0.00 % random) (64000 /sec)
+propagations          : 1779           (444750 /sec)
+sympropagations       : 114            (28500 /sec)
+conflict literals     : 3352           (3.21 % deleted)
+literals     : 3352           (3.21 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 255         
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.004 s
+
+SATISFIABLE

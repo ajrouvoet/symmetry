@@ -4,12 +4,13 @@ instance~\cite{sakallah2009symmetry}. SBPs can also be applied partially to the 
 group, called \textit{partial symmetry breaking}~\cite{sakallah2009symmetry}. Because
 \textit{full symmetry breaking} sometimes costs a lot of time, most symmetrical search
 spaces can be blocked by using a subset of the full SBP. There has been more research on
-the efficiency of SBPs, such as~\cite{aloul2006efficient,aloul2003shatter,crawford1996symmetry} and ~\cite{sabharwal2005symchaff}.
+the efficiency of SBPs, such as~\cite{aloul2006efficient,aloul2003shatter,crawford1996symmetry} and
+~\cite{sabharwal2005symchaff}.
 
 \subsection{Terminology}
 	As we build our research on the results of \cite{devriendt2012symmetry}, we will adopt
 	their notation and terminology.
-	Let a \emph{theory} $T$ be a SAT-instance in conjunctive normal form, i.e. a conjuction
+	Let a \emph{theory} $T$ be a SAT-instance in conjunctive normal form, i.e. a conjunction
 	of clauses.
 	Let $\Sigma(T)$ denote the set of variables in $T$.
 	A literal is either of the form	$x$ or $\neg x$, where $x \in \Sigma(T)$.
@@ -38,30 +39,36 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient,aloul2003shatter,crawfo
 	A theory $T'$ is a logical consequence of $T$, if all clauses in $T'$ are logical
 	consequences of $T$.
 
-	The SAT solver implemented by \cite{devriendt2012symmetry} uses the principle of \emph{Conflict Driven Clause Learning}, hence it is a CDCL SAT solver \cite{zhang2001efficient}.
-	For each step of the solver, it assigns a value to an unassigned variable and adds the corresponding literal to the assignment.
-	Because of this assignment, some clauses may become unit clauses, in which a literal must be satisfied
-	or a conflict clause will result.
-	In the \emph{unit propagation phase} the solver assigns these \emph{propagated literals} $l$ to true
-	and the unit clauses are added as \emph{explanation clauses}, $expl(l)$.
-	Such a solver has as state a triple $(\alpha, \delta, expl)$,
-	where $\delta\subseteq \alpha$ are the \emph{choice literals} that are freely assigned between propagations,
-	thus $\alpha \setminus \delta$ are the \emph{propagated literals}.
-	
-	When at some point a literal $l$ would be propagated while $\neg l$ is already true under the current assignment, this causes a conflict.
-	If a conflict arises the CDCL SAT solver constructs a \emph{learned clause} using the explanation clauses $expl(l)$ causing the conflict.
-	By adding this learned clause $C$ to the theory $T \cup C$ the solver prevents them from occurring again,
-	and because $T \models C$ it does not affect the set of satisfying assignments.
+	The SAT solver as used by \cite{devriendt2012symmetry} is called MiniSAT
+	\cite{een2004extensible} and uses the principle of \emph{Conflict Driven Clause Learning}, hence
+	it is a CDCL SAT solver \cite{zhang2001efficient}.
+	For each step of the solver, it assigns a value to an unassigned variable and adds the
+	corresponding literal to the assignment.
+	Because of this assignment, some clauses may become unit clauses, in which a literal must be
+	satisfied or a conflict clause will result.
+	In the \emph{unit propagation phase} the solver assigns these \emph{propagated literals} $l$ to
+	true and the unit clauses are added as \emph{explanation clauses}, $expl(l)$.
+	Such a solver has as state a triplet $(\alpha, \delta, expl)$,
+	where $\delta\subseteq \alpha$ are the \emph{choice literals} that are freely assigned between
+	propagations.
+	Such that $\alpha \setminus \delta$ are the \emph{propagated literals}.
 
-	Consider a permutation $\sigma$ of $\bar\Sigma(T)$,
-	$\sigma$ is called a symmetry if and only if:
+	When at some point a literal $l$ would be propagated while $\neg l$ is already true under the
+	current assignment, this causes a conflict.
+	If a conflict arises the CDCL SAT solver constructs a \emph{learned clause} using the
+	explanation clauses $expl(l)$ causing the conflict.
+	By adding this learned clause $C$ to the theory $T \cup C$ the solver prevents them from
+	occurring again, and because $T \models C$ it does not affect the set of satisfying assignments.
+
+	Consider a permutation $\sigma$ of $\bar\Sigma(T)$, $\sigma$ is called a symmetry if and only
+	if:
 	\begin{enumerate}
 		\item $\sigma(\neg x) = \neg(\sigma( x ))$
 		\item $\sigma(\alpha )$ is a model for $T$ $\Leftrightarrow$ $\alpha$ is a model for $T$
 	\end{enumerate}
 
-	A crucial theorem concerning symmetries is that for any clause $c$ that is a logical consequence of the theory $T$,
-	$\sigma(c)$ is also a logical consequence.
+	A crucial theorem concerning symmetries is that for any clause $c$ that is a logical consequence
+	of the theory $T$, $\sigma(c)$ is also a logical consequence.
 	This can be used in clause learning to also add symmetric clauses to the learned clauses.\\
 
 	\begin{proposition}
@@ -76,7 +83,7 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient,aloul2003shatter,crawfo
 	Static symmetry breaking algorithms modify the input of the SAT solver, but do not
 	adjust the solver itself~\cite{sakallah2009symmetry}.
 
-	These solvers work by adding additional symmetry breaking predicates to a CNF 
+	These solvers work by adding additional symmetry breaking predicates to a CNF
 	formula. Such a predicate acts like a filter, reducing the search space to mostly
 	non-symmetric regions.
 	The symmetry breaker does this without changing the satisfiability of the CNF formula~\cite{aloul2003shatter}.
@@ -85,9 +92,9 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient,aloul2003shatter,crawfo
 	adding the symmetry breaking predicates takes significantly less time then the time it
 	saves of the problem solving process. In order to limit the time needed for the static
 	symmetry breaking, and the effort needed by the solver when evaluating all these
-	additional predicates, it is often feasible to not break \emph{all} but \emph{enough} 
+	additional predicates, it is often feasible to not break \emph{all} but \emph{enough}
 	symmetries as proposed by \cite{aloul2003shatter}.
-	
+
 	One, often used, static symmetry breaker is Shatter~\cite{aloul2003shatter}.
 	This symmetry breaker can also be used as a preprocessor for a dynamic symmetry breaker.
 	It is used to find the present symmetries in a given problem using Saucy 2.0~\cite{darga2004exploiting},
@@ -108,11 +115,13 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient,aloul2003shatter,crawfo
 	This however is often not feasible, as it would add too many clauses to the theory.
 
 	The alternative approach, which is proposed by Devriendt et al.~\cite{devriendt2012symmetry},
-	is to propagate symmetrical literals.
+	is to propagate symmetrical literals and is discussed in the next section.
+
+\subsection{Symmetry Propagation}
 	The idea is that given a theory $T$, a partial assignment $\alpha$ and a symmetry
 	$\sigma$ of $T \cup \alpha$, \cref{prop:symmetric_clause_learning} implies
 	that for any literal $l$:\\
-	
+
 	\begin{proposition}
 		\label{prop:symmetryPropagation}
 		Let $\sigma$ be a symmetry of $T \cup \alpha$
@@ -141,26 +150,53 @@ the efficiency of SBPs, such as~\cite{aloul2006efficient,aloul2003shatter,crawfo
 		T\cup \alpha \models T \cup \sigma(\alpha) \models T \cup \sigma^2(\alpha) \models \dots.
 	\end{equation}
 	And it is shown that propagating the (weakly) active symmetries of choice literals is valid.
-	
-	The Symmetry Propagation (SP) algorithm as proposed by Devriendt et al.~\cite{devriendt2012symmetry} is a changed CDCL solver.
-	The choice literal is chosen randomly, after which as normal unit propagation occurs.
-	Then, if possible, one unused symmetry is propagated,
-	through the use of the \emph{first asymmetric literal},
-	which keeps track of which is the first choice literal in the assignment that is part of the symmetry.
+
+	The Symmetry Propagation (SP) algorithm as proposed by Devriendt et
+	al.~\cite{devriendt2012symmetry} is a changed CDCL solver.
+	The choice literal is chosen based on variable activity, after which as normal unit propagation
+	occurs.
+	Then, if possible, one unused symmetry is propagated, through the use of the \emph{first
+	asymmetric literal}, which keeps track of which is the first choice literal in the assignment
+	that is part of the symmetry.
 	After \emph{symmetry propagation} unit propagation occurs again, alternating between the two,
-	until it is no longer possible to propagate symmetries.
-	Then another iteration begins with the choice of a literal, etc. until a satisfying assignment is found.
-	It is possible to include an explanation for first asymmetric literals $l$ that were propogated in symmetry propagation,
-	by adding $expl(\sigma(l)) = \sigma(expl(l))$ to the explanation store for symmetric literal $\sigma(l)$.
-	
+	until it is no longer possible to propagate literals.
+	Then another iteration begins with the choice of a literal, etc. until a satisfying assignment
+	is found.
+	It is possible to include an explanation for first asymmetric literals $l$ that were propagated
+	in symmetry propagation,
+	by adding $expl(\sigma(l)) = \sigma(expl(l))$ to the explanation store for symmetric literal
+	$\sigma(l)$.
+
+	Two versions are described: the basic implementation, denoted as $SP^{REG}$, and the optimized
+	implementation $SP^{OPT}$.
+	The optimized version contains a heuristic for variable branching based on inverting literals,
+	which we describe in the following section.
+	We will compare both to the optimized and the regular version.
+	Comparison with the regular version will show whether or not the heuristic is working, whereas
+	comparison with $SP^{OPT}$ will give a measure of how good it is performing.
+
 \subsection{Variable Activity}
-	An interesting notion is a variable activity heuristic employed by Chaff and a modified version in MiniSat as branching heuristic,
-	Variable State Independent Decaying Sum (VSIDS)~\cite{moskewicz2001chaff}.
 	The easiest strategy to choose a literal is a random choice.
 	However, there are possibly better heuristics available for branching,
 	such as BOHM's and MOM's heuristic~\cite{marques1999impact}.
-	The authors of Chaff, however, chose to implement VSIDS,
-	which influences branching by choosing unassigned variables that have often been chosen before first.
+
+	Because choosing variables to branch on is an important target for optimization in SAT solvers,
+	and heuristics can complement each other, MiniSAT contains a mechanism that heuristics can
+	exploit to give precedence to certain variables.
+	The solver maintains a heap of variables, each of which has a activity.
+	Variables can be put higher on the heap by a heuristic, and when a literal should be chosen by
+	the solver, it will take the one with the highest activity.
+
+	An interesting example of a heuristic that is implemented in MiniSAT is described by
+	\cite{moskewicz2001chaff}: Variable State Independent Decaying Sum (VSIDS).
+	It increases the activity of unassigned variables that have been chosen before.
 	In effect, this makes the solver attempt to solve recent conflict clauses.
 	They reason that because conflict clauses drive the search process in difficult problems,
-	that solving these clauses first will increase the solve speed.
+	solving these clauses first will increase the solve speed.
+
+	Another example is the optimization that is included in the optimized version of SP.
+	The decrease the activity of \emph{inverting} literals on the variable heap.
+	A literal $v$ is inverting under a symmetry $\sigma$ if $\sigma(v) = \neg v$.
+	Choosing such variables would cause these symmetries to become permanently inactive, such that
+	the could no longer be used to propagate symmetric literals.
+	Using this heuristic they showed a considerable performance boost, which prompted our research.

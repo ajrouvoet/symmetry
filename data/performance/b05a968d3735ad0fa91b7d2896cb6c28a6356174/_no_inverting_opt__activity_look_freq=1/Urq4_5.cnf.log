@@ -1,0 +1,38 @@
+Test: Urq4_5.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           43                                         |
+|  Number of invertingSyms:        43                                         |
+|  Number of variables:            74                                         |
+|  Number of clauses:             694                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      74      694     4272 |      254      118     19 |  0.019 % |
+|       250 |      74      694     4272 |      279      201     21 |  0.019 % |
+===============================================================================
+restarts              : 3
+conflicts             : 307            (38375 /sec)
+symconflicts          : 149            (18625 /sec)
+decisions             : 550            (0.00 % random) (68750 /sec)
+propagations          : 9304           (1163000 /sec)
+sympropagations       : 149            (18625 /sec)
+conflict literals     : 6130           (0.42 % deleted)
+literals     : 6130           (0.42 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 550         
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.008 s
+
+UNSATISFIABLE
