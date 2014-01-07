@@ -1,0 +1,44 @@
+Test: hole011_shuffled.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           21                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           132                                         |
+|  Number of clauses:             738                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     132      738     1584 |      270      122     54 |  0.006 % |
+|       250 |     132      738     1584 |      297      219     45 |  0.006 % |
+|       475 |     132      738     1584 |      327      283     35 |  0.006 % |
+|       812 |     132      738     1584 |      360      287     28 |  0.006 % |
+|      1318 |     132      738     1584 |      396      313     34 |  0.006 % |
+|      2077 |     132      738     1584 |      435      286     33 |  0.006 % |
+|      3216 |     132      738     1584 |      479      411     37 |  0.006 % |
+|      4924 |     132      738     1584 |      527      373     30 |  0.006 % |
+===============================================================================
+restarts              : 29
+conflicts             : 5380           (35393 /sec)
+symconflicts          : 1019           (6704 /sec)
+decisions             : 10652          (0.00 % random) (70075 /sec)
+propagations          : 332509         (2187430 /sec)
+sympropagations       : 6074           (39958 /sec)
+conflict literals     : 227286         (4.84 % deleted)
+literals     : 227286         (4.84 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 10652       
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.152009 s
+
+UNSATISFIABLE

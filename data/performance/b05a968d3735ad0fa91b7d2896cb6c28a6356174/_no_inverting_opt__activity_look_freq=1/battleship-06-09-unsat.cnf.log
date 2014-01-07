@@ -1,0 +1,41 @@
+Test: battleship-06-09-unsat.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            7                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:            54                                         |
+|  Number of clauses:             171                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |      54      171      594 |       62       84     20 |  0.035 % |
+|       250 |      54      171      594 |       68       95     17 |  0.038 % |
+|       475 |      54      171      594 |       75       60     15 |  0.035 % |
+|       812 |      54      171      594 |       83       63     14 |  0.206 % |
+|      1318 |      54      171      594 |       91       87     15 |  0.035 % |
+===============================================================================
+restarts              : 13
+conflicts             : 1985           (62027 /sec)
+symconflicts          : 147            (4593 /sec)
+decisions             : 2719           (0.00 % random) (84963 /sec)
+propagations          : 80859          (2526686 /sec)
+sympropagations       : 635            (19843 /sec)
+conflict literals     : 34447          (4.02 % deleted)
+literals     : 34447          (4.02 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 2719        
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.032002 s
+
+UNSATISFIABLE

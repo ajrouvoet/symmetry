@@ -1,0 +1,42 @@
+Test: battleship-10-10-unsat.cnf
+Options: -no-inverting-opt -activity-look-freq=1
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:            8                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           100                                         |
+|  Number of clauses:             550                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+|       100 |     100      550     1900 |      201      105     34 |  0.010 % |
+|       250 |     100      550     1900 |      221      153     28 |  0.010 % |
+|       475 |     100      550     1900 |      244      251     24 |  0.010 % |
+|       812 |     100      550     1900 |      268      173     21 |  0.100 % |
+|      1318 |     100      550     1900 |      295      216     20 |  0.010 % |
+|      2077 |     100      550     1900 |      324      327     22 |  0.010 % |
+===============================================================================
+restarts              : 15
+conflicts             : 3159           (39485 /sec)
+symconflicts          : 8              (100 /sec)
+decisions             : 4123           (0.00 % random) (51534 /sec)
+propagations          : 209211         (2614974 /sec)
+sympropagations       : 121            (1512 /sec)
+conflict literals     : 77806          (7.12 % deleted)
+literals     : 77806          (7.12 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 4123        
+activity no lookahead : 0           
+original sp           : 0           
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0.080005 s
+
+UNSATISFIABLE
