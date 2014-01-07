@@ -2,6 +2,7 @@
 *.bbl
 *.blg
 *.gz
+*.log
 *.out
 *.tdo
 *.toc
