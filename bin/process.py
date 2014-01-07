@@ -150,5 +150,6 @@ if __name__ == "__main__":
             results.append( parse_file( path.strip() ))
 
         print( collect( results ))
-    except:
+    except Exception as e:
+        print( e )
         print( path.strip() )
