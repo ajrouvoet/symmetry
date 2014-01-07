@@ -41,8 +41,36 @@ Beforehand we discuss some results that are observed for each of the measured he
 
 	The most prominent result is that it performs better (on the activity metric) than $SP^{OPT}$ in
 	all but two battleship instances.
-	Additionally, it keeps more symmetries active in the part of the shuffled pigeonhole benchmarks
-	that did not time-out.
+	Additionally, it keeps more symmetries active in the all of the shuffled pigeonhole benchmarks
+	than $SP^{OPT}$.
+	The first hypothesis is therefor true for the SA heuristic.
+
+	When we look at the performance, however, there seems to be no correlation
+	between the number of active symmetries and the number of decisions.
+	This is made more clear by the scatter plot in figure \ref{fig:correlation}.
+	If an increased amount of weakly active symmetries would have resulted in better performance in
+	general and vice versa, than the scatter plot should have shown some increasing line.
+
+	It is crucial to recall that SA chooses from the top five variables on the variable heap and
+	does not alter anything else in the solver.
+	The weakest conclusion that one can draw from this is that SA is not a better heuristic than the
+	built-in VSIDS heuristic.
+	The strongest conclusion would be to reject hypothesis 2, which we will discuss in
+	\ref{ssec:falsification_hyp_2}.
+
+	\begin{figure*}[!ht]
+		\label{fig:correlation}
+		\center
+		\centerline{\includegraphics[width=1.2\textwidth]{results/scatterplot_activity.eps}}
+		\caption{
+			Correlation between number of active symmetries and number of decisions for all
+			heuristics. Performance and activity measured relative to $SP^{REG}$.
+		}
+	\end{figure*}
 
 \subsection{SU Heuristic}
-	The symmetry usage statistic is performing very badl
+	The symmetry usage statistic is performing very badly according to the activity metric.
+	In
+
+\subsection{On the Falsification of Hypothesis 2}
+\label{ssec:falsification_hyp_2}
