@@ -1,0 +1,103 @@
+Test: chnl11_12.cnf
+Options: -print-activity -no-inverting-opt
+WARNING: for repeatability, setting FPU to use double precision
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of symmetries:           43                                         |
+|  Number of invertingSyms:         0                                         |
+|  Number of variables:           264                                         |
+|  Number of clauses:            1476                                         |
+|  Parse time:                   0.00 s                                       |
+|                                                                             |
+============================[ Search Statistics ]==============================
+| Conflicts |          ORIGINAL         |          LEARNT          | Progress |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          |
+===============================================================================
+ActiveSyms: 43
+ActiveSyms: 40
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 38
+ActiveSyms: 36
+ActiveSyms: 36
+ActiveSyms: 36
+ActiveSyms: 36
+ActiveSyms: 36
+ActiveSyms: 36
+ActiveSyms: 36
+ActiveSyms: 36
+ActiveSyms: 36
+ActiveSyms: 34
+ActiveSyms: 34
+ActiveSyms: 34
+ActiveSyms: 34
+ActiveSyms: 34
+ActiveSyms: 34
+ActiveSyms: 34
+ActiveSyms: 34
+ActiveSyms: 32
+ActiveSyms: 32
+ActiveSyms: 32
+ActiveSyms: 32
+ActiveSyms: 32
+ActiveSyms: 32
+ActiveSyms: 32
+ActiveSyms: 30
+ActiveSyms: 30
+ActiveSyms: 30
+ActiveSyms: 30
+ActiveSyms: 30
+ActiveSyms: 30
+ActiveSyms: 28
+ActiveSyms: 28
+ActiveSyms: 28
+ActiveSyms: 28
+ActiveSyms: 28
+ActiveSyms: 26
+ActiveSyms: 26
+ActiveSyms: 26
+ActiveSyms: 26
+ActiveSyms: 24
+ActiveSyms: 24
+ActiveSyms: 24
+ActiveSyms: 22
+ActiveSyms: 22
+ActiveSyms: 20
+ActiveSyms: 22
+ActiveSyms: 24
+ActiveSyms: 26
+ActiveSyms: 28
+ActiveSyms: 30
+ActiveSyms: 32
+ActiveSyms: 34
+ActiveSyms: 36
+ActiveSyms: 38
+ActiveSyms: 43
+===============================================================================
+restarts              : 1
+conflicts             : 11             (inf /sec)
+symconflicts          : 9              (inf /sec)
+decisions             : 56             (0.00 % random) (inf /sec)
+propagations          : 285            (inf /sec)
+sympropagations       : 64             (inf /sec)
+conflict literals     : 220            (0.00 % deleted)
+literals     : 220            (0.00 % deleted)
+
+HEURISTIC USAGES
+random                : 0           
+activity w/ lookahead : 0           
+activity no lookahead : 0           
+original sp           : 56          
+sym count             : 0           
+
+Memory used           : 5.00 MB
+CPU time              : 0 s
+
+UNSATISFIABLE
