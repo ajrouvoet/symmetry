@@ -65,3 +65,13 @@ because more variables can be propagated.
 
 	All tests were run with a 15 minute timeout.
 	If all implementations timed out, the results are omitted from the table.
+
+	In our results we are focussing on the total amount of decisions taken.
+	This is a good measure of the effectiveness of the search.
+	Another option would be CPU time, but apart from the effectiveness of the search, this measure
+	also includes the quality of the implementation and the specifics of the machine on which it was
+	run.
+	Due to the large number of tests, it was not possible to run all tests on one machine, which
+	would make CPU time not comparable over different tests.
+	Furthermore, we did not have the time to optimize the implementations of the heuristics for
+	speed, such that the implementation quality would hide the actual search performance.
