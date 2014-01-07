@@ -47,8 +47,10 @@ and discuss their applicability.
 	Then comes the symmetry propagation phase, which iterates through all symmetries in $O(|\mathcal{S}|)$.
 	If the symmetry propagation phase found a (weakly) active symmetry and propagated that,
 	the propagation will repeat.
-	In total this process can repeat more than $O(|L|)$ times,
-	so the total worst-case complexity of the lookahead can be simplified to $O(|L|(|T| + |\mathcal{S}|))$.
+	In total this process cannot repeat more than $O(|L|)$ times, once for each literal.
+	In the worst-case, the unit propagation is not able to propagate any literals after all symmetry propagations,
+	while because of symmetry one literal is propagated on each iteration so that the process repeats.
+	Thus the total worst-case complexity of the lookahead can be simplified to $O(|L|(|T| + |\mathcal{S}|))$.
 
 	It is thus not feasible in general to perform this procedure for every undecided variable and
 	select the optimal one.

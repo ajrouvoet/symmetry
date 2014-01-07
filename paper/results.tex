@@ -14,10 +14,35 @@ hypothesis as formulated in section \ref{sec:Introduction}.
 Beforehand we discuss some results that are observed for each of the measured heuristics.
 
 \subsection{Generic Results}
+	Firstly, it is observed that $SP^{REG}$ and $SP^{OPT}$ perform equally on all measured sets,
+	except Urquhart.
+	This conforms to our expectations, as the only difference between these implementations is the
+	optimizing heuristic for inverting symmetries, and only the Urquhart set contains inverting
+	symmetries in our selection of benchmarks.
+
 	It is observed in the activity data that none of implementations, including $SP^{OPT}$,
 	succeeds in increasing the number of active symmetries in the CHNL benchmark suite.
+
+	The same is true for the Urquhart benchmarks.
+	This however was to be expected, as it only contains inverting symmetries.
+	The searcher therefor picks a branch literal (that is expected to keep more symmetries active),
+	but during symmetry propagation, the weakly active symmetry would be made permanently inactive
+	because it contains literals that invert under the symmetry.
+
+	One might expect that SA would perform better under these circumstances.
+	However, our implementation only performs \emph{unit propagation} during the lookahead, such
+	that inverting symmetries are counted as active during the lookahead.
 
 \subsection{SA Heuristic}
 	From a theoretical perspective, SA was expected to have the most impact on the number of active
 	symmetries during search, as it optimizes is very directly using a one iteration lookahead.
-	From the activity results this also becomes very
+	This is reflected in the measured active symmetries.
+	From all four heuristics, the SA heuristic is the one that performs best on this metric.
+
+	The most prominent result is that it performs better (on the activity metric) than $SP^{OPT}$ in
+	all but two battleship instances.
+	Additionally, it keeps more symmetries active in the part of the shuffled pigeonhole benchmarks
+	that did not time-out.
+
+\subsection{SU Heuristic}
+	The symmetry usage statistic is performing very badl
