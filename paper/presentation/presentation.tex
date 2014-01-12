@@ -1,0 +1,265 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+	\usetheme{Darmstadt}
+	\usecolortheme{beaver}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{lmodern}
+
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamerfont{bibliography entry author}{size=\tiny}%
+\setbeamerfont{bibliography entry title}{size=\tiny}
+\setbeamerfont{bibliography entry journal}{size=\tiny}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]
+\setbeamerfont{bibliography entry note}{size=\tiny}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{hypothesis}{Hypothesis}
+
+\title[Dynamic Symmetry Breaking]{Branching Heuristics Promoting Symmetry Activity}
+
+\author{
+	J. van Beek \and
+	I.J.G. in `t Veen \and
+	A.J. Rouvoet \and
+	E. Schoute
+}
+\institute[TU Delft]
+{
+	Delft, University of Technology \\
+	\medskip
+	\textit{\{j.vanBeek, a.j.Rouvoet, e.Schoute, i.j.g.intVeen\}@student.tudelft.nl}
+}
+
+\date{\today}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage % Print the title page as the first slide
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Overview}
+		\tableofcontents
+	\end{frame}
+
+\section{Introduction}
+
+	\begin{frame}
+		\frametitle{Introduction}
+		\begin{block}{Symmetry Propagation}
+			A feasible dynamic symmetry breaking technique for SAT-solvers as proposed by
+			\cite{devriendt2012symmetry} in 2012.
+		\end{block}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Research questions}
+		\begin{block}{Hypothesis 1}
+			\label{hyp:increased_activity}
+			Heuristic $H$ manages to keep more symmetries weakly active during search.
+		\end{block}
+		
+		\visible<+->{
+		\begin{block}{Hypothesis 2}
+			\label{hyp:activity_equals_speed}
+			When more symmetries are active during search, more literals can be propagated, resulting in
+			better solve performance on average.
+		\end{block}
+		}
+	\end{frame}
+
+\section{Background}
+
+	\subsection{SAT}
+	\begin{frame}
+		\frametitle{SAT notation}
+
+		\begin{itemize}
+			\item<1-> theory $T$ is a conjunction of clauses
+			\item<1-> clause $c$ is a disjunction of literals
+			\item<1-> literal $l$ is of the form $x$ or $\neg x$ and $x \in \Sigma(T)$
+			\item<1-> $\Sigma(T)$ is the set of variables in $T$
+			\item<2-> An assignment $\alpha$ is called a model of $T$ iff it is complete and satisfies
+				all clauses of $T$
+		\end{itemize}
+	\end{frame}
+
+	\subsection{Symmetry}
+	\begin{frame}
+		\frametitle{Symmetry}
+
+		\begin{definition}[Symmetry]
+			Consider a permutation $\sigma$ of a theory $T$. $\sigma$ is called a symmetry if and only if:
+			\begin{itemize}
+				\item $\sigma(\neg x) = \neg(\sigma(x))$
+				\item $\sigma(\alpha)$ is a model for $T$ iff $\alpha$ is a model for $T$
+			\end{itemize}
+		\end{definition}
+
+		\pause
+
+		\begin{proposition}
+			Let $\sigma$ be a symmetry of a theory $T$ and $c$ a clause.
+			\begin{equation}
+				T \vdash c \quad \implies \quad T \vdash \sigma( c )
+			\end{equation}
+		\end{proposition}
+	\end{frame}
+
+	\subsection{Symmetry Breaking}
+	\begin{frame}
+		\frametitle{Symmetry Breaking}
+
+		\begin{itemize}
+			\item Static Symmetry Breaking
+			\item Dynamic Symmetry Breaking
+		\end{itemize}
+	\end{frame}
+
+	\subsection{Dynamic Symmetry Breaking}
+	\begin{frame}
+		\frametitle{Dynamic Symmetry Breaking}
+
+		\begin{block}{Approach}
+			Propagate symmetrical literals.
+
+			Given theory $T$, partial assignment $\alpha$ and symmetry
+			\alert<2->{$\sigma$ of $T \cup \alpha$}.
+
+			For each literal $l$:
+			\begin{equation}
+				T \cup \alpha \vdash l \quad
+				\implies
+				\quad T \cup \alpha \vdash \sigma(l)
+			\end{equation}
+
+			Thus when $l$ is progated, $\sigma(l)$ can also be propagated.
+		\end{block}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Dynamic Symmetry Breaking: Weak Activity}
+
+		\begin{block}<+->{Weak Activity}
+			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
+			choice literals.
+			A symmetry $\sigma$ of T is weakly active if $\sigma(\delta) \subseteq \alpha$
+		\end{block}
+
+		\begin{block}<+->{Inactivity}
+			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
+			choice literals.
+			A symmetry $\sigma$ of T is weakly-inactive if $\exists l \in \sigma(\delta), l \not\in \alpha$
+		\end{block}
+	\end{frame}
+
+\section{Symmetry Optimizing Variable Branching}
+
+	\subsection{The idea}
+	\begin{frame}
+		\frametitle{Symmetry Optimizing Variable Branching}
+
+		\begin{block}{Optimization through literal selection}
+			Improve dynamic symmetry propagation performance by choosing literals that promote
+			symmetry weak-activity.
+		\end{block}
+	\end{frame}
+
+	\subsection{Implemented Heuristics}
+	\begin{frame}
+		\frametitle{Symmetry Related Variable Branching Heuristics}
+
+		\begin{block}{Literal optimization}
+			\begin{enumerate}
+				\item<+-> Get first $n$ undecided variables $V$ from the variable heap
+				\item<+-> For each $v \in V$: perform lookahead on choice literals $v$ and $\neg v$
+				\item<+-> Continue with branch that has the most weakly-active symmetries
+			\end{enumerate}
+		\end{block}
+
+		\visible<+->{
+		\begin{block}{Approximation technique}
+			Assume current choice literals $\delta$, next choice literal $l$, and assignment $\alpha$.
+			Instead of performing the lookahead for $l$, let $\alpha' = \alpha \cup \{l\}$ and
+			evaluate the number of active symmetries against that assignment.
+		\end{block}
+		}
+
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Symmetry Related Variable Branching Heuristics}
+
+		\begin{block}{Symmetry Counting}
+			\dots
+		\end{block}
+
+		\visible<+->{
+		\begin{block}{Symmetry Usage}
+			\ldots
+		\end{block}
+		}
+
+	\end{frame}
+
+\section{Results}
+
+	\subsection{Test Procedures}
+	\begin{frame}
+		\ldots
+	\end{frame}
+	
+	\subsection{Hypothesis 1}
+	\begin{frame}
+		\begin{block}{Hypothesis 1}
+			\label{hyp:increased_activity}
+			Heuristic $H$ manages to keep more symmetries weakly active during search.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Results}
+		\ldots
+	\end{frame}
+	
+	\subsection{Hypothesis 2}
+	\begin{frame}
+		\begin{block}{Hypothesis 2}
+			\label{hyp:activity_equals_speed}
+			When more symmetries are active during search, more literals can be propagated, resulting in
+			better solve performance on average.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Results}
+		\ldots
+	\end{frame}
+	
+	
+\section{Break it down}
+
+	\subsection{Conclusion}
+	\begin{frame}
+		\frametitle{Conclusion}
+		\ldots
+	\end{frame}
+
+	\subsection{References}
+	\begin{frame}[allowframebreaks]
+		\frametitle{References}
+		\bibliographystyle{IEEEtran}
+		\bibliography{../bibliography}
+	\end{frame}
+
+	\begin{frame}
+	\Huge{\centerline{Questions?}}
+	\end{frame}
+
+\end{document}
