@@ -194,12 +194,12 @@
 		\frametitle{Symmetry Related Variable Branching Heuristics}
 
 		\begin{block}{Symmetry Counting}
-			\dots
+			Pick $v \in V$ which has the highest amount of symmetries.
 		\end{block}
 
 		\visible<+->{
 		\begin{block}{Symmetry Usage}
-			\ldots
+			When a variable is propagated during the Symmetry propagation phase, bump its priority, which may result in the variable moving up in the variable heap.
 		\end{block}
 		}
 
@@ -210,8 +210,10 @@
 		\frametitle{Runtime Analysis}
 		
 		\begin{block}{Symmetry Activity}
+			$O(|L| * (|T| + |S|))$
 		\end{block}
 		\begin{block}{Symmetry Activity Approximation}
+			$O(|S|)$
 		\end{block}
 		\begin{block}{Symmetry Counting}
 		\end{block}
