@@ -20,7 +20,7 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{hypothesis}{Hypothesis}
 
-\title[Dynamic Symmetry Breaking]{Branching Heuristics Promoting Symmetry Activity}
+\title{Branching Heuristics Promoting Symmetry Activity}
 
 \author{
 	J. van Beek \and
@@ -160,12 +160,12 @@
 
 \section{Branching Heuristics}
 
-	\subsection{The idea}
+	\subsection{The Idea}
 	\begin{frame}
 		\frametitle{Symmetry Optimizing Variable Branching}
 
 		\begin{block}{Optimization through literal selection}
-			According to Hypothesis 1 improve dynamic symmetry propagation performance by choosing literals that promote
+			According to Hypothesis 2 improve dynamic symmetry propagation performance by choosing literals that promote
 			symmetry weak-activity.
 		\end{block}
 	\end{frame}
@@ -236,9 +236,38 @@
 		\end{block}
 	\end{frame}
 	
-	\begin{frame}
+	\begin{frame}[allowframebreaks]
 		\frametitle{Observations}
-		\ldots
+		\begin{block}{General Observations}
+			\begin{itemize}
+				\item $SP^{REG}$ and $SP^{OPT}$ perform equally, except on \emph{urq}.
+				\item In the \emph{chnl} benchmark, none of the implementations succeed in increasing the number of active symmetries.
+				\item The same is the case for \emph{urq}, but that contains only inverting symmetries. %Explain inverting symmetries?
+			\end{itemize}
+		\end{block}
+
+		\begin{block}{SA Heuristic}
+			\begin{itemize}
+				\item The SA heuristic was only implemented with a unit propagation lookahead.
+					So no symmetry propagation lookahead is performed.
+				\item Additionally, it only chooses from the top 5 variables on the heap.
+				\item The SA heuristic performs best in keeping the most symmetries active, except in \emph{urq} where $SP^{OPT}$ excels.
+			\end{itemize}
+		\end{block}
+
+		\begin{block}{Symmetry Counting Heuristic}
+			\begin{itemize}
+				\item Improved symmetry activity in about $2/3$ of the cases, if we exclude \emph{chnl}.
+				\item Performs worse in keeping symmetries active for cases with a lot of inverting symmetries.
+			\end{itemize}
+		\end{block}
+
+		\begin{block}{Symmetry Usage Heuristic}
+			\begin{itemize}
+				\item Decreased symmetry activity in most cases, so that Hypothesis 1 is not satisfied.
+				\item Probably caused by promoting \emph{all} literals that are part of the used symmetry.
+			\end{itemize}
+		\end{block}
 	\end{frame}
 	
 	\begin{frame}[plain]
@@ -258,7 +287,7 @@
 		\frametitle{Correlation Performance and Active Symmetries}
 		\begin{figure}
 			\center
-			\centerline{\includegraphics[width=\textwidth]{../results/scatterplot_activity.eps}}
+			\centerline{\includegraphics[width=0.9\textwidth]{../results/scatterplot_activity.eps}}
 			\caption{
 				Correlation between number of active symmetries and number of decisions for all
 				heuristics.
