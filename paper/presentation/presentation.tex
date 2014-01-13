@@ -51,6 +51,44 @@
 
 \section{Background}
 	
+	\subsection{Symmetry}
+	\begin{frame}
+		\frametitle{Symmetry}
+
+		\begin{definition}[Symmetry]
+			Consider a permutation $\sigma$ of a theory $T$. $\sigma$ is called a symmetry if and only if:
+			\begin{itemize}
+				\item $\sigma(\neg x) = \neg(\sigma(x))$
+				\item $\sigma(\alpha)$ is a model for $T$ iff $\alpha$ is a model for $T$
+			\end{itemize}
+		\end{definition}
+
+		\begin{proposition}
+			Let $\sigma$ be a symmetry of a theory $T$ and $c$ a clause.
+			\begin{equation}
+				T \vdash c \quad \implies \quad T \vdash \sigma( c )
+			\end{equation}
+		\end{proposition}
+	\end{frame}
+
+
+	\subsection{Dynamic Symmetry Breaking}
+	\begin{frame}
+		\frametitle{Dynamic Symmetry Breaking: Weak Activity}
+
+		\begin{block}{Weak Activity}
+			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
+			choice literals.
+			A symmetry $\sigma$ of T is weakly active if $\sigma(\delta) \subseteq \alpha$
+		\end{block}
+
+		\begin{block}{Weak Inactivity}
+			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
+			choice literals.
+			A symmetry $\sigma$ of T is weakly-inactive if $\exists l \in \sigma(\delta), l \not\in \alpha$
+		\end{block}
+	\end{frame}
+	
 	\subsection{Research Objective}
 	\begin{frame}
 		\frametitle{Introduction}
@@ -74,91 +112,10 @@
 		\end{block}
 	\end{frame}
 
-	\subsection{Notation}
-	\begin{frame}
-		\frametitle{Variable Heap}
-
-		\begin{itemize}
-			\item Choice literals are picked from heap.
-			\item Priority queue.
-			\item Unassigned variables that have been chosen before are bumped.
-			\item Solve difficult problems first.
-		\end{itemize}
-	\end{frame}
-
-	\subsection{Symmetry}
-	\begin{frame}
-		\frametitle{Symmetry}
-
-		\begin{definition}[Symmetry]
-			Consider a permutation $\sigma$ of a theory $T$. $\sigma$ is called a symmetry if and only if:
-			\begin{itemize}
-				\item $\sigma(\neg x) = \neg(\sigma(x))$
-				\item $\sigma(\alpha)$ is a model for $T$ iff $\alpha$ is a model for $T$
-			\end{itemize}
-		\end{definition}
-
-		\pause
-
-		\begin{proposition}
-			Let $\sigma$ be a symmetry of a theory $T$ and $c$ a clause.
-			\begin{equation}
-				T \vdash c \quad \implies \quad T \vdash \sigma( c )
-			\end{equation}
-		\end{proposition}
-	\end{frame}
-
-%	\subsection{Symmetry Breaking}
-	\begin{frame}
-		\frametitle{Symmetry Breaking}
-
-		\begin{itemize}
-			\item Static Symmetry Breaking, e.g. Shatter~\cite{aloul2004shatterpb}.
-			\item Dynamic Symmetry Breaking, e.g. Symmetry Propagation~\cite{devriendt2012symmetry}.
-		\end{itemize}
-	\end{frame}
-
-	\subsection{Dynamic Symmetry Breaking}
-%	\begin{frame}
-%		\frametitle{Dynamic Symmetry Breaking}
-%
-%		\begin{block}{Approach}
-%			Propagate symmetrical literals.
-%
-%			Given theory $T$, partial assignment $\alpha$ and symmetry
-%			\alert<2->{$\sigma$ of $T \cup \alpha$}.
-%
-%			For each literal $l$:
-%			\begin{equation}
-%				T \cup \alpha \vdash l \quad
-%				\implies
-%				\quad T \cup \alpha \vdash \sigma(l)
-%			\end{equation}
-%
-%			Thus when $l$ is progated, $\sigma(l)$ can also be propagated.
-%		\end{block}
-%	\end{frame}
-
-	\begin{frame}
-		\frametitle{Dynamic Symmetry Breaking: Weak Activity}
-
-		\begin{block}{Weak Activity}
-			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
-			choice literals.
-			A symmetry $\sigma$ of T is weakly active if $\sigma(\delta) \subseteq \alpha$
-		\end{block}
-
-		\begin{block}{Inactivity}
-			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
-			choice literals.
-			A symmetry $\sigma$ of T is weakly-inactive if $\exists l \in \sigma(\delta), l \not\in \alpha$
-		\end{block}
-	\end{frame}
-
 \section{Branching Heuristics}
 
 	\subsection{Implemented Heuristics}
-	\begin{frame}[allowframebreaks]
+	\begin{frame}%[allowframebreaks]
 		\frametitle{Branching Heuristics}
 
 		\begin{block}{Symmetry Activity (SA)}
@@ -171,12 +128,11 @@
 		\end{block}
 
 		\begin{block}{Symmetry Counting}
-			Promote $v \in V$ which has the best symmetry activity.
+			Promote literals which appear in the most symmetries.
 		\end{block}
 
 		\begin{block}{Symmetry Usage}
-			When a symmetry is used to propagate a variable, increase the activity all variables
-			that are part of that symmetry. This promotes activity of symmetries that are
+			Promote activity of symmetries that are
 			'important' to propagate variables.
 		\end{block}
 	\end{frame}
@@ -198,8 +154,20 @@
 			$O(|L|)$ per symmetry propagation
 		\end{block}
 	\end{frame}
+	
+	\subsection{Implementation}
+	\begin{frame}
+		\frametitle{Variable Heap}
 
-	\begin{frame}[allowframebreaks]
+		\begin{itemize}
+			\item Choice literals are picked from heap.
+			\item Priority queue.
+			\item Unassigned variables that have been chosen before are bumped.
+			\item Solve difficult problems first.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}%[allowframebreaks]
 		\frametitle{Implementation}
 
 		\begin{block}{Symmetry Activity (SA)}
