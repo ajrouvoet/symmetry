@@ -161,52 +161,84 @@
 	\begin{frame}[allowframebreaks]
 		\frametitle{Branching Heuristics}
 
-		\begin{exampleblock}{Symmetry Activity (SA)}
-			\begin{enumerate}
-				\item Get first $n$ undecided variables $V$ from the variable heap
-				\item For each $v \in V$: perform lookahead on choice literals $v$ and $\neg v$
-				\item Continue with branch that has the most weakly-active symmetries
-			\end{enumerate}
-		\end{exampleblock}
+		\begin{block}{Symmetry Activity (SA)}
+			Use a lookahead operation to find the literal that will yield the best symmetry activity
+			in the next iteration.
+		\end{block}
 
 		\begin{block}{Symmetry Activity Approximation (SA-APPROX)}
-			Do not perform lookahead.
-			Instead assume current choice literals $\delta$, next choice literal $l$, and assignment $\alpha$.
-			Let $\alpha' = \alpha \cup \{l\}$ and evaluate the number of active symmetries against that assignment.
+			SA without actually performing a full iteration (lookahead).
 		\end{block}
 
 		\begin{block}{Symmetry Counting}
-			Pick $v \in V$ which has the highest amount of symmetries.
+			Promote $v \in V$ which has the best symmetry activity.
 		\end{block}
 
 		\begin{block}{Symmetry Usage}
-			When a variable is propagated during the Symmetry propagation phase, bump its priority, which may result in the variable moving up in the variable heap.
+			When a symmetry is used to propagate a variable, increase the activity all variables
+			that are part of that symmetry. This promotes activity of symmetries that are
+			'important' to propagate variables.
 		\end{block}
 	\end{frame}
-
-	\begin{frame}
-		\frametitle{Implementation}
-
-	\end{frame}
-
 
 	\subsection{Runtime Analysis}
 	\begin{frame}
 		\frametitle{Runtime Analysis}
-		
+
 		\begin{block}{Symmetry Activity}
-			$O(|L|(|T| + |S|))$ per iteration
+			$O(|L|(|T| + |\mathcal{S}|))$ per iteration
 		\end{block}
 		\begin{block}{Symmetry Activity Approximation}
-			$O(|S|)$ per iteration
+			$O(|\mathcal{S}|)$ per iteration
 		\end{block}
 		\begin{block}{Symmetry Counting}
 			$O(|L|)$ preprocessing, hence no effect to overall complexity
 		\end{block}
 		\begin{block}{Symmetry Usage}
-			$O(|S|)$ per symmetry propagation
+			$O(|L|)$ per symmetry propagation
 		\end{block}
 	\end{frame}
+
+	\begin{frame}[allowframebreaks]
+		\frametitle{Implementation}
+
+		\begin{block}{Symmetry Activity (SA)}
+			\begin{enumerate}
+				\item Get first $n$ undecided variables from the variable heap
+				\item For each variable $v$ of those variables: simulate
+						\begin{enumerate}
+							\item choose $v$
+							\item perform unit propagation
+							\item count weakly active symmetries
+							\item backtrack to previous decision level
+						\end{enumerate}
+				\item Continue with branch that has the most weakly-active symmetries in the next
+					iteration
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+
+	\begin{frame}[allowframebreaks]
+		\begin{block}{Symmetry Activity Approximation (SA-APPROX)}
+			Instead of performing the unit propagation; given current choice literals $\delta$,
+			next choice literal $l$, and assignment $\alpha$:
+
+			Let $\alpha' = \alpha \cup \{l\}$ and evaluate the number of active symmetries against
+			that assignment.
+		\end{block}
+
+		\begin{block}{Symmetry Counting}
+			Increase the initial activity of all variables in every symmetry.
+			Such that in turn, variables that would make many symmetries more active, are promoted.
+		\end{block}
+
+		\begin{block}{Symmetry Usage}
+			When a symmetry is used to propagate a variable, increase the activity all variables
+			that are part of that symmetry. This promotes activity of symmetries that are
+			'important' to propagate variables.
+		\end{block}
+	\end{frame}
+
 
 \section{Results}
 
@@ -221,7 +253,7 @@
 			\item Urqhart's problems: \emph{urq}.
 		\end{itemize}
 	\end{frame}
-	
+
 	\begin{frame}[allowframebreaks]
 		\frametitle{Observations}
 		\begin{block}{General Observations}
@@ -260,7 +292,7 @@
 			\end{itemize}
 		\end{block}
 	\end{frame}
-	
+
 	\begin{frame}[plain]
 		\frametitle{Correlation Performance and Active Symmetries}
 		\begin{figure}
@@ -305,15 +337,15 @@
 			\label{fig:active_symmetries_during_search}
 		\end{figure}
 	\end{frame}
-	
+
 	\againframe<2>{falsification}
-	
+
 \section{Conclusion}
 
 	\subsection{Future work}
 	\begin{frame}
 		\frametitle{Future work}
-		
+
 		\begin{itemize}
 			\item Combine multiple heuristics into a new heuristic.
 			\item Investigate correlation between problem classes and performance heuristics.
