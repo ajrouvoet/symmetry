@@ -15,7 +15,17 @@ for i=1:length(sorted)
     Y = [ Y sorted{i}(:,2)]
 end
 
-semilogy(X, Y, '*')
+% Calculate linear regression
+sortedAll = sortrows([diff(:), speed(:)]);
+% Remove NaNs
+sortedAll2 = sortedAll(isfinite(sortedAll(:, 1)), :)
+allDiff = sortedAll2(:,1);
+allSpeed = sortedAll2(:,2);
+p = polyfit(allDiff, allSpeed, 1)
+f = polyval(p, allDiff);
+
+
+plot(X, Y, '*', allDiff, f, '-')
 hline(1)
 legend('SP^{opt}', 'SA', 'SA-APPROX', 'Symmetry Count', 'Symmetry Usage', 'Location', 'southeast')
 ylabel('Performance ratio')
