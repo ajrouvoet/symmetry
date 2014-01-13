@@ -209,14 +209,16 @@
 		\frametitle{Runtime Analysis}
 		
 		\begin{block}{Symmetry Activity}
-			$O(|L| * (|T| + |S|))$
+			$O(|L|(|T| + |S|))$ per iteration
 		\end{block}
 		\begin{block}{Symmetry Activity Approximation}
-			$O(|S|)$
+			$O(|S|)$ per iteration
 		\end{block}
 		\begin{block}{Symmetry Counting}
+			$O(|L|)$ preprocessing, hence no effect to overall complexity
 		\end{block}
 		\begin{block}{Symmetry Usage}
+			$O(|S|)$ per symmetry propagation
 		\end{block}
 	\end{frame}
 
@@ -229,7 +231,7 @@
 			\begin{itemize}
 				\item Routing of field-programmable gate arrays: \emph{fpga} and \emph{chnl}.
 				\item Pigeonhole problems: \emph{hole}.
-				\item \emph{Battleship}
+				\item Game problems: \emph{battleship}.
 				\item Urqhart's problems: \emph{urq}.
 			\end{itemize}
 		\end{block}
