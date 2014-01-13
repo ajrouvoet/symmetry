@@ -225,19 +225,48 @@
 
 	\subsection{Test Procedures}
 	\begin{frame}
-		\ldots
+		\begin{block}{Benchmarks}
+			We used the same benchmarks as used by Devriendt et al. for comparison:
+			\begin{itemize}
+				\item Routing of field-programmable gate arrays: \emph{fpga} and \emph{chnl}.
+				\item Pigeonhole problems: \emph{hole}.
+				\item \emph{Battleship}
+				\item Urqhart's problems: \emph{urq}.
+			\end{itemize}
+		\end{block}
 	\end{frame}
 	
 	\begin{frame}
-		\frametitle{Results}
+		\frametitle{Observations}
 		\ldots
 	\end{frame}
 	
-	\begin{frame}
-		\frametitle{Results}
-		\ldots
+	\begin{frame}[plain]
+		\frametitle{Active Symmetries During Runtime}
+		\begin{figure}
+			\centerline{\includegraphics[width=1.2\textwidth]{../results/battleship-12-23-approx-vs-reg.eps}}
+			\caption{
+				Number of active symmetries during search for one of the cases where SA-APPROX got
+				outperformed by $SP^{OPT}$.
+				The specific case under test is battleship-12-23
+			}
+			\label{fig:active_symmetries_during_search}
+		\end{figure}
 	\end{frame}
 	
+	\begin{frame}[plain]
+		\frametitle{Correlation Performance and Active Symmetries}
+		\begin{figure}
+			\center
+			\centerline{\includegraphics[width=\textwidth]{../results/scatterplot_activity.eps}}
+			\caption{
+				Correlation between number of active symmetries and number of decisions for all
+				heuristics.
+				Performance and activity measured relative to $SP^{REG}$.
+			}
+			\label{fig:correlation}
+		\end{figure}
+	\end{frame}
 	
 \section{Conclusion}
 
