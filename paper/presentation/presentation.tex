@@ -67,13 +67,11 @@
 			Heuristic $H$ manages to keep more symmetries weakly active during search.
 		\end{block}
 		
-		\visible<+->{
 		\begin{block}{Hypothesis 2}
 			\label{hyp:activity_equals_speed}
 			When more symmetries are active during search, more literals can be propagated, resulting in
 			better solve performance on average.
 		\end{block}
-		}
 	\end{frame}
 
 	\subsection{Notation}
@@ -81,10 +79,10 @@
 		\frametitle{Variable Heap}
 
 		\begin{itemize}
-			\item Choice literals are picked from heap
-			\item Priority queue
-			\item Unassigned variables that have been chosen before are bumped
-			\item Solve difficult problems first
+			\item Choice literals are picked from heap.
+			\item Priority queue.
+			\item Unassigned variables that have been chosen before are bumped.
+			\item Solve difficult problems first.
 		\end{itemize}
 	\end{frame}
 
@@ -144,13 +142,13 @@
 	\begin{frame}
 		\frametitle{Dynamic Symmetry Breaking: Weak Activity}
 
-		\begin{block}<+->{Weak Activity}
+		\begin{block}{Weak Activity}
 			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
 			choice literals.
 			A symmetry $\sigma$ of T is weakly active if $\sigma(\delta) \subseteq \alpha$
 		\end{block}
 
-		\begin{block}<+->{Inactivity}
+		\begin{block}{Inactivity}
 			Given a theory T, let $\alpha$ be the current assignment and $\delta$ the set of
 			choice literals.
 			A symmetry $\sigma$ of T is weakly-inactive if $\exists l \in \sigma(\delta), l \not\in \alpha$
@@ -158,16 +156,6 @@
 	\end{frame}
 
 \section{Branching Heuristics}
-
-	\subsection{The Idea}
-	\begin{frame}
-		\frametitle{Symmetry Optimizing Variable Branching}
-
-		\begin{block}{Optimization through literal selection}
-			According to Hypothesis 2 improve dynamic symmetry propagation performance by choosing literals that promote
-			symmetry weak-activity.
-		\end{block}
-	\end{frame}
 
 	\subsection{Implemented Heuristics}
 	\begin{frame}[allowframebreaks]
