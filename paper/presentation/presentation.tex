@@ -50,7 +50,7 @@
 	\end{frame}
 
 \section{Background}
-	
+
 	\subsection{Symmetry}
 	\begin{frame}
 		\frametitle{Symmetry}
@@ -92,7 +92,7 @@
 			A symmetry $\sigma$ is inverting when there is a literal $l$ for which $\sigma(l) = \neg l$.
 		\end{block}
 	\end{frame}
-	
+
 	\subsection{Research Objective}
 	\begin{frame}
 		\frametitle{Introduction}
@@ -107,7 +107,7 @@
 			\label{hyp:increased_activity}
 			Heuristic $H$ manages to keep more symmetries weakly active during search.
 		\end{block}
-		
+
 		\begin{block}{Hypothesis 2}
 			\label{hyp:activity_equals_speed}
 			When more symmetries are active during search, more literals can be propagated, resulting in
@@ -157,7 +157,7 @@
 			$O(|L|)$ per symmetry propagation
 		\end{block}
 	\end{frame}
-	
+
 	\subsection{Implementation}
 	\begin{frame}
 		\frametitle{Variable Heap}
@@ -233,14 +233,13 @@
 				\item In the \emph{chnl} benchmark, none of the implementations succeed in increasing the number of active symmetries.
 				\item $SP^{OPT}$ has significantly better activity and performance on the \emph{urq} benchmark in all cases.
 				\item None of the implemented heuristics show a consistent performance improvement.
+				\item Over the whole suite SA and SA-APPROX increase the activity of 40/56
+				instances.
 			\end{itemize}
 		\end{block}
 
 		\begin{block}{SA Heuristic}
 			\begin{itemize}
-				\item The SA heuristic was only implemented with a unit propagation lookahead.
-					So no symmetry propagation lookahead is performed.
-				\item Additionally, it only chooses from the top 5 variables on the heap.
 				\item The SA heuristic performs best in keeping the most symmetries active, except in \emph{urq} where $SP^{OPT}$ excels.
 			\end{itemize}
 		\end{block}
@@ -329,14 +328,14 @@
 
 		\begin{itemize}
 			\item SA, SA-APPROX and SC increase number of weakly active symmetries.
-			\item<+-> SU does not, probably because it cannot properly promote important 
+			\item<+-> SU does not, probably because it cannot properly promote important
 			symmetries through variable activity.
-			\item<+-> None of the implemented heuristics show a consistent performance 
+			\item<+-> None of the implemented heuristics show a consistent performance
 			improvement.
-			\item<+-> The number of active symmetries during search does not seem directly 
+			\item<+-> The number of active symmetries during search does not seem directly
 			correlated with performance.
 		\end{itemize}
-		
+
 	\end{frame}
 
 	\subsection{References}
