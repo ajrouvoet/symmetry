@@ -172,10 +172,10 @@
 	\end{frame}
 
 	\subsection{Implemented Heuristics}
-	\begin{frame}
-		\frametitle{Symmetry Related Variable Branching Heuristics}
+	\begin{frame}[allowframebreaks]
+		\frametitle{Branching Heuristics}
 
-		\begin{exampleblock}{Symmetry Activity (SA)}<1->
+		\begin{exampleblock}{Symmetry Activity (SA)}
 			\begin{enumerate}
 				\item Get first $n$ undecided variables $V$ from the variable heap
 				\item For each $v \in V$: perform lookahead on choice literals $v$ and $\neg v$
@@ -183,29 +183,25 @@
 			\end{enumerate}
 		\end{exampleblock}
 
-		\begin{block}{Symmetry Activity Approximation (SA-APPROX)}<2->
+		\begin{block}{Symmetry Activity Approximation (SA-APPROX)}
 			Do not do a lookahead.
 			Instead assume current choice literals $\delta$, next choice literal $l$, and assignment $\alpha$.
 			Let $\alpha' = \alpha \cup \{l\}$ and evaluate the number of active symmetries against that assignment.
 		\end{block}
 
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Symmetry Related Variable Branching Heuristics}
-
 		\begin{block}{Symmetry Counting}
 			Pick $v \in V$ which has the highest amount of symmetries.
 		\end{block}
 
-		\visible<+->{
 		\begin{block}{Symmetry Usage}
 			When a variable is propagated during the Symmetry propagation phase, bump its priority, which may result in the variable moving up in the variable heap.
 		\end{block}
-		}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Implementation}
 
 	\end{frame}
-	
 	\subsection{Runtime Analysis}
 	\begin{frame}
 		\frametitle{Runtime Analysis}
@@ -226,15 +222,14 @@
 
 	\subsection{Test Procedures}
 	\begin{frame}
-		\begin{block}{Benchmarks}
-			We used the same benchmarks as used by Devriendt et al. for comparison:
-			\begin{itemize}
-				\item Routing of field-programmable gate arrays: \emph{fpga} and \emph{chnl}.
-				\item Pigeonhole problems: \emph{hole}.
-				\item \emph{Battleship}
-				\item Urqhart's problems: \emph{urq}.
-			\end{itemize}
-		\end{block}
+		\frametitle{Benchmarks}
+		We used the same benchmarks as used by Devriendt et al. for comparison:
+		\begin{itemize}
+			\item Routing of field-programmable gate arrays: \emph{fpga} and \emph{chnl}.
+			\item Pigeonhole problems: \emph{hole}.
+			\item \emph{Battleship}
+			\item Urqhart's problems: \emph{urq}.
+		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}[allowframebreaks]
@@ -243,7 +238,8 @@
 			\begin{itemize}
 				\item $SP^{REG}$ and $SP^{OPT}$ perform equally, except on \emph{urq}.
 				\item In the \emph{chnl} benchmark, none of the implementations succeed in increasing the number of active symmetries.
-				\item The same is the case for \emph{urq}, but that contains only inverting symmetries. %Explain inverting symmetries?
+				\item $SP^{OPT}$ has significantly better activity and performance on the \emph{urq} benchmark in all cases.
+				\item None of the implemented heuristics show a consistent performance improvement.
 			\end{itemize}
 		\end{block}
 
@@ -254,6 +250,10 @@
 				\item Additionally, it only chooses from the top 5 variables on the heap.
 				\item The SA heuristic performs best in keeping the most symmetries active, except in \emph{urq} where $SP^{OPT}$ excels.
 			\end{itemize}
+		\end{block}
+
+		\begin{block}{SA-APPROX Heuristic}
+			Comparable activity with SA.
 		\end{block}
 
 		\begin{block}{Symmetry Counting Heuristic}
@@ -272,19 +272,6 @@
 	\end{frame}
 	
 	\begin{frame}[plain]
-		\frametitle{Active Symmetries During Runtime}
-		\begin{figure}
-			\centerline{\includegraphics[width=1.4\textwidth]{../results/battleship-12-23-approx-vs-reg.eps}}
-%			\caption{
-%				Number of active symmetries during search for one of the cases where SA-APPROX got
-%				outperformed by $SP^{OPT}$.
-%				The specific case under test is battleship-12-23
-%			}
-			\label{fig:active_symmetries_during_search}
-		\end{figure}
-	\end{frame}
-	
-	\begin{frame}[plain]
 		\frametitle{Correlation Performance and Active Symmetries}
 		\begin{figure}
 			\center
@@ -297,6 +284,39 @@
 			\label{fig:correlation}
 		\end{figure}
 	\end{frame}
+
+	\subsection{Falsification of Hypothesis 2}
+	\begin{frame}<1>[label=falsification]
+		\frametitle{Falsification of Hypothesis 2}
+		The scatterplot does not show a clear correlation between symmetry activity and the performance.
+		However, before falsifying Hypthesis 2, we must consider a few intervening causes first.
+		\begin{block}{Intervening Causes}
+			\begin{enumerate}
+				\item<1-> It could be that case that when considering only an average number of active symmetries
+					that at the beginning the active symmetries is actually lower than $SP^{REG}$
+					and thus results in a worse performance.
+				\item<2-> The branching heuristics may interfere with the MiniSat VSIDS heuristic.
+			\end{enumerate}
+		\end{block}
+
+		\onslide<2->{Devriendt et al.~\cite{devriendt2012symmetry} obtained promising results with their heuristic.
+		It was only applicable op \emph{urq} and.}
+	\end{frame}
+
+	\begin{frame}[plain]
+		\frametitle{Active Symmetries During Runtime}
+		\begin{figure}
+			\centerline{\includegraphics[width=1.4\textwidth]{../results/battleship-12-23-approx-vs-reg.eps}}
+%			\caption{
+%				Number of active symmetries during search for one of the cases where SA-APPROX got
+%				outperformed by $SP^{OPT}$.
+%				The specific case under test is battleship-12-23
+%			}
+			\label{fig:active_symmetries_during_search}
+		\end{figure}
+	\end{frame}
+	
+	\againframe<2>{falsification}
 	
 \section{Conclusion}
 
