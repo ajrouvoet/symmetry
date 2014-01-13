@@ -78,15 +78,13 @@
 
 	\subsection{Notation}
 	\begin{frame}
-		\frametitle{SAT notation}
+		\frametitle{Variable Heap}
 
 		\begin{itemize}
-			\item Theory $T$ is a conjunction of clauses
-			\item Clause $c$ is a disjunction of literals
-			\item Literal $l$ is of the form $x$ or $\neg x$ and $x \in \Sigma(T)$
-			\item $\Sigma(T)$ is the set of variables in $T$
-			\item An assignment $\alpha$ is called a model of $T$ iff it is complete and satisfies
-				all clauses of $T$
+			\item Choice literals are picked from heap
+			\item Priority queue
+			\item Unassigned variables that have been chosen before are bumped
+			\item Solve difficult problems first
 		\end{itemize}
 	\end{frame}
 
